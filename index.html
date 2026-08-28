@@ -1,656 +1,1171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RainyDays Labs ☔</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>RainyDays Labs ☔</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f8ff;
-      color: #20263a;
-    }
+<style>
 
-    /* HEADER */
-    header {
-      background: white;
-      padding: 18px 30px;
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      border-bottom: 2px solid #e4e9f5;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .logo span {
-      color: #5d7cff;
-    }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: #f5f8ff;
+  color: #20263a;
+  transition: 0.3s;
+}
 
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
+/* ================= HEADER ================= */
 
-    nav a {
-      text-decoration: none;
-      color: #30364a;
-      font-weight: bold;
-      cursor: pointer;
-    }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-    nav a:hover {
-      color: #5d7cff;
-    }
+  display: flex;
+  align-items: center;
+  gap: 25px;
 
-    .search {
-      margin-left: auto;
-      display: flex;
-    }
+  padding: 15px 25px;
 
-    .search input {
-      width: 190px;
-      padding: 10px 14px;
-      border: 1px solid #ccd3e5;
-      border-radius: 20px 0 0 20px;
-      outline: none;
-    }
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(15px);
 
-    .search button {
-      border: none;
-      background: #5d7cff;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 0 20px 20px 0;
-      cursor: pointer;
-    }
+  border-bottom: 1px solid #e2e7f3;
+}
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #dce7ff, #f4eaff);
-    }
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+  white-space: nowrap;
+}
 
-    .hero .cloud {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
+.logo span {
+  color: #617cff;
+}
 
-    .hero h1 {
-      font-size: 45px;
-      margin-bottom: 15px;
-    }
+nav {
+  display: flex;
+  gap: 17px;
+  flex-wrap: wrap;
+}
 
-    .hero h1 span {
-      color: #5d7cff;
-    }
+nav a {
+  color: #343b52;
+  text-decoration: none;
+  font-weight: 650;
+  cursor: pointer;
+}
 
-    .hero p {
-      font-size: 21px;
-      color: #555d73;
-    }
+nav a:hover {
+  color: #617cff;
+}
 
-    /* MAIN */
-    main {
-      max-width: 1150px;
-      margin: auto;
-      padding: 45px 20px;
-    }
+.search {
+  margin-left: auto;
+  display: flex;
+}
 
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
+.search input {
+  width: 180px;
+  padding: 10px 14px;
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-bottom: 45px;
-    }
+  border: 1px solid #d2d8e7;
+  border-radius: 20px 0 0 20px;
 
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(40, 55, 90, 0.08);
-    }
+  outline: none;
+}
 
-    .card .emoji {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
+.search button {
+  border: none;
+  padding: 10px 15px;
 
-    .card h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
-    }
+  background: #617cff;
+  color: white;
 
-    .card p {
-      color: #656c7e;
-      line-height: 1.5;
-    }
+  border-radius: 0 20px 20px 0;
 
-    .card button {
-      margin-top: 18px;
-      border: none;
-      background: #5d7cff;
-      color: white;
-      padding: 10px 17px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+  cursor: pointer;
+}
 
-    .card button:hover {
-      background: #405fe0;
-    }
+/* ================= HERO ================= */
 
-    /* RECIPE */
-    .recipe {
-      background: white;
-      border-radius: 20px;
-      padding: 28px;
-      margin-bottom: 45px;
-      box-shadow: 0 5px 20px rgba(40, 55, 90, 0.08);
-    }
+.hero {
+  position: relative;
+  overflow: hidden;
 
-    .recipe h3 {
-      font-size: 25px;
-      margin-bottom: 10px;
-    }
+  text-align: center;
 
-    .recipe ul {
-      margin: 15px 0 15px 22px;
-      line-height: 1.7;
-    }
+  padding: 95px 20px 105px;
 
-    /* WEATHER */
-    .weather-box {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      margin-bottom: 45px;
-      box-shadow: 0 5px 20px rgba(40, 55, 90, 0.08);
-    }
+  background:
+    linear-gradient(135deg,#dce8ff,#f4e9ff,#e7f7ff);
+}
 
-    .weather-box input {
-      padding: 12px;
-      border: 1px solid #ccd3e5;
-      border-radius: 10px;
-      width: 220px;
-    }
+.hero::before {
+  content: "☁️";
+  position: absolute;
+  font-size: 100px;
+  left: 7%;
+  top: 20px;
+  opacity: .6;
 
-    .weather-box button {
-      padding: 12px 18px;
-      border: none;
-      border-radius: 10px;
-      background: #5d7cff;
-      color: white;
-      cursor: pointer;
-      margin-left: 5px;
-    }
+  animation: float 6s ease-in-out infinite;
+}
 
-    #weatherResult {
-      margin-top: 20px;
-      font-size: 19px;
-      font-weight: bold;
-    }
+.hero::after {
+  content: "☁️";
+  position: absolute;
+  font-size: 75px;
+  right: 10%;
+  bottom: 25px;
+  opacity: .6;
 
-    /* CREATION */
-    .creation {
-      background: linear-gradient(135deg, #fff1d9, #ffe2ee);
-      padding: 35px;
-      border-radius: 22px;
-      margin-bottom: 45px;
-    }
+  animation: float 7s ease-in-out infinite reverse;
+}
 
-    .creation h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
+@keyframes float {
 
-    .creation p {
-      font-size: 18px;
-      line-height: 1.6;
-    }
+  0%,100% {
+    transform: translateY(0);
+  }
 
-    /* SPONSOR */
-    .sponsor {
-      background: #20263a;
-      color: white;
-      padding: 35px;
-      border-radius: 22px;
-      margin-bottom: 45px;
-    }
+  50% {
+    transform: translateY(-15px);
+  }
 
-    .sponsor h2 {
-      margin-bottom: 12px;
-    }
+}
 
-    .sponsor p {
-      color: #dfe4f3;
-      line-height: 1.6;
-    }
+.hero-icon {
+  font-size: 65px;
+}
 
-    .sponsor button {
-      margin-top: 20px;
-      background: white;
-      color: #20263a;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.hero h1 {
+  margin-top: 15px;
 
-    /* FOOTER */
-    footer {
-      background: white;
-      border-top: 2px solid #e4e9f5;
-      text-align: center;
-      padding: 30px;
-      color: #777f92;
-    }
+  font-size: clamp(34px,7vw,58px);
+  font-weight: 900;
+}
 
-    /* MOBILE */
-    @media (max-width: 800px) {
-      header {
-        flex-wrap: wrap;
-      }
+.hero h1 span {
+  color: #617cff;
+}
 
-      .search {
-        margin-left: 0;
-        width: 100%;
-      }
+.hero p {
+  margin-top: 15px;
 
-      .search input {
-        width: 100%;
-      }
+  font-size: 21px;
+  color: #596176;
+}
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
+/* ================= MAIN ================= */
 
-      .hero h1 {
-        font-size: 34px;
-      }
-    }
-  </style>
+main {
+  max-width: 1150px;
+  margin: auto;
+
+  padding: 50px 20px;
+}
+
+.section-title {
+  margin-bottom: 22px;
+
+  font-size: 30px;
+}
+
+/* ================= CARDS ================= */
+
+.cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(240px,1fr));
+
+  gap: 20px;
+
+  margin-bottom: 55px;
+}
+
+.card {
+  background: white;
+
+  padding: 27px;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 30px rgba(35,50,90,.08);
+
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 15px 35px rgba(35,50,90,.13);
+}
+
+.emoji {
+  font-size: 45px;
+  margin-bottom: 13px;
+}
+
+.card h3 {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #697186;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+
+  margin-top: 18px;
+
+  padding: 11px 18px;
+
+  background: #617cff;
+  color: white;
+
+  border: none;
+  border-radius: 25px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+
+.button:hover {
+  transform: scale(1.04);
+  background: #4965e5;
+}
+
+/* ================= FEATURED ================= */
+
+.featured {
+  padding: 35px;
+
+  margin-bottom: 55px;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(135deg,#fff2d9,#ffe2ef);
+}
+
+.featured h2 {
+  font-size: 32px;
+}
+
+.featured h3 {
+  margin-top: 15px;
+  font-size: 25px;
+}
+
+.featured p {
+  margin-top: 12px;
+
+  line-height: 1.7;
+}
+
+/* ================= WEATHER ================= */
+
+.weather {
+  padding: 30px;
+
+  background: white;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 30px rgba(35,50,90,.08);
+
+  margin-bottom: 55px;
+}
+
+.weather input {
+  width: 220px;
+
+  padding: 12px;
+
+  border: 1px solid #ccd3e5;
+
+  border-radius: 12px;
+
+  outline: none;
+}
+
+.weather-result {
+  margin-top: 20px;
+
+  font-size: 19px;
+
+  font-weight: 700;
+}
+
+/* ================= RECIPES ================= */
+
+.recipe-box {
+  padding: 28px;
+
+  background: white;
+
+  border-radius: 20px;
+
+  margin-bottom: 55px;
+
+  box-shadow:
+    0 8px 30px rgba(35,50,90,.08);
+}
+
+.recipe-box ul {
+  margin: 15px 0 0 20px;
+
+  line-height: 1.8;
+}
+
+/* ================= RANDOM ================= */
+
+.random-box {
+  text-align: center;
+
+  padding: 40px;
+
+  margin-bottom: 55px;
+
+  background:
+    linear-gradient(135deg,#e5eaff,#f7e8ff);
+
+  border-radius: 25px;
+}
+
+.random-result {
+  margin: 20px;
+
+  font-size: 25px;
+
+  font-weight: 800;
+}
+
+/* ================= DIY ================= */
+
+.difficulty {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  padding: 5px 10px;
+
+  border-radius: 15px;
+
+  background: #e7edff;
+
+  color: #5067c8;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+/* ================= SPONSOR ================= */
+
+.sponsor {
+  padding: 40px;
+
+  margin-bottom: 55px;
+
+  border-radius: 25px;
+
+  background: #20263a;
+
+  color: white;
+}
+
+.sponsor p {
+  margin-top: 12px;
+
+  color: #d9deec;
+
+  line-height: 1.7;
+}
+
+.sponsor .button {
+  background: white;
+  color: #20263a;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  text-align: center;
+
+  padding: 40px 20px;
+
+  background: white;
+
+  border-top: 1px solid #e2e7f3;
+
+  color: #747c91;
+}
+
+/* ================= DARK MODE ================= */
+
+.dark {
+  background: #101522;
+  color: #f4f6ff;
+}
+
+.dark header,
+.dark .card,
+.dark .weather,
+.dark .recipe-box,
+.dark footer {
+  background: #181e2d;
+  color: #f4f6ff;
+}
+
+.dark nav a {
+  color: #e6eaff;
+}
+
+.dark .card p,
+.dark .weather p,
+.dark footer {
+  color: #aeb6cc;
+}
+
+.dark .hero {
+  background:
+    linear-gradient(135deg,#18233d,#241b35);
+}
+
+.dark .weather input {
+  background: #222a3d;
+  color: white;
+  border-color: #3b465f;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px) {
+
+  header {
+    flex-wrap: wrap;
+  }
+
+  nav {
+    order: 3;
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding-bottom: 5px;
+  }
+
+  .search {
+    margin-left: 0;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .hero {
+    padding: 70px 20px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
+<!-- ================= HEADER ================= -->
 
-    <div class="logo">
-      ☔ <span>RainyDays</span> Labs
-    </div>
+<header>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#bakes">Bakes</a>
-      <a href="#random">Totally Random</a>
-      <a href="#nature">Nature</a>
-      <a href="#diy">DIY</a>
-    </nav>
+  <div class="logo">
+    ☔ <span>RainyDays</span> Labs
+  </div>
 
-    <div class="search">
-      <input id="searchInput" type="text" placeholder="Search RainyDays...">
-      <button onclick="searchSite()">🔍</button>
-    </div>
+  <nav>
 
-  </header>
+    <a href="#home">Home</a>
+
+    <a href="#bakes">Bakes</a>
+
+    <a href="#random">Totally Random</a>
+
+    <a href="#nature">Nature</a>
+
+    <a href="#diy">DIY</a>
+
+  </nav>
+
+  <div class="search">
+
+    <input
+      id="searchInput"
+      placeholder="Search RainyDays..."
+    >
+
+    <button onclick="searchSite()">🔍</button>
+
+  </div>
+
+  <button
+    class="button"
+    onclick="toggleDark()"
+    style="margin:0;"
+  >
+    🌙
+  </button>
+
+</header>
 
 
-  <!-- HERO -->
-  <section class="hero" id="home">
+<!-- ================= HERO ================= -->
 
-    <div class="cloud">☁️🌧️</div>
+<section class="hero" id="home">
 
-    <h1>
-      WELCOME TO <span>RAINYDAYS LABS!</span>
-    </h1>
+  <div class="hero-icon">
+    ☁️🌧️
+  </div>
+
+  <h1>
+    WELCOME TO
+    <span>RAINYDAYS LABS!</span>
+  </h1>
+
+  <p>
+    The website that's full of imagination ✨
+  </p>
+
+</section>
+
+
+<main>
+
+
+<!-- ================= EXPLORE ================= -->
+
+<h2 class="section-title">
+  🌈 Explore RainyDays Labs
+</h2>
+
+<div class="cards">
+
+  <div class="card" id="bakes">
+
+    <div class="emoji">🍪</div>
+
+    <h3>Today's Recipes</h3>
 
     <p>
-      The website that's full of imagination ✨
+      Delicious things to bake when you're feeling creative.
     </p>
 
-  </section>
+    <button
+      class="button"
+      onclick="scrollToSection('recipes')"
+    >
+      Explore Bakes
+    </button>
 
+  </div>
 
-  <main>
 
-    <!-- FEATURE CARDS -->
-    <h2 class="section-title">Explore RainyDays Labs 🌈</h2>
+  <div class="card">
 
-    <div class="cards">
+    <div class="emoji">🌦️</div>
 
-      <div class="card" id="bakes">
-        <div class="emoji">🍪</div>
-        <h3>Today's Recipes</h3>
-        <p>
-          Discover something delicious to bake today!
-        </p>
-        <button onclick="showRecipe()">See Recipe</button>
-      </div>
+    <h3>Weather Checker</h3>
 
+    <p>
+      Find out what the weather is doing.
+    </p>
 
-      <div class="card">
-        <div class="emoji">🌦️</div>
-        <h3>Weather Checker</h3>
-        <p>
-          Check what the weather is doing wherever you are.
-        </p>
-        <button onclick="document.getElementById('weather').scrollIntoView()">
-          Check Weather
-        </button>
-      </div>
+    <button
+      class="button"
+      onclick="scrollToSection('weather')"
+    >
+      Check Weather
+    </button>
 
+  </div>
 
-      <div class="card" id="diy">
-        <div class="emoji">🧪</div>
-        <h3>DIY & Creations</h3>
-        <p>
-          Make something amazing with your own imagination.
-        </p>
-        <button onclick="alert('New DIY ideas coming soon! 🛠️')">
-          Explore DIY
-        </button>
-      </div>
 
-    </div>
+  <div class="card" id="diy">
 
+    <div class="emoji">🧪</div>
 
-    <!-- RECIPE -->
-    <section id="recipeSection">
+    <h3>DIY Lab</h3>
 
-      <h2 class="section-title">🍪 Today's Recipe</h2>
+    <p>
+      Experiments, crafts and projects to try.
+    </p>
 
-      <div class="recipe">
+    <button
+      class="button"
+      onclick="scrollToSection('diySection')"
+    >
+      Explore DIY
+    </button>
 
-        <h3>Chocolate Chunk Cookies 🍫</h3>
+  </div>
 
-        <p>
-          Soft, gooey and absolutely delicious.
-        </p>
 
-        <ul>
-          <li>100g butter</li>
-          <li>100g light brown sugar</li>
-          <li>1 egg</li>
-          <li>150g flour</li>
-          <li>100g chocolate chunks</li>
-        </ul>
+  <div class="card" id="nature">
 
-        <p>
-          Mix everything together, shape into cookies and bake until golden!
-        </p>
+    <div class="emoji">🌲</div>
 
-      </div>
+    <h3>Nature</h3>
 
-    </section>
+    <p>
+      Animals, plants, weather and amazing nature facts.
+    </p>
 
+    <button
+      class="button"
+      onclick="alert('More Nature adventures coming soon! 🌿')"
+    >
+      Explore Nature
+    </button>
 
-    <!-- WEATHER -->
-    <section id="weather">
+  </div>
 
-      <h2 class="section-title">🌦️ Weather Checker</h2>
+</div>
 
-      <div class="weather-box">
 
-        <p>Enter a place to check the weather:</p>
+<!-- ================= THIS WEEK ================= -->
 
-        <br>
+<section class="featured">
 
-        <input
-          id="cityInput"
-          type="text"
-          placeholder="e.g. Belfast"
-        >
+  <h2>
+    ✨ This Week's Creation Is...
+  </h2>
 
-        <button onclick="checkWeather()">
-          Check
-        </button>
+  <h3>
+    🎨 The RainyDays Mystery Box
+  </h3>
 
-        <div id="weatherResult"></div>
+  <p>
+    Every week, RainyDays Labs features one amazing
+    creation, recipe, DIY project or completely random idea.
+  </p>
 
-      </div>
+  <button
+    class="button"
+    onclick="alert('The next creation will be revealed soon! 👀')"
+  >
+    See This Week's Creation
+  </button>
 
-    </section>
+</section>
 
 
-    <!-- RANDOM -->
-    <section id="random">
+<!-- ================= WEATHER ================= -->
 
-      <h2 class="section-title">✨ Totally Random</h2>
+<section id="weather">
 
-      <div class="cards">
+  <h2 class="section-title">
+    🌦️ Weather Checker
+  </h2>
 
-        <div class="card">
-          <div class="emoji">🎲</div>
-          <h3>Random Idea Generator</h3>
-          <p id="randomIdea">
-            Click the button for a completely random idea!
-          </p>
-          <button onclick="randomIdea()">
-            Give Me An Idea
-          </button>
-        </div>
+  <div class="weather">
 
-
-        <div class="card" id="nature">
-
-          <div class="emoji">🌲</div>
-
-          <h3>Nature Corner</h3>
-
-          <p>
-            Explore animals, plants, weather and amazing things
-            happening in nature.
-          </p>
-
-          <button onclick="alert('Nature Corner coming soon! 🌿')">
-            Explore
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- THIS WEEK'S CREATION -->
-    <section>
-
-      <div class="creation">
-
-        <h2>✨ This Week's Creation Is...</h2>
-
-        <h3>🎨 The RainyDays Mystery Box!</h3>
-
-        <br>
-
-        <p>
-          Every week we'll choose one amazing creation,
-          bake, DIY project or completely random idea to feature
-          on RainyDays Labs!
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- SPONSOR -->
-    <section>
-
-      <div class="sponsor">
-
-        <h2>💰 Want to get sponsored?</h2>
-
-        <p>
-          Want your product, creation or business to be featured
-          in This Week's Creation?
-        </p>
-
-        <p>
-          We're building a space where creative people and
-          businesses can work together.
-        </p>
-
-        <button onclick="alert('Sponsorship information coming soon! 💌')">
-          Learn About Sponsorship
-        </button>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- FOOTER -->
-  <footer>
-
-    <p>☔ RainyDays Labs</p>
-
-    <p>The website that's full of imagination ✨</p>
+    <p>
+      Enter a city or town:
+    </p>
 
     <br>
 
-    <p>© 2026 RainyDays Labs</p>
+    <input
+      id="city"
+      placeholder="e.g. Belfast"
+    >
 
-  </footer>
+    <button
+      class="button"
+      onclick="weatherCheck()"
+    >
+      Check
+    </button>
 
+    <div
+      class="weather-result"
+      id="weatherResult"
+    >
+      🌍 Enter somewhere above!
+    </div>
 
-  <script>
+  </div>
 
-    /* SEARCH */
-
-    function searchSite() {
-
-      const search =
-        document.getElementById("searchInput").value.toLowerCase();
-
-      if (search.includes("recipe") || search.includes("bake")) {
-
-        document
-          .getElementById("recipeSection")
-          .scrollIntoView({ behavior: "smooth" });
-
-      } else if (search.includes("weather")) {
-
-        document
-          .getElementById("weather")
-          .scrollIntoView({ behavior: "smooth" });
-
-      } else if (search.includes("random")) {
-
-        document
-          .getElementById("random")
-          .scrollIntoView({ behavior: "smooth" });
-
-      } else {
-
-        alert(
-          "🔎 We couldn't find that yet!\n\nTry searching for recipes, weather or random."
-        );
-
-      }
-
-    }
+</section>
 
 
-    /* RECIPE */
+<!-- ================= RECIPES ================= -->
 
-    function showRecipe() {
+<section id="recipes">
 
-      document
-        .getElementById("recipeSection")
-        .scrollIntoView({ behavior: "smooth" });
+  <h2 class="section-title">
+    🍪 Today's Recipes
+  </h2>
 
-    }
+  <div class="cards">
+
+    <div class="recipe-box">
+
+      <div class="emoji">🍪</div>
+
+      <h3>Chocolate Chunk Cookies</h3>
+
+      <p>
+        Soft, gooey and packed with chocolate.
+      </p>
+
+      <ul>
+
+        <li>100g butter</li>
+
+        <li>100g brown sugar</li>
+
+        <li>1 egg</li>
+
+        <li>150g flour</li>
+
+        <li>100g chocolate</li>
+
+      </ul>
+
+    </div>
 
 
-    /* WEATHER */
+    <div class="recipe-box">
 
-    function checkWeather() {
+      <div class="emoji">🧁</div>
 
-      const city =
-        document.getElementById("cityInput").value;
+      <h3>Easy Cupcakes</h3>
 
-      if (city.trim() === "") {
+      <p>
+        Simple fluffy cupcakes for a rainy afternoon.
+      </p>
 
-        document.getElementById("weatherResult").innerText =
-          "Please enter a place! 🌍";
+      <ul>
 
-        return;
+        <li>100g butter</li>
 
-      }
+        <li>100g sugar</li>
 
-      document.getElementById("weatherResult").innerText =
-        "🌦️ Weather for " + city +
-        ": Weather checking will be connected to live weather data soon!";
+        <li>2 eggs</li>
 
-    }
+        <li>100g flour</li>
+
+        <li>1 tsp baking powder</li>
+
+      </ul>
+
+    </div>
 
 
-    /* RANDOM IDEA */
+    <div class="recipe-box">
 
-    function randomIdea() {
+      <div class="emoji">🍫</div>
 
-      const ideas = [
+      <h3>Chocolate Brownies</h3>
 
-        "Bake rainbow cookies 🌈🍪",
+      <p>
+        Rich, chocolatey and perfect with ice cream.
+      </p>
 
-        "Build a cardboard robot 🤖",
+      <ul>
 
-        "Make a mini indoor garden 🌱",
+        <li>Butter</li>
 
-        "Create your own board game 🎲",
+        <li>Sugar</li>
 
-        "Make a mystery slime 🧪",
+        <li>Eggs</li>
 
-        "Paint a canvas using only 3 colours 🎨",
+        <li>Cocoa powder</li>
 
-        "Design your dream bedroom 🛏️",
+        <li>Chocolate</li>
 
-        "Make a giant blanket fort 🏕️",
+      </ul>
 
-        "Create your own invention 💡",
+    </div>
 
-        "Make a nature treasure hunt 🌿"
+  </div>
 
-      ];
+</section>
 
-      const random =
-        ideas[Math.floor(Math.random() * ideas.length)];
 
-      document.getElementById("randomIdea").innerText =
-        random;
+<!-- ================= RANDOM ================= -->
 
-    }
+<section id="random">
 
-  </script>
+  <div class="random-box">
+
+    <h2>
+      🎲 Totally Random
+    </h2>
+
+    <p>
+      You never know what RainyDays Labs will suggest...
+    </p>
+
+    <div
+      class="random-result"
+      id="randomResult"
+    >
+      🤔 Press the button!
+    </div>
+
+    <button
+      class="button"
+      onclick="randomIdea()"
+    >
+      🎲 Give Me Something Random
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DIY ================= -->
+
+<section id="diySection">
+
+  <h2 class="section-title">
+    🧪 DIY Lab
+  </h2>
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="emoji">🎨</div>
+
+      <h3>Canvas Art</h3>
+
+      <p>
+        Create a colourful piece of artwork.
+      </p>
+
+      <span class="difficulty">
+        ⭐ Easy
+      </span>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="emoji">🌈</div>
+
+      <h3>Rainbow Project</h3>
+
+      <p>
+        Make something colourful using things around your home.
+      </p>
+
+      <span class="difficulty">
+        ⭐⭐ Medium
+      </span>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="emoji">🧪</div>
+
+      <h3>Mystery Experiment</h3>
+
+      <p>
+        A completely random RainyDays Lab experiment.
+      </p>
+
+      <span class="difficulty">
+        ⭐⭐⭐ Challenge
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SPONSOR ================= -->
+
+<section>
+
+  <div class="sponsor">
+
+    <h2>
+      💰 Want to get featured?
+    </h2>
+
+    <p>
+      Have a product, creation or idea you'd like
+      to feature in This Week's Creation?
+    </p>
+
+    <p>
+      RainyDays Labs is building a creative place
+      where imagination and ideas come together.
+    </p>
+
+    <button
+      class="button"
+      onclick="alert('Sponsorship information coming soon! 💌')"
+    >
+      Learn About Sponsorship
+    </button>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <h3>
+    ☔ RainyDays Labs
+  </h3>
+
+  <p>
+    The website that's full of imagination ✨
+  </p>
+
+  <br>
+
+  <p>
+    © 2026 RainyDays Labs
+  </p>
+
+</footer>
+
+
+<script>
+
+/* ================= SEARCH ================= */
+
+function searchSite() {
+
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  if (!query) {
+
+    alert("🔎 Type something to search!");
+
+    return;
+
+  }
+
+  if (
+    query.includes("bake") ||
+    query.includes("recipe") ||
+    query.includes("cookie") ||
+    query.includes("brownie") ||
+    query.includes("cupcake")
+  ) {
+
+    scrollToSection("recipes");
+
+  }
+
+  else if (
+    query.includes("weather") ||
+    query.includes("rain") ||
+    query.includes("temperature")
+  ) {
+
+    scrollToSection("weather");
+
+  }
+
+  else if (
+    query.includes("diy") ||
+    query.includes("craft") ||
+    query.includes("make")
+  ) {
+
+    scrollToSection("diySection");
+
+  }
+
+  else if (
+    query.includes("random") ||
+    query.includes("fun")
+  ) {
+
+    scrollToSection("random");
+
+  }
+
+  else if (
+    query.includes("nature") ||
+    query.includes("animal") ||
+    query.includes("plant")
+  ) {
+
+    scrollToSection("nature");
+
+  }
+
+  else {
+
+    alert(
+      "🔎 RainyDays Labs couldn't find that yet!\n\nTry searching for recipes, weather, DIY, nature or random."
+    );
+
+  }
+
+}
+
+
+/* ================= RANDOM ================= */
+
+function randomIdea() {
+
+  const ideas = [
+
+    "🍪 Bake something you've never made before!",
+
+    "🎨 Paint a picture using only 3 colours!",
+
+    "🌱 Find 3 different plants outside!",
+
+    "🏕️ Build the world's best blanket fort!",
+
+    "🧪 Invent a completely new experiment!",
+
+    "🎲 Create your own board game!",
+
+    "📦 Turn an old box into something amazing!",
+
+    "🌈 Make something inspired by a rainbow!",
+
+    "✏️ Design your own logo!",
+
+    "💡 Invent something that solves a problem!"
+
+  ];
+
+  const choice =
+    ideas[
+      Math.floor(Math.random() * ideas.length)
+    ];
+
+  document
+    .getElementById("randomResult")
+    .innerText = choice;
+
+}
+
+
+/* ================= WEATHER ================= */
+
+function weatherCheck() {
+
+  const city =
+    document
+      .getElementById("city")
+      .value
+      .trim();
+
+  const result =
+    document
+      .getElementById("weatherResult");
+
+  if (!city) {
+
+    result.innerText =
+      "🌍 Please enter a city or town!";
+
+    return;
+
+  }
+
+  result.innerText =
+    "🌦️ Looking up the weather for " +
+    city +
+    "...";
+
+  /*
+    LIVE WEATHER API CAN BE CONNECTED HERE.
+
+    This free version currently uses
+    the interface without requiring
+    an API key.
+  */
+
+  setTimeout(() => {
+
+    result.innerText =
+      "☔ Weather checker ready for " +
+      city +
+      "!";
+
+  }, 800);
+
+}
+
+
+/* ================= DARK MODE ================= */
+
+function toggleDark() {
+
+  document
+    .body
+    .classList
+    .toggle("dark");
+
+}
+
+
+/* ================= SCROLL ================= */
+
+function scrollToSection(id) {
+
+  document
+    .getElementById(id)
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+</script>
 
 </body>
 </html>
