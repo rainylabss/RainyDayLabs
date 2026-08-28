@@ -7,275 +7,1606 @@
 <title>RainyDays Labs ☔</title>
 
 <style>
-body {
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7ff;
-  color: #20263a;
+  padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background: #f5f7ff;
+  color: #20253a;
+
+  transition: background .3s, color .3s;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
 header {
-  background: white;
-  padding: 18px;
-  text-align: center;
   position: sticky;
   top: 0;
+  z-index: 1000;
+
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(15px);
+
+  border-bottom: 1px solid #e2e6f2;
+
+  padding: 14px 22px;
+}
+
+.header-inner {
+  max-width: 1150px;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .logo {
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 12px;
+  font-size: 22px;
+  font-weight: 900;
+  white-space: nowrap;
 }
 
 .logo span {
   color: #617cff;
 }
 
-nav a {
-  margin: 6px;
-  text-decoration: none;
-  color: #20263a;
-  font-weight: bold;
+nav {
+  display: flex;
+  gap: 14px;
+  margin-left: 10px;
 }
 
-.hero {
-  text-align: center;
-  padding: 70px 20px;
-  background: linear-gradient(135deg,#dce8ff,#f4e9ff);
+nav button {
+  background: none;
+  border: none;
+
+  color: #3b4257;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
 }
 
-.hero h1 {
-  font-size: 42px;
-}
-
-.hero span {
+nav button:hover {
   color: #617cff;
 }
 
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 35px 20px;
+.header-right {
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
-  gap: 20px;
+.search {
+  display: flex;
 }
 
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+.search input {
+  width: 150px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #d5dbea;
+  border-radius: 20px 0 0 20px;
+
+  outline: none;
 }
 
-.emoji {
-  font-size: 40px;
-}
+.search button {
+  border: none;
 
-button {
   background: #617cff;
   color: white;
-  border: none;
-  padding: 11px 17px;
-  border-radius: 20px;
+
+  padding: 9px 13px;
+
+  border-radius: 0 20px 20px 0;
+
   cursor: pointer;
-  font-weight: bold;
-  margin-top: 12px;
 }
 
-button:hover {
-  opacity: .85;
+.dark-button {
+  border: none;
+
+  background: #20263a;
+  color: white;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
 }
 
-input {
-  padding: 11px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
 
-.section {
-  margin-top: 45px;
-}
+/* =========================
+   HERO
+========================= */
 
-.random {
+.hero {
+  position: relative;
+  overflow: hidden;
+
   text-align: center;
+
+  padding: 90px 20px 100px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dfeaff,
+      #f1e7ff,
+      #e3f7ff
+    );
+}
+
+.cloud {
+  position: absolute;
+
+  font-size: 75px;
+
+  opacity: .45;
+
+  animation: cloudMove 7s ease-in-out infinite;
+}
+
+.cloud.one {
+  left: 7%;
+  top: 35px;
+}
+
+.cloud.two {
+  right: 8%;
+  bottom: 30px;
+
+  animation-delay: 1.5s;
+}
+
+@keyframes cloudMove {
+
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+
+}
+
+.hero-icon {
+  font-size: 65px;
+}
+
+.hero h1 {
+  margin-top: 15px;
+
+  font-size: clamp(34px, 7vw, 62px);
+
+  font-weight: 950;
+}
+
+.hero h1 span {
+  color: #617cff;
+}
+
+.hero p {
+  margin-top: 15px;
+
+  font-size: 20px;
+
+  color: #626b80;
+}
+
+.hero-button {
+  margin-top: 25px;
+
+  padding: 13px 24px;
+
+  border: none;
+  border-radius: 30px;
+
+  background: #617cff;
+  color: white;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(97,124,255,.25);
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+
+  padding: 45px 20px 70px;
+}
+
+.section-title {
+  font-size: 29px;
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   HOME HIGHLIGHTS
+========================= */
+
+.highlight-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+  gap: 20px;
+
+  margin-bottom: 45px;
+}
+
+.highlight {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 8px 30px rgba(30,45,90,.08);
+
+  transition: transform .25s;
+}
+
+.highlight:hover {
+  transform: translateY(-5px);
+}
+
+.highlight-icon {
+  font-size: 45px;
+
+  margin-bottom: 12px;
+}
+
+.highlight h3 {
+  font-size: 21px;
+
+  margin-bottom: 8px;
+}
+
+.highlight p {
+  color: #687187;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.primary {
+  border: none;
+
+  background: #617cff;
+  color: white;
+
+  padding: 11px 18px;
+
+  border-radius: 22px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  margin-top: 16px;
+}
+
+.primary:hover {
+  background: #4f68e4;
+}
+
+
+/* =========================
+   WEATHER
+========================= */
+
+.weather-box {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 8px 30px rgba(30,45,90,.08);
+
+  margin-bottom: 45px;
+}
+
+.weather-form {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 15px;
+}
+
+.weather-form input {
+  flex: 1;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  border: 1px solid #d4d9e7;
+
+  outline: none;
+}
+
+.weather-result {
+  margin-top: 18px;
+
+  font-weight: 750;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   TODAY'S RECIPES
+========================= */
+
+.recipe-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+  gap: 20px;
+
+  margin-bottom: 45px;
+}
+
+.recipe {
+  background: white;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 30px rgba(30,45,90,.08);
+}
+
+.recipe-top {
+  padding: 30px;
+
+  text-align: center;
+
+  font-size: 60px;
+
+  background:
+    linear-gradient(135deg,#fff1db,#ffe7f2);
+}
+
+.recipe-body {
+  padding: 22px;
+}
+
+.recipe-body h3 {
+  margin-bottom: 8px;
+}
+
+.recipe-body p {
+  color: #687187;
+
+  line-height: 1.6;
+}
+
+
+/* =========================
+   THIS WEEK
+========================= */
+
+.featured {
+  background:
+    linear-gradient(
+      135deg,
+      #fff0d9,
+      #ffe3f1
+    );
+
+  border-radius: 28px;
+
   padding: 35px;
-  border-radius: 20px;
-  background: linear-gradient(135deg,#e6ebff,#f7e6ff);
+
+  margin-bottom: 45px;
 }
 
-#randomResult {
-  font-size: 22px;
+.featured h2 {
+  font-size: 30px;
+}
+
+.featured h3 {
+  margin-top: 12px;
+
+  font-size: 24px;
+}
+
+.featured p {
+  margin-top: 10px;
+
+  color: #5e6577;
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+.category-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+  gap: 18px;
+
+  margin-bottom: 45px;
+}
+
+.category {
+  padding: 27px;
+
+  border-radius: 23px;
+
+  background: white;
+
+  text-align: center;
+
+  box-shadow:
+    0 7px 25px rgba(30,45,90,.07);
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.category:hover {
+  transform: translateY(-5px);
+}
+
+.category-icon {
+  font-size: 48px;
+
+  margin-bottom: 10px;
+}
+
+.category h3 {
+  margin-bottom: 7px;
+}
+
+.category p {
+  color: #737b8e;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   CATEGORY PAGES
+========================= */
+
+.page {
+  display: none;
+
+  max-width: 1050px;
+
+  margin: auto;
+
+  padding: 45px 20px 70px;
+}
+
+.page.active {
+  display: block;
+}
+
+.page-header {
+  text-align: center;
+
+  padding: 45px 20px;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dfeaff,
+      #f4e7ff
+    );
+
+  margin-bottom: 30px;
+}
+
+.page-header .big {
+  font-size: 60px;
+}
+
+.page-header h2 {
+  font-size: 38px;
+
+  margin-top: 10px;
+}
+
+
+/* =========================
+   RECIPE STEPS
+========================= */
+
+.full-recipe {
+  background: white;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  margin-bottom: 20px;
+
+  box-shadow:
+    0 7px 25px rgba(30,45,90,.07);
+}
+
+.full-recipe h3 {
+  font-size: 25px;
+
+  margin-bottom: 15px;
+}
+
+.ingredients {
+  margin-bottom: 20px;
+
+  padding-left: 22px;
+
+  line-height: 1.9;
+}
+
+.steps {
+  list-style: none;
+
+  counter-reset: steps;
+}
+
+.steps li {
+  counter-increment: steps;
+
+  margin-bottom: 14px;
+
+  padding: 15px 15px 15px 55px;
+
+  position: relative;
+
+  background: #f5f7ff;
+
+  border-radius: 15px;
+}
+
+.steps li::before {
+  content: counter(steps);
+
+  position: absolute;
+
+  left: 15px;
+  top: 12px;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: #617cff;
+
+  color: white;
+
   font-weight: bold;
-  margin: 20px;
 }
 
-.dark {
-  background: #111827;
-  color: white;
+
+/* =========================
+   NATURE
+========================= */
+
+.fact {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 22px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 7px 25px rgba(30,45,90,.07);
 }
 
-.dark header,
-.dark .card {
-  background: #1f2937;
+.fact strong {
+  font-size: 20px;
 }
 
-.dark nav a {
-  color: white;
+
+/* =========================
+   RANDOM
+========================= */
+
+.random-box {
+  text-align: center;
+
+  padding: 45px 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e5ebff,
+      #f7e6ff
+    );
+
+  border-radius: 28px;
 }
+
+.random-result {
+  font-size: 25px;
+
+  font-weight: 850;
+
+  margin: 25px 0;
+}
+
+
+/* =========================
+   DIY
+========================= */
+
+.diy-card {
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 22px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 7px 25px rgba(30,45,90,.07);
+}
+
+.diy-card p {
+  color: #687187;
+
+  line-height: 1.7;
+
+  margin-top: 8px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   text-align: center;
-  padding: 35px;
+
+  padding: 40px 20px;
+
   background: white;
-  margin-top: 40px;
+
+  border-top: 1px solid #e1e5ef;
+
+  color: #747c90;
 }
 
-.dark footer {
-  background: #1f2937;
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark {
+  background: #101522;
+
+  color: #f3f5ff;
 }
 
-@media(max-width:600px) {
-  .hero h1 {
-    font-size: 32px;
+body.dark header,
+body.dark .highlight,
+body.dark .weather-box,
+body.dark .recipe,
+body.dark .category,
+body.dark .full-recipe,
+body.dark .fact,
+body.dark .diy-card,
+body.dark footer {
+  background: #1a2030;
+  color: #f3f5ff;
+}
+
+body.dark nav button {
+  color: #e7eaff;
+}
+
+body.dark .highlight p,
+body.dark .recipe-body p,
+body.dark .category p,
+body.dark .diy-card p {
+  color: #abb4c9;
+}
+
+body.dark .search input,
+body.dark .weather-form input {
+  background: #242c40;
+  color: white;
+  border-color: #3a455e;
+}
+
+body.dark .steps li {
+  background: #242c40;
+}
+
+body.dark footer {
+  color: #aeb6c9;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+  .header-inner {
+    flex-wrap: wrap;
   }
+
+  nav {
+    order: 3;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding-bottom: 4px;
+  }
+
+  .header-right {
+    margin-left: auto;
+  }
+
+  .search input {
+    width: 120px;
+  }
+
 }
+
+@media(max-width:500px) {
+
+  header {
+    padding: 12px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .hero {
+    padding: 65px 18px 75px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .weather-form {
+    flex-direction: column;
+  }
+
+  .weather-form button {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+button:focus,
+input:focus {
+  outline: 3px solid rgba(97,124,255,.25);
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
+<div class="header-inner">
 
 <div class="logo">
 ☔ <span>RainyDays</span> Labs
 </div>
 
+
 <nav>
-<a href="#home">Home</a>
-<a href="#bakes">Bakes</a>
-<a href="#random">Totally Random</a>
-<a href="#nature">Nature</a>
-<a href="#diy">DIY</a>
+
+<button onclick="showHome()">
+Home
+</button>
+
+<button onclick="showPage('bakesPage')">
+🍪 Bakes
+</button>
+
+<button onclick="showPage('randomPage')">
+🎲 Totally Random
+</button>
+
+<button onclick="showPage('naturePage')">
+🌿 Nature
+</button>
+
+<button onclick="showPage('diyPage')">
+🧪 DIY
+</button>
+
 </nav>
 
-<br>
 
-<button onclick="toggleDark()">🌙 Dark Mode</button>
+<div class="header-right">
+
+<div class="search">
+
+<input
+id="searchInput"
+placeholder="Search..."
+>
+
+<button onclick="searchSite()">
+🔍
+</button>
+
+</div>
+
+<button
+class="dark-button"
+onclick="toggleDark()"
+>
+🌙
+</button>
+
+</div>
+
+</div>
 
 </header>
 
 
-<section class="hero" id="home">
+<!-- =========================
+     HOME
+========================= -->
 
-<div style="font-size:60px;">☁️🌧️</div>
+<div id="homePage">
+
+
+<section class="hero">
+
+<div class="cloud one">☁️</div>
+
+<div class="cloud two">☁️</div>
+
+<div class="hero-icon">
+☔️
+</div>
 
 <h1>
-WELCOME TO <span>RAINYDAYS LABS!</span>
+Welcome to
+<span>RainyDays Labs!</span>
 </h1>
 
 <p>
 The website that's full of imagination ✨
 </p>
 
+<button
+class="hero-button"
+onclick="scrollToHighlights()"
+>
+Explore RainyDays Labs
+</button>
+
 </section>
 
 
-<main>
+<main id="highlights">
 
 
-<h2>🌈 Explore RainyDays Labs</h2>
+<h2 class="section-title">
+🌈 What's happening today?
+</h2>
 
-<div class="cards">
 
-<div class="card" id="bakes">
+<div class="highlight-grid">
 
-<div class="emoji">🍪</div>
 
-<h3>Today's Recipes</h3>
+<div class="highlight">
+
+<div class="highlight-icon">
+🍪
+</div>
+
+<h3>
+Today's Recipes
+</h3>
 
 <p>
-Discover something delicious to bake.
+Three delicious ideas to bake today.
 </p>
 
-<button onclick="showMessage('🍪 More recipes coming soon!')">
-Explore Bakes
+<button
+class="primary"
+onclick="showPage('bakesPage')"
+>
+See Recipes
 </button>
 
 </div>
 
 
-<div class="card">
+<div class="highlight">
 
-<div class="emoji">🌦️</div>
+<div class="highlight-icon">
+🌦️
+</div>
 
-<h3>Weather Checker</h3>
+<h3>
+Weather Checker
+</h3>
 
 <p>
-Check a place below.
+Want to know what the weather is doing?
 </p>
 
-<button onclick="checkWeather()">
+<button
+class="primary"
+onclick="focusWeather()"
+>
 Check Weather
 </button>
 
 </div>
 
 
-<div class="card" id="diy">
+<div class="highlight">
 
-<div class="emoji">🧪</div>
+<div class="highlight-icon">
+✨
+</div>
 
-<h3>DIY Lab</h3>
+<h3>
+This Week's Creation
+</h3>
 
 <p>
-Fun projects and creations.
+Discover the newest RainyDays Labs creation.
 </p>
 
-<button onclick="showMessage('🧪 New DIY projects coming soon!')">
-Explore DIY
+<button
+class="primary"
+onclick="alert('🎨 This week: The RainyDays Mystery Box!')"
+>
+View Creation
 </button>
 
 </div>
 
 
-<div class="card" id="nature">
+</div>
 
-<div class="emoji">🌲</div>
+
+<!-- WEATHER -->
+
+<h2 class="section-title">
+🌦️ Weather Checker
+</h2>
+
+<div
+class="weather-box"
+id="weatherBox"
+>
+
+<p>
+Enter a town or city below.
+</p>
+
+<div class="weather-form">
+
+<input
+id="city"
+placeholder="e.g. Belfast"
+>
+
+<button
+class="primary"
+onclick="checkWeather()"
+>
+Check
+</button>
+
+</div>
+
+<div
+class="weather-result"
+id="weatherResult"
+>
+🌍 Waiting for a place...
+</div>
+
+</div>
+
+
+<!-- TODAY'S RECIPES -->
+
+<h2 class="section-title">
+🍪 Today's Recipes
+</h2>
+
+
+<div class="recipe-grid">
+
+
+<div class="recipe">
+
+<div class="recipe-top">
+🍪
+</div>
+
+<div class="recipe-body">
+
+<h3>
+Chocolate Chunk Cookies
+</h3>
+
+<p>
+Soft, gooey cookies packed with chocolate.
+</p>
+
+<button
+class="primary"
+onclick="showPage('bakesPage')"
+>
+Get Recipe →
+</button>
+
+</div>
+
+</div>
+
+
+<div class="recipe">
+
+<div class="recipe-top">
+🧁
+</div>
+
+<div class="recipe-body">
+
+<h3>
+Easy Cupcakes
+</h3>
+
+<p>
+Fluffy cupcakes that are perfect for decorating.
+</p>
+
+<button
+class="primary"
+onclick="showPage('bakesPage')"
+>
+Get Recipe →
+</button>
+
+</div>
+
+</div>
+
+
+<div class="recipe">
+
+<div class="recipe-top">
+🍫
+</div>
+
+<div class="recipe-body">
+
+<h3>
+Chocolate Brownies
+</h3>
+
+<p>
+Rich, chocolatey brownies for a cosy day.
+</p>
+
+<button
+class="primary"
+onclick="showPage('bakesPage')"
+>
+Get Recipe →
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- THIS WEEK -->
+
+<div class="featured">
+
+<h2>
+✨ This Week's Creation
+</h2>
+
+<h3>
+🎨 The RainyDays Mystery Box
+</h3>
+
+<p>
+Every week, RainyDays Labs chooses one
+creative idea, bake, DIY project or random
+creation to feature.
+</p>
+
+</div>
+
+
+<!-- CATEGORIES -->
+
+<h2 class="section-title">
+🗂️ Explore Categories
+</h2>
+
+
+<div class="category-grid">
+
+
+<div
+class="category"
+onclick="showPage('bakesPage')"
+>
+
+<div class="category-icon">
+🍪
+</div>
+
+<h3>Bakes</h3>
+
+<p>
+Recipes and step-by-step baking.
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="showPage('naturePage')"
+>
+
+<div class="category-icon">
+🌿
+</div>
 
 <h3>Nature</h3>
 
 <p>
-Animals, plants and amazing nature facts.
+Animals, plants and amazing facts.
 </p>
 
-<button onclick="showMessage('🌿 Nature Corner is coming soon!')">
-Explore Nature
+</div>
+
+
+<div
+class="category"
+onclick="showPage('diyPage')"
+>
+
+<div class="category-icon">
+🧪
+</div>
+
+<h3>DIY</h3>
+
+<p>
+Creative projects and experiments.
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="showPage('randomPage')"
+>
+
+<div class="category-icon">
+🎲
+</div>
+
+<h3>Totally Random</h3>
+
+<p>
+You never know what you'll find.
+</p>
+
+</div>
+
+
+</div>
+
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     BAKES PAGE
+========================= -->
+
+<section
+class="page"
+id="bakesPage"
+>
+
+<div class="page-header">
+
+<div class="big">
+🍪
+</div>
+
+<h2>Bakes</h2>
+
+<p>
+Recipes, treats and step-by-step baking.
+</p>
+
+<button
+class="primary"
+onclick="showHome()"
+>
+← Back Home
 </button>
 
 </div>
 
+
+<div class="full-recipe">
+
+<h3>
+🍪 Chocolate Chunk Cookies
+</h3>
+
+<h4>
+Ingredients
+</h4>
+
+<ul class="ingredients">
+
+<li>100g butter</li>
+<li>100g light brown sugar</li>
+<li>1 egg</li>
+<li>150g plain flour</li>
+<li>1 tsp baking powder</li>
+<li>100g chocolate chunks</li>
+
+</ul>
+
+
+<h4>
+👩‍🍳 Steps
+</h4>
+
+<ol class="steps">
+
+<li>
+Cream the softened butter and brown sugar together.
+</li>
+
+<li>
+Add the egg and mix until combined.
+</li>
+
+<li>
+Add the flour and baking powder.
+Mix until you have a dough.
+</li>
+
+<li>
+Stir in the chocolate chunks.
+</li>
+
+<li>
+Shape the dough into cookie balls and place them
+on a lined baking tray.
+</li>
+
+<li>
+Bake at 180°C until golden around the edges.
+Ask an adult to help with the oven.
+</li>
+
+<li>
+Let the cookies cool before eating.
+</li>
+
+</ol>
+
 </div>
 
 
-<section class="section">
+<div class="full-recipe">
 
-<h2>🌦️ Weather Checker</h2>
+<h3>
+🧁 Easy Cupcakes
+</h3>
 
-<div class="card">
+<h4>
+Ingredients
+</h4>
 
-<input id="city" placeholder="Enter a city">
+<ul class="ingredients">
 
-<button onclick="checkWeather()">
-Check
+<li>100g butter</li>
+<li>100g sugar</li>
+<li>2 eggs</li>
+<li>100g self-raising flour</li>
+<li>1 tsp vanilla</li>
+
+</ul>
+
+<h4>
+👩‍🍳 Steps
+</h4>
+
+<ol class="steps">
+
+<li>
+Beat the butter and sugar together.
+</li>
+
+<li>
+Add the eggs one at a time.
+</li>
+
+<li>
+Fold in the flour.
+</li>
+
+<li>
+Add vanilla and mix gently.
+</li>
+
+<li>
+Spoon the mixture into cupcake cases.
+</li>
+
+<li>
+Bake until risen and golden.
+Ask an adult to help with the oven.
+</li>
+
+<li>
+Cool completely before decorating.
+</li>
+
+</ol>
+
+</div>
+
+
+<div class="full-recipe">
+
+<h3>
+🍫 Chocolate Brownies
+</h3>
+
+<h4>
+Ingredients
+</h4>
+
+<ul class="ingredients">
+
+<li>Butter</li>
+<li>Sugar</li>
+<li>Eggs</li>
+<li>Cocoa powder</li>
+<li>Plain flour</li>
+<li>Chocolate</li>
+
+</ul>
+
+<h4>
+👩‍🍳 Steps
+</h4>
+
+<ol class="steps">
+
+<li>
+Melt the butter and chocolate together.
+</li>
+
+<li>
+Mix in the sugar.
+</li>
+
+<li>
+Add the eggs and mix well.
+</li>
+
+<li>
+Fold in flour and cocoa powder.
+</li>
+
+<li>
+Pour into a lined baking tin.
+</li>
+
+<li>
+Bake until the edges are set and the middle is slightly soft.
+Ask an adult to help with the oven.
+</li>
+
+<li>
+Cool before slicing.
+</li>
+
+</ol>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     NATURE PAGE
+========================= -->
+
+<section
+class="page"
+id="naturePage"
+>
+
+<div class="page-header">
+
+<div class="big">
+🌿
+</div>
+
+<h2>Nature</h2>
+
+<p>
+Amazing animals, plants and outdoor discoveries.
+</p>
+
+<button
+class="primary"
+onclick="showHome()"
+>
+← Back Home
 </button>
 
-<p id="weatherResult">
-🌍 Enter a place above!
+</div>
+
+
+<div class="fact">
+
+<strong>🦋 Butterflies</strong>
+
+<p>
+Butterflies taste using sensors on their feet.
+</p>
+
+</div>
+
+
+<div class="fact">
+
+<strong>🐝 Bees</strong>
+
+<p>
+Honeybees communicate the location of food
+using a special movement called the waggle dance.
+</p>
+
+</div>
+
+
+<div class="fact">
+
+<strong>🦊 Foxes</strong>
+
+<p>
+Foxes have excellent hearing and can detect
+small sounds from surprisingly far away.
+</p>
+
+</div>
+
+
+<div class="fact">
+
+<strong>🌻 Sunflowers</strong>
+
+<p>
+Young sunflowers can move during the day
+to follow the sun.
+</p>
+
+</div>
+
+
+<div class="fact">
+
+<strong>🌳 Trees</strong>
+
+<p>
+Forests contain complex underground networks
+involving roots and fungi.
 </p>
 
 </div>
@@ -283,21 +1614,145 @@ Check
 </section>
 
 
-<section class="section" id="random">
+<!-- =========================
+     DIY PAGE
+========================= -->
 
-<div class="random">
+<section
+class="page"
+id="diyPage"
+>
 
-<h2>🎲 Totally Random</h2>
+<div class="page-header">
+
+<div class="big">
+🧪
+</div>
+
+<h2>DIY Lab</h2>
 
 <p>
-You never know what RainyDays Labs will suggest!
+Make, build, experiment and create.
 </p>
 
-<div id="randomResult">
+<button
+class="primary"
+onclick="showHome()"
+>
+← Back Home
+</button>
+
+</div>
+
+
+<div class="diy-card">
+
+<h3>
+🎨 Canvas Art
+</h3>
+
+<p>
+Create your own colourful artwork using
+paint, brushes and a canvas.
+</p>
+
+</div>
+
+
+<div class="diy-card">
+
+<h3>
+📦 Cardboard Creation
+</h3>
+
+<p>
+Turn an old box into something completely new.
+Try making a mini shop, robot or game.
+</p>
+
+</div>
+
+
+<div class="diy-card">
+
+<h3>
+🌈 Rainbow Craft
+</h3>
+
+<p>
+Create something inspired by the colours
+of a rainbow.
+</p>
+
+</div>
+
+
+<div class="diy-card">
+
+<h3>
+🧪 Mystery Lab
+</h3>
+
+<p>
+Invent your own safe experiment and record
+what happens. Always check with an adult before
+trying an experiment involving chemicals,
+heat or electricity.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RANDOM PAGE
+========================= -->
+
+<section
+class="page"
+id="randomPage"
+>
+
+<div class="page-header">
+
+<div class="big">
+🎲
+</div>
+
+<h2>Totally Random</h2>
+
+<p>
+The most unpredictable part of RainyDays Labs.
+</p>
+
+<button
+class="primary"
+onclick="showHome()"
+>
+← Back Home
+</button>
+
+</div>
+
+
+<div class="random-box">
+
+<h2>
+🎲 What should you do?
+</h2>
+
+<div
+class="random-result"
+id="randomResult"
+>
 🤔 Press the button!
 </div>
 
-<button onclick="randomIdea()">
+<button
+class="primary"
+onclick="randomIdea()"
+>
 🎲 Give Me Something Random
 </button>
 
@@ -306,102 +1761,21 @@ You never know what RainyDays Labs will suggest!
 </section>
 
 
-<section class="section">
-
-<h2>🍪 Today's Recipes</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="emoji">🍪</div>
-
-<h3>Chocolate Chunk Cookies</h3>
-
-<p>
-Soft, gooey and packed with chocolate.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="emoji">🧁</div>
-
-<h3>Easy Cupcakes</h3>
-
-<p>
-Simple fluffy cupcakes for a rainy day.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="emoji">🍫</div>
-
-<h3>Chocolate Brownies</h3>
-
-<p>
-Rich, chocolatey and delicious.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="card">
-
-<h2>✨ This Week's Creation</h2>
-
-<h3>🎨 The RainyDays Mystery Box</h3>
-
-<p>
-Every week we'll feature a new creation,
-recipe, DIY project or random idea!
-</p>
-
-</div>
-
-</section>
-
-
-<section class="section">
-
-<div class="card">
-
-<h2>💰 Want to get featured?</h2>
-
-<p>
-Have an idea or creation you'd like to feature?
-RainyDays Labs is building a place for imagination.
-</p>
-
-<button onclick="showMessage('💌 Sponsorship information coming soon!')">
-Learn More
-</button>
-
-</div>
-
-</section>
-
-</main>
-
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
-<h3>☔ RainyDays Labs</h3>
+<h3>
+☔ RainyDays Labs
+</h3>
 
 <p>
 The website that's full of imagination ✨
 </p>
+
+<br>
 
 <p>
 © 2026 RainyDays Labs
@@ -410,76 +1784,229 @@ The website that's full of imagination ✨
 </footer>
 
 
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
 
-function toggleDark() {
+function showHome() {
 
-document.body.classList.toggle("dark");
+  document.getElementById("homePage").style.display = "block";
+
+  document.querySelectorAll(".page").forEach(function(page) {
+
+    page.classList.remove("active");
+
+    page.style.display = "none";
+
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
 }
 
 
-function showMessage(message) {
+function showPage(id) {
 
-alert(message);
+  document.getElementById("homePage").style.display = "none";
+
+  document.querySelectorAll(".page").forEach(function(page) {
+
+    page.classList.remove("active");
+
+    page.style.display = "none";
+
+  });
+
+  const page = document.getElementById(id);
+
+  page.style.display = "block";
+
+  page.classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function scrollToHighlights() {
+
+  document.getElementById("highlights").scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
+
+
+function focusWeather() {
+
+  document.getElementById("weatherBox").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  setTimeout(function() {
+
+    document.getElementById("city").focus();
+
+  }, 500);
 
 }
 
 
 function checkWeather() {
 
-let city =
-document.getElementById("city").value;
+  const city =
+    document.getElementById("city").value.trim();
 
-let result =
-document.getElementById("weatherResult");
+  const result =
+    document.getElementById("weatherResult");
 
-if (city.trim() === "") {
+  if (!city) {
 
-result.innerText =
-"🌍 Please enter a city!";
+    result.innerText =
+      "🌍 Please enter a town or city.";
 
-return;
+    return;
 
-}
+  }
 
-result.innerText =
-"🌦️ Weather checking for " +
-city +
-" is coming soon!";
+  result.innerText =
+    "🌦️ Weather checker ready for " +
+    city +
+    "!";
 
 }
 
 
 function randomIdea() {
 
-let ideas = [
+  const ideas = [
 
-"🍪 Bake something you've never made before!",
+    "🍪 Bake something you've never made before!",
 
-"🎨 Paint a picture using only three colours!",
+    "🎨 Draw a completely imaginary animal!",
 
-"🌱 Find three different plants outside!",
+    "🌿 Find three interesting things outside!",
 
-"🏕️ Build a blanket fort!",
+    "🏕️ Build a cosy blanket fort!",
 
-"🧪 Invent a new experiment!",
+    "🧪 Invent a safe mini experiment!",
 
-"🎲 Create your own board game!",
+    "🎲 Invent your own board game!",
 
-"📦 Turn an old box into something amazing!",
+    "📦 Turn an old box into something amazing!",
 
-"🌈 Make something inspired by a rainbow!",
+    "🌈 Make something using every colour of the rainbow!",
 
-"💡 Invent something that solves a problem!"
+    "💡 Invent something that solves a problem!",
 
-];
+    "🎵 Make up a song about rain!"
 
-let choice =
-ideas[Math.floor(Math.random() * ideas.length)];
+  ];
 
-document.getElementById("randomResult").innerText =
-choice;
+  const choice =
+    ideas[Math.floor(Math.random() * ideas.length)];
+
+  document.getElementById("randomResult").innerText =
+    choice;
+
+}
+
+
+function toggleDark() {
+
+  document.body.classList.toggle("dark");
+
+}
+
+
+function searchSite() {
+
+  const query =
+    document.getElementById("searchInput").value
+    .toLowerCase()
+    .trim();
+
+  if (!query) {
+
+    alert("🔎 Type something to search!");
+
+    return;
+
+  }
+
+
+  if (
+    query.includes("bake") ||
+    query.includes("recipe") ||
+    query.includes("cookie") ||
+    query.includes("cake") ||
+    query.includes("brownie")
+  ) {
+
+    showPage("bakesPage");
+
+  }
+
+  else if (
+    query.includes("nature") ||
+    query.includes("animal") ||
+    query.includes("plant") ||
+    query.includes("tree")
+  ) {
+
+    showPage("naturePage");
+
+  }
+
+  else if (
+    query.includes("diy") ||
+    query.includes("craft") ||
+    query.includes("make")
+  ) {
+
+    showPage("diyPage");
+
+  }
+
+  else if (
+    query.includes("random") ||
+    query.includes("fun")
+  ) {
+
+    showPage("randomPage");
+
+  }
+
+  else if (
+    query.includes("weather") ||
+    query.includes("rain")
+  ) {
+
+    showHome();
+
+    setTimeout(function() {
+
+      focusWeather();
+
+    }, 300);
+
+  }
+
+  else {
+
+    alert(
+      "🔎 RainyDays Labs couldn't find that yet!\n\nTry searching for bakes, nature, DIY, random or weather."
+    );
+
+  }
 
 }
 
