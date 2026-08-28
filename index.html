@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>RainyDays Labs ☔</title>
 
 <style>
 
 /* =========================
-   RESET
+   RAINYDAYS LABS 4.0
 ========================= */
 
 * {
@@ -31,41 +35,40 @@ body {
     sans-serif;
 
   background: #f5f7ff;
-  color: #20253a;
+  color: #20263a;
 
-  transition: background .3s, color .3s;
+  transition: .3s;
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
 
-  background: rgba(255,255,255,.94);
+  background: rgba(255,255,255,.95);
+
   backdrop-filter: blur(15px);
 
   border-bottom: 1px solid #e2e6f2;
 
-  padding: 14px 22px;
+  padding: 14px;
 }
 
-.header-inner {
-  max-width: 1150px;
+.header {
+  max-width: 1200px;
   margin: auto;
 
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 
 .logo {
-  font-size: 22px;
   font-weight: 900;
+  font-size: 21px;
   white-space: nowrap;
 }
 
@@ -75,18 +78,19 @@ header {
 
 nav {
   display: flex;
-  gap: 14px;
-  margin-left: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 nav button {
-  background: none;
   border: none;
+  background: none;
 
-  color: #3b4257;
+  padding: 8px;
 
-  font-size: 14px;
   font-weight: 700;
+
+  color: #3f465a;
 
   cursor: pointer;
 }
@@ -95,12 +99,11 @@ nav button:hover {
   color: #617cff;
 }
 
-.header-right {
+.headerRight {
   margin-left: auto;
 
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .search {
@@ -110,10 +113,11 @@ nav button:hover {
 .search input {
   width: 150px;
 
-  padding: 9px 12px;
+  border: 1px solid #d3d9e8;
 
-  border: 1px solid #d5dbea;
   border-radius: 20px 0 0 20px;
+
+  padding: 9px 12px;
 
   outline: none;
 }
@@ -122,6 +126,7 @@ nav button:hover {
   border: none;
 
   background: #617cff;
+
   color: white;
 
   padding: 9px 13px;
@@ -131,10 +136,11 @@ nav button:hover {
   cursor: pointer;
 }
 
-.dark-button {
+.darkButton {
   border: none;
 
   background: #20263a;
+
   color: white;
 
   width: 38px;
@@ -146,69 +152,69 @@ nav button:hover {
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
   position: relative;
+
   overflow: hidden;
 
   text-align: center;
 
-  padding: 90px 20px 100px;
+  padding: 90px 20px;
 
   background:
     linear-gradient(
       135deg,
       #dfeaff,
-      #f1e7ff,
-      #e3f7ff
+      #f2e7ff,
+      #e3f8ff
     );
 }
 
-.cloud {
+.heroCloud {
   position: absolute;
 
   font-size: 75px;
 
-  opacity: .45;
+  opacity: .4;
 
-  animation: cloudMove 7s ease-in-out infinite;
+  animation: float 6s infinite ease-in-out;
 }
 
-.cloud.one {
-  left: 7%;
-  top: 35px;
+.cloud1 {
+  left: 8%;
+  top: 30px;
 }
 
-.cloud.two {
+.cloud2 {
   right: 8%;
-  bottom: 30px;
+  bottom: 25px;
 
-  animation-delay: 1.5s;
+  animation-delay: 2s;
 }
 
-@keyframes cloudMove {
+@keyframes float {
 
   0%,100% {
     transform: translateY(0);
   }
 
   50% {
-    transform: translateY(-14px);
+    transform: translateY(-15px);
   }
 
 }
 
-.hero-icon {
+.heroIcon {
   font-size: 65px;
 }
 
 .hero h1 {
   margin-top: 15px;
 
-  font-size: clamp(34px, 7vw, 62px);
+  font-size:
+    clamp(34px,7vw,62px);
 
   font-weight: 950;
 }
@@ -225,47 +231,45 @@ nav button:hover {
   color: #626b80;
 }
 
-.hero-button {
+.heroButton {
   margin-top: 25px;
 
-  padding: 13px 24px;
-
   border: none;
+
+  padding: 14px 25px;
+
   border-radius: 30px;
 
   background: #617cff;
+
   color: white;
 
   font-weight: 800;
 
   cursor: pointer;
-
-  box-shadow: 0 8px 20px rgba(97,124,255,.25);
 }
 
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 main {
-  max-width: 1150px;
+  max-width: 1200px;
+
   margin: auto;
 
   padding: 45px 20px 70px;
 }
 
-.section-title {
-  font-size: 29px;
+.title {
+  font-size: 30px;
+
   margin-bottom: 20px;
 }
 
 
-/* =========================
-   HOME HIGHLIGHTS
-========================= */
+/* HOME CARDS */
 
-.highlight-grid {
+.homeGrid {
   display: grid;
 
   grid-template-columns:
@@ -273,53 +277,50 @@ main {
 
   gap: 20px;
 
-  margin-bottom: 45px;
+  margin-bottom: 50px;
 }
 
-.highlight {
+.homeCard {
   background: white;
 
-  border-radius: 24px;
-
   padding: 28px;
+
+  border-radius: 25px;
 
   box-shadow:
     0 8px 30px rgba(30,45,90,.08);
 
-  transition: transform .25s;
+  transition: .25s;
 }
 
-.highlight:hover {
+.homeCard:hover {
   transform: translateY(-5px);
 }
 
-.highlight-icon {
+.bigEmoji {
   font-size: 45px;
 
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.highlight h3 {
-  font-size: 21px;
-
+.homeCard h3 {
   margin-bottom: 8px;
 }
 
-.highlight p {
+.homeCard p {
   color: #687187;
 
   line-height: 1.6;
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* BUTTONS */
 
 .primary {
   border: none;
 
   background: #617cff;
+
   color: white;
 
   padding: 11px 18px;
@@ -330,19 +331,13 @@ main {
 
   cursor: pointer;
 
-  margin-top: 16px;
-}
-
-.primary:hover {
-  background: #4f68e4;
+  margin-top: 15px;
 }
 
 
-/* =========================
-   WEATHER
-========================= */
+/* WEATHER */
 
-.weather-box {
+.weather {
   background: white;
 
   padding: 30px;
@@ -352,10 +347,10 @@ main {
   box-shadow:
     0 8px 30px rgba(30,45,90,.08);
 
-  margin-bottom: 45px;
+  margin-bottom: 50px;
 }
 
-.weather-form {
+.weatherForm {
   display: flex;
 
   gap: 8px;
@@ -363,82 +358,28 @@ main {
   margin-top: 15px;
 }
 
-.weather-form input {
+.weatherForm input {
   flex: 1;
 
   padding: 12px;
 
-  border-radius: 12px;
+  border: 1px solid #d3d9e8;
 
-  border: 1px solid #d4d9e7;
+  border-radius: 12px;
 
   outline: none;
 }
 
-.weather-result {
+.weatherResult {
   margin-top: 18px;
 
-  font-weight: 750;
+  font-weight: 800;
 
   font-size: 18px;
 }
 
 
-/* =========================
-   TODAY'S RECIPES
-========================= */
-
-.recipe-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-  gap: 20px;
-
-  margin-bottom: 45px;
-}
-
-.recipe {
-  background: white;
-
-  border-radius: 24px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 8px 30px rgba(30,45,90,.08);
-}
-
-.recipe-top {
-  padding: 30px;
-
-  text-align: center;
-
-  font-size: 60px;
-
-  background:
-    linear-gradient(135deg,#fff1db,#ffe7f2);
-}
-
-.recipe-body {
-  padding: 22px;
-}
-
-.recipe-body h3 {
-  margin-bottom: 8px;
-}
-
-.recipe-body p {
-  color: #687187;
-
-  line-height: 1.6;
-}
-
-
-/* =========================
-   THIS WEEK
-========================= */
+/* FEATURED */
 
 .featured {
   background:
@@ -448,11 +389,11 @@ main {
       #ffe3f1
     );
 
-  border-radius: 28px;
-
   padding: 35px;
 
-  margin-bottom: 45px;
+  border-radius: 28px;
+
+  margin-bottom: 50px;
 }
 
 .featured h2 {
@@ -460,7 +401,7 @@ main {
 }
 
 .featured h3 {
-  margin-top: 12px;
+  margin-top: 10px;
 
   font-size: 24px;
 }
@@ -468,189 +409,124 @@ main {
 .featured p {
   margin-top: 10px;
 
-  color: #5e6577;
-
   line-height: 1.7;
+
+  color: #5f6678;
 }
 
 
-/* =========================
-   CATEGORIES
-========================= */
-
-.category-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-
-  gap: 18px;
-
-  margin-bottom: 45px;
-}
-
-.category {
-  padding: 27px;
-
-  border-radius: 23px;
-
-  background: white;
-
-  text-align: center;
-
-  box-shadow:
-    0 7px 25px rgba(30,45,90,.07);
-
-  cursor: pointer;
-
-  transition: .25s;
-}
-
-.category:hover {
-  transform: translateY(-5px);
-}
-
-.category-icon {
-  font-size: 48px;
-
-  margin-bottom: 10px;
-}
-
-.category h3 {
-  margin-bottom: 7px;
-}
-
-.category p {
-  color: #737b8e;
-
-  font-size: 14px;
-}
-
-
-/* =========================
-   CATEGORY PAGES
-========================= */
+/* PAGES */
 
 .page {
   display: none;
 
-  max-width: 1050px;
+  max-width: 1200px;
 
   margin: auto;
 
-  padding: 45px 20px 70px;
+  padding: 45px 20px 80px;
 }
 
 .page.active {
   display: block;
 }
 
-.page-header {
+.pageHeader {
   text-align: center;
 
   padding: 45px 20px;
 
-  border-radius: 28px;
+  border-radius: 30px;
+
+  margin-bottom: 30px;
 
   background:
     linear-gradient(
       135deg,
       #dfeaff,
-      #f4e7ff
+      #f3e5ff
     );
-
-  margin-bottom: 30px;
 }
 
-.page-header .big {
-  font-size: 60px;
+.pageHeader .icon {
+  font-size: 65px;
 }
 
-.page-header h2 {
-  font-size: 38px;
+.pageHeader h2 {
+  font-size: 40px;
 
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 
-/* =========================
-   RECIPE STEPS
-========================= */
+/* RECIPE GRID */
 
-.full-recipe {
+.recipeGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+  gap: 18px;
+}
+
+.recipe {
   background: white;
 
-  padding: 28px;
+  border-radius: 22px;
 
-  border-radius: 24px;
-
-  margin-bottom: 20px;
+  padding: 22px;
 
   box-shadow:
     0 7px 25px rgba(30,45,90,.07);
 }
 
-.full-recipe h3 {
-  font-size: 25px;
-
-  margin-bottom: 15px;
+.recipeEmoji {
+  font-size: 45px;
 }
 
-.ingredients {
-  margin-bottom: 20px;
-
-  padding-left: 22px;
-
-  line-height: 1.9;
+.recipe h3 {
+  margin: 8px 0;
 }
 
-.steps {
-  list-style: none;
+.recipe p {
+  color: #687187;
 
-  counter-reset: steps;
+  line-height: 1.5;
 }
 
-.steps li {
-  counter-increment: steps;
+.recipeDetails {
+  display: none;
 
-  margin-bottom: 14px;
-
-  padding: 15px 15px 15px 55px;
-
-  position: relative;
-
-  background: #f5f7ff;
-
-  border-radius: 15px;
+  margin-top: 15px;
 }
 
-.steps li::before {
-  content: counter(steps);
+.recipeDetails.open {
+  display: block;
+}
 
-  position: absolute;
+.recipeDetails h4 {
+  margin-top: 12px;
+}
 
-  left: 15px;
-  top: 12px;
+.recipeDetails ul,
+.recipeDetails ol {
+  margin: 8px 0 0 22px;
 
-  width: 28px;
-  height: 28px;
+  line-height: 1.7;
+}
 
-  border-radius: 50%;
 
+/* FACTS */
+
+.factGrid {
   display: grid;
-  place-items: center;
 
-  background: #617cff;
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
 
-  color: white;
-
-  font-weight: bold;
+  gap: 18px;
 }
-
-
-/* =========================
-   NATURE
-========================= */
 
 .fact {
   background: white;
@@ -659,74 +535,97 @@ main {
 
   border-radius: 22px;
 
-  margin-bottom: 18px;
-
   box-shadow:
     0 7px 25px rgba(30,45,90,.07);
 }
 
-.fact strong {
-  font-size: 20px;
+.fact h3 {
+  margin-bottom: 8px;
+}
+
+.fact p {
+  color: #687187;
+
+  line-height: 1.6;
 }
 
 
-/* =========================
-   RANDOM
-========================= */
+/* DIY */
 
-.random-box {
-  text-align: center;
+.diyGrid {
+  display: grid;
 
-  padding: 45px 25px;
+  grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
 
-  background:
-    linear-gradient(
-      135deg,
-      #e5ebff,
-      #f7e6ff
-    );
-
-  border-radius: 28px;
+  gap: 18px;
 }
 
-.random-result {
-  font-size: 25px;
-
-  font-weight: 850;
-
-  margin: 25px 0;
-}
-
-
-/* =========================
-   DIY
-========================= */
-
-.diy-card {
+.diy {
   background: white;
 
   padding: 25px;
 
   border-radius: 22px;
 
-  margin-bottom: 18px;
-
   box-shadow:
     0 7px 25px rgba(30,45,90,.07);
 }
 
-.diy-card p {
+.diy p {
   color: #687187;
 
-  line-height: 1.7;
+  line-height: 1.6;
 
   margin-top: 8px;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* RANDOM */
+
+.randomBox {
+  text-align: center;
+
+  padding: 55px 25px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e4ebff,
+      #f7e6ff
+    );
+}
+
+.randomResult {
+  font-size: 26px;
+
+  font-weight: 900;
+
+  margin: 30px 0;
+}
+
+
+/* SEARCH RESULTS */
+
+#searchResults {
+  display: none;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  margin-bottom: 30px;
+
+  box-shadow:
+    0 7px 25px rgba(30,45,90,.07);
+}
+
+
+/* FOOTER */
 
 footer {
   text-align: center;
@@ -741,63 +640,54 @@ footer {
 }
 
 
-/* =========================
-   DARK MODE
-========================= */
+/* DARK MODE */
 
 body.dark {
   background: #101522;
 
-  color: #f3f5ff;
+  color: #f4f6ff;
 }
 
 body.dark header,
-body.dark .highlight,
-body.dark .weather-box,
+body.dark .homeCard,
+body.dark .weather,
 body.dark .recipe,
-body.dark .category,
-body.dark .full-recipe,
 body.dark .fact,
-body.dark .diy-card,
+body.dark .diy,
+body.dark #searchResults,
 body.dark footer {
   background: #1a2030;
-  color: #f3f5ff;
+
+  color: #f4f6ff;
 }
 
 body.dark nav button {
   color: #e7eaff;
 }
 
-body.dark .highlight p,
-body.dark .recipe-body p,
-body.dark .category p,
-body.dark .diy-card p {
+body.dark .homeCard p,
+body.dark .recipe p,
+body.dark .fact p,
+body.dark .diy p,
+body.dark .featured p,
+body.dark footer {
   color: #abb4c9;
 }
 
-body.dark .search input,
-body.dark .weather-form input {
+body.dark input {
   background: #242c40;
+
   color: white;
+
   border-color: #3a455e;
 }
 
-body.dark .steps li {
-  background: #242c40;
-}
 
-body.dark footer {
-  color: #aeb6c9;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:800px) {
 
-  .header-inner {
+  .header {
     flex-wrap: wrap;
   }
 
@@ -807,72 +697,47 @@ body.dark footer {
     width: 100%;
 
     overflow-x: auto;
-
-    padding-bottom: 4px;
   }
 
-  .header-right {
+  .headerRight {
     margin-left: auto;
-  }
-
-  .search input {
-    width: 120px;
   }
 
 }
 
 @media(max-width:500px) {
 
-  header {
-    padding: 12px;
-  }
-
-  .logo {
-    font-size: 19px;
-  }
-
   .hero {
-    padding: 65px 18px 75px;
+    padding: 65px 18px;
   }
 
   .hero h1 {
     font-size: 34px;
   }
 
-  .weather-form {
+  .weatherForm {
     flex-direction: column;
   }
 
-  .weather-form button {
+  .weatherForm button {
     width: 100%;
   }
 
 }
 
-
-/* =========================
-   ACCESSIBILITY
-========================= */
-
-button:focus,
-input:focus {
-  outline: 3px solid rgba(97,124,255,.25);
-}
-
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
-<div class="header-inner">
+<div class="header">
 
 <div class="logo">
 ☔ <span>RainyDays</span> Labs
@@ -889,10 +754,6 @@ Home
 🍪 Bakes
 </button>
 
-<button onclick="showPage('randomPage')">
-🎲 Totally Random
-</button>
-
 <button onclick="showPage('naturePage')">
 🌿 Nature
 </button>
@@ -901,16 +762,21 @@ Home
 🧪 DIY
 </button>
 
+<button onclick="showPage('randomPage')">
+🎲 Random
+</button>
+
 </nav>
 
 
-<div class="header-right">
+<div class="headerRight">
 
 <div class="search">
 
 <input
 id="searchInput"
-placeholder="Search..."
+placeholder="Search RainyDays..."
+onkeydown="if(event.key==='Enter') searchSite()"
 >
 
 <button onclick="searchSite()">
@@ -920,7 +786,7 @@ placeholder="Search..."
 </div>
 
 <button
-class="dark-button"
+class="darkButton"
 onclick="toggleDark()"
 >
 🌙
@@ -933,20 +799,22 @@ onclick="toggleDark()"
 </header>
 
 
-<!-- =========================
-     HOME
-========================= -->
+<!-- ================= HOME ================= -->
 
 <div id="homePage">
 
 
 <section class="hero">
 
-<div class="cloud one">☁️</div>
+<div class="heroCloud cloud1">
+☁️
+</div>
 
-<div class="cloud two">☁️</div>
+<div class="heroCloud cloud2">
+☁️
+</div>
 
-<div class="hero-icon">
+<div class="heroIcon">
 ☔️
 </div>
 
@@ -960,29 +828,35 @@ The website that's full of imagination ✨
 </p>
 
 <button
-class="hero-button"
-onclick="scrollToHighlights()"
+class="heroButton"
+onclick="document.getElementById('today').scrollIntoView({behavior:'smooth'})"
 >
-Explore RainyDays Labs
+Explore Today
 </button>
 
 </section>
 
 
-<main id="highlights">
+<main>
 
 
-<h2 class="section-title">
+<div id="searchResults"></div>
+
+
+<h2
+class="title"
+id="today"
+>
 🌈 What's happening today?
 </h2>
 
 
-<div class="highlight-grid">
+<div class="homeGrid">
 
 
-<div class="highlight">
+<div class="homeCard">
 
-<div class="highlight-icon">
+<div class="bigEmoji">
 🍪
 </div>
 
@@ -991,22 +865,22 @@ Today's Recipes
 </h3>
 
 <p>
-Three delicious ideas to bake today.
+Discover delicious things to bake today.
 </p>
 
 <button
 class="primary"
 onclick="showPage('bakesPage')"
 >
-See Recipes
+Explore Bakes →
 </button>
 
 </div>
 
 
-<div class="highlight">
+<div class="homeCard">
 
-<div class="highlight-icon">
+<div class="bigEmoji">
 🌦️
 </div>
 
@@ -1015,22 +889,22 @@ Weather Checker
 </h3>
 
 <p>
-Want to know what the weather is doing?
+Find out what the weather is doing.
 </p>
 
 <button
 class="primary"
 onclick="focusWeather()"
 >
-Check Weather
+Check Weather →
 </button>
 
 </div>
 
 
-<div class="highlight">
+<div class="homeCard">
 
-<div class="highlight-icon">
+<div class="bigEmoji">
 ✨
 </div>
 
@@ -1046,7 +920,7 @@ Discover the newest RainyDays Labs creation.
 class="primary"
 onclick="alert('🎨 This week: The RainyDays Mystery Box!')"
 >
-View Creation
+See Creation
 </button>
 
 </div>
@@ -1057,20 +931,20 @@ View Creation
 
 <!-- WEATHER -->
 
-<h2 class="section-title">
+<h2 class="title">
 🌦️ Weather Checker
 </h2>
 
 <div
-class="weather-box"
+class="weather"
 id="weatherBox"
 >
 
 <p>
-Enter a town or city below.
+Enter a town or city:
 </p>
 
-<div class="weather-form">
+<div class="weatherForm">
 
 <input
 id="city"
@@ -1087,7 +961,7 @@ Check
 </div>
 
 <div
-class="weather-result"
+class="weatherResult"
 id="weatherResult"
 >
 🌍 Waiting for a place...
@@ -1098,102 +972,19 @@ id="weatherResult"
 
 <!-- TODAY'S RECIPES -->
 
-<h2 class="section-title">
+<h2 class="title">
 🍪 Today's Recipes
 </h2>
 
 
-<div class="recipe-grid">
-
-
-<div class="recipe">
-
-<div class="recipe-top">
-🍪
-</div>
-
-<div class="recipe-body">
-
-<h3>
-Chocolate Chunk Cookies
-</h3>
-
-<p>
-Soft, gooey cookies packed with chocolate.
-</p>
-
-<button
-class="primary"
-onclick="showPage('bakesPage')"
+<div
+class="recipeGrid"
+id="todayRecipes"
 >
-Get Recipe →
-</button>
-
-</div>
-
 </div>
 
 
-<div class="recipe">
-
-<div class="recipe-top">
-🧁
-</div>
-
-<div class="recipe-body">
-
-<h3>
-Easy Cupcakes
-</h3>
-
-<p>
-Fluffy cupcakes that are perfect for decorating.
-</p>
-
-<button
-class="primary"
-onclick="showPage('bakesPage')"
->
-Get Recipe →
-</button>
-
-</div>
-
-</div>
-
-
-<div class="recipe">
-
-<div class="recipe-top">
-🍫
-</div>
-
-<div class="recipe-body">
-
-<h3>
-Chocolate Brownies
-</h3>
-
-<p>
-Rich, chocolatey brownies for a cosy day.
-</p>
-
-<button
-class="primary"
-onclick="showPage('bakesPage')"
->
-Get Recipe →
-</button>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- THIS WEEK -->
+<!-- FEATURED -->
 
 <div class="featured">
 
@@ -1206,91 +997,98 @@ Get Recipe →
 </h3>
 
 <p>
-Every week, RainyDays Labs chooses one
-creative idea, bake, DIY project or random
-creation to feature.
+Every week, RainyDays Labs features a new
+recipe, DIY, nature discovery or totally random
+creation.
 </p>
+
+<button
+class="primary"
+onclick="showPage('randomPage')"
+>
+Find Something Random
+</button>
 
 </div>
 
 
-<!-- CATEGORIES -->
+<!-- CATEGORY GRID -->
 
-<h2 class="section-title">
+<h2 class="title">
 🗂️ Explore Categories
 </h2>
 
 
-<div class="category-grid">
+<div class="homeGrid">
 
 
 <div
-class="category"
+class="homeCard"
 onclick="showPage('bakesPage')"
 >
 
-<div class="category-icon">
+<div class="bigEmoji">
 🍪
 </div>
 
 <h3>Bakes</h3>
 
 <p>
-Recipes and step-by-step baking.
+100 recipes and step-by-step instructions.
 </p>
 
 </div>
 
 
 <div
-class="category"
+class="homeCard"
 onclick="showPage('naturePage')"
 >
 
-<div class="category-icon">
+<div class="bigEmoji">
 🌿
 </div>
 
 <h3>Nature</h3>
 
 <p>
-Animals, plants and amazing facts.
+Loads of amazing nature facts.
 </p>
 
 </div>
 
 
 <div
-class="category"
+class="homeCard"
 onclick="showPage('diyPage')"
 >
 
-<div class="category-icon">
+<div class="bigEmoji">
 🧪
 </div>
 
 <h3>DIY</h3>
 
 <p>
-Creative projects and experiments.
+Creative projects to try.
 </p>
 
 </div>
 
 
 <div
-class="category"
+class="homeCard"
 onclick="showPage('randomPage')"
 >
 
-<div class="category-icon">
+<div class="bigEmoji">
 🎲
 </div>
 
 <h3>Totally Random</h3>
 
 <p>
-You never know what you'll find.
+Hundreds of random ideas.
 </p>
 
 </div>
@@ -1304,25 +1102,23 @@ You never know what you'll find.
 </div>
 
 
-<!-- =========================
-     BAKES PAGE
-========================= -->
+<!-- ================= BAKES ================= -->
 
 <section
 class="page"
 id="bakesPage"
 >
 
-<div class="page-header">
+<div class="pageHeader">
 
-<div class="big">
+<div class="icon">
 🍪
 </div>
 
 <h2>Bakes</h2>
 
 <p>
-Recipes, treats and step-by-step baking.
+100 recipes to discover!
 </p>
 
 <button
@@ -1335,212 +1131,32 @@ onclick="showHome()"
 </div>
 
 
-<div class="full-recipe">
-
-<h3>
-🍪 Chocolate Chunk Cookies
-</h3>
-
-<h4>
-Ingredients
-</h4>
-
-<ul class="ingredients">
-
-<li>100g butter</li>
-<li>100g light brown sugar</li>
-<li>1 egg</li>
-<li>150g plain flour</li>
-<li>1 tsp baking powder</li>
-<li>100g chocolate chunks</li>
-
-</ul>
-
-
-<h4>
-👩‍🍳 Steps
-</h4>
-
-<ol class="steps">
-
-<li>
-Cream the softened butter and brown sugar together.
-</li>
-
-<li>
-Add the egg and mix until combined.
-</li>
-
-<li>
-Add the flour and baking powder.
-Mix until you have a dough.
-</li>
-
-<li>
-Stir in the chocolate chunks.
-</li>
-
-<li>
-Shape the dough into cookie balls and place them
-on a lined baking tray.
-</li>
-
-<li>
-Bake at 180°C until golden around the edges.
-Ask an adult to help with the oven.
-</li>
-
-<li>
-Let the cookies cool before eating.
-</li>
-
-</ol>
-
-</div>
-
-
-<div class="full-recipe">
-
-<h3>
-🧁 Easy Cupcakes
-</h3>
-
-<h4>
-Ingredients
-</h4>
-
-<ul class="ingredients">
-
-<li>100g butter</li>
-<li>100g sugar</li>
-<li>2 eggs</li>
-<li>100g self-raising flour</li>
-<li>1 tsp vanilla</li>
-
-</ul>
-
-<h4>
-👩‍🍳 Steps
-</h4>
-
-<ol class="steps">
-
-<li>
-Beat the butter and sugar together.
-</li>
-
-<li>
-Add the eggs one at a time.
-</li>
-
-<li>
-Fold in the flour.
-</li>
-
-<li>
-Add vanilla and mix gently.
-</li>
-
-<li>
-Spoon the mixture into cupcake cases.
-</li>
-
-<li>
-Bake until risen and golden.
-Ask an adult to help with the oven.
-</li>
-
-<li>
-Cool completely before decorating.
-</li>
-
-</ol>
-
-</div>
-
-
-<div class="full-recipe">
-
-<h3>
-🍫 Chocolate Brownies
-</h3>
-
-<h4>
-Ingredients
-</h4>
-
-<ul class="ingredients">
-
-<li>Butter</li>
-<li>Sugar</li>
-<li>Eggs</li>
-<li>Cocoa powder</li>
-<li>Plain flour</li>
-<li>Chocolate</li>
-
-</ul>
-
-<h4>
-👩‍🍳 Steps
-</h4>
-
-<ol class="steps">
-
-<li>
-Melt the butter and chocolate together.
-</li>
-
-<li>
-Mix in the sugar.
-</li>
-
-<li>
-Add the eggs and mix well.
-</li>
-
-<li>
-Fold in flour and cocoa powder.
-</li>
-
-<li>
-Pour into a lined baking tin.
-</li>
-
-<li>
-Bake until the edges are set and the middle is slightly soft.
-Ask an adult to help with the oven.
-</li>
-
-<li>
-Cool before slicing.
-</li>
-
-</ol>
-
+<div
+class="recipeGrid"
+id="recipeList"
+>
 </div>
 
 </section>
 
 
-<!-- =========================
-     NATURE PAGE
-========================= -->
+<!-- ================= NATURE ================= -->
 
 <section
 class="page"
 id="naturePage"
 >
 
-<div class="page-header">
+<div class="pageHeader">
 
-<div class="big">
+<div class="icon">
 🌿
 </div>
 
 <h2>Nature</h2>
 
 <p>
-Amazing animals, plants and outdoor discoveries.
+Amazing things about our world.
 </p>
 
 <button
@@ -1553,86 +1169,32 @@ onclick="showHome()"
 </div>
 
 
-<div class="fact">
-
-<strong>🦋 Butterflies</strong>
-
-<p>
-Butterflies taste using sensors on their feet.
-</p>
-
-</div>
-
-
-<div class="fact">
-
-<strong>🐝 Bees</strong>
-
-<p>
-Honeybees communicate the location of food
-using a special movement called the waggle dance.
-</p>
-
-</div>
-
-
-<div class="fact">
-
-<strong>🦊 Foxes</strong>
-
-<p>
-Foxes have excellent hearing and can detect
-small sounds from surprisingly far away.
-</p>
-
-</div>
-
-
-<div class="fact">
-
-<strong>🌻 Sunflowers</strong>
-
-<p>
-Young sunflowers can move during the day
-to follow the sun.
-</p>
-
-</div>
-
-
-<div class="fact">
-
-<strong>🌳 Trees</strong>
-
-<p>
-Forests contain complex underground networks
-involving roots and fungi.
-</p>
-
+<div
+class="factGrid"
+id="factList"
+>
 </div>
 
 </section>
 
 
-<!-- =========================
-     DIY PAGE
-========================= -->
+<!-- ================= DIY ================= -->
 
 <section
 class="page"
 id="diyPage"
 >
 
-<div class="page-header">
+<div class="pageHeader">
 
-<div class="big">
+<div class="icon">
 🧪
 </div>
 
 <h2>DIY Lab</h2>
 
 <p>
-Make, build, experiment and create.
+Create something amazing.
 </p>
 
 <button
@@ -1645,85 +1207,32 @@ onclick="showHome()"
 </div>
 
 
-<div class="diy-card">
-
-<h3>
-🎨 Canvas Art
-</h3>
-
-<p>
-Create your own colourful artwork using
-paint, brushes and a canvas.
-</p>
-
-</div>
-
-
-<div class="diy-card">
-
-<h3>
-📦 Cardboard Creation
-</h3>
-
-<p>
-Turn an old box into something completely new.
-Try making a mini shop, robot or game.
-</p>
-
-</div>
-
-
-<div class="diy-card">
-
-<h3>
-🌈 Rainbow Craft
-</h3>
-
-<p>
-Create something inspired by the colours
-of a rainbow.
-</p>
-
-</div>
-
-
-<div class="diy-card">
-
-<h3>
-🧪 Mystery Lab
-</h3>
-
-<p>
-Invent your own safe experiment and record
-what happens. Always check with an adult before
-trying an experiment involving chemicals,
-heat or electricity.
-</p>
-
+<div
+class="diyGrid"
+id="diyList"
+>
 </div>
 
 </section>
 
 
-<!-- =========================
-     RANDOM PAGE
-========================= -->
+<!-- ================= RANDOM ================= -->
 
 <section
 class="page"
 id="randomPage"
 >
 
-<div class="page-header">
+<div class="pageHeader">
 
-<div class="big">
+<div class="icon">
 🎲
 </div>
 
 <h2>Totally Random</h2>
 
 <p>
-The most unpredictable part of RainyDays Labs.
+You never know what you'll get.
 </p>
 
 <button
@@ -1736,14 +1245,14 @@ onclick="showHome()"
 </div>
 
 
-<div class="random-box">
+<div class="randomBox">
 
 <h2>
-🎲 What should you do?
+🎲 Give me something to do!
 </h2>
 
 <div
-class="random-result"
+class="randomResult"
 id="randomResult"
 >
 🤔 Press the button!
@@ -1753,7 +1262,7 @@ id="randomResult"
 class="primary"
 onclick="randomIdea()"
 >
-🎲 Give Me Something Random
+🎲 RANDOMISE
 </button>
 
 </div>
@@ -1761,9 +1270,7 @@ onclick="randomIdea()"
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1784,23 +1291,759 @@ The website that's full of imagination ✨
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
-
 <script>
+
+
+/* =========================
+   RECIPES
+========================= */
+
+const recipes = [
+
+["Chocolate Chunk Cookies","🍪","Soft gooey cookies","Butter, brown sugar, egg, flour, chocolate","Mix butter and sugar|Add the egg|Mix in flour|Add chocolate|Shape cookies|Bake until golden|Cool before eating"],
+
+["Easy Cupcakes","🧁","Fluffy vanilla cupcakes","Butter, sugar, eggs, flour, vanilla","Cream butter and sugar|Add eggs|Fold in flour|Add vanilla|Fill cases|Bake until golden|Cool and decorate"],
+
+["Chocolate Brownies","🍫","Rich chocolate brownies","Butter, chocolate, sugar, eggs, flour, cocoa","Melt butter and chocolate|Mix in sugar|Add eggs|Add flour and cocoa|Pour into tin|Bake|Cool before cutting"],
+
+["Banana Bread","🍌","Soft banana loaf","Bananas, flour, sugar, eggs, butter","Mash bananas|Mix butter and sugar|Add eggs|Add bananas|Fold in flour|Pour into tin|Bake until cooked"],
+
+["Blueberry Muffins","🫐","Juicy blueberry muffins","Flour, sugar, eggs, milk, blueberries","Mix dry ingredients|Add wet ingredients|Fold in blueberries|Fill cases|Bake|Cool"],
+
+["Lemon Cake","🍋","Fresh lemon cake","Flour, sugar, eggs, butter, lemon","Cream butter and sugar|Add eggs|Add lemon|Fold in flour|Bake|Cool|Decorate"],
+
+["Apple Crumble","🍎","Warm apple dessert","Apples, flour, butter, sugar","Slice apples|Place in dish|Rub butter into flour|Add sugar|Sprinkle over apples|Bake"],
+
+["Chocolate Chip Muffins","🍫","Chocolatey muffins","Flour, sugar, eggs, milk, chocolate chips","Mix dry ingredients|Add wet ingredients|Fold in chocolate|Fill cases|Bake"],
+
+["Strawberry Cupcakes","🍓","Strawberry treats","Flour, sugar, eggs, butter, strawberries","Make cupcake mixture|Add strawberries|Fill cases|Bake|Cool|Decorate"],
+
+["Cinnamon Rolls","🥐","Sweet cinnamon rolls","Flour, yeast, milk, butter, sugar, cinnamon","Make dough|Let rise|Roll out|Spread butter|Add cinnamon sugar|Roll|Bake"],
+
+["Carrot Cake","🥕","Moist spiced cake","Carrots, flour, eggs, sugar, oil","Mix ingredients|Add grated carrots|Pour into tin|Bake|Cool|Decorate"],
+
+["Oat Cookies","🥣","Chewy oat cookies","Oats, flour, butter, sugar, egg","Mix butter and sugar|Add egg|Add dry ingredients|Shape cookies|Bake|Cool"],
+
+["Jam Tarts","🍓","Mini jam pastries","Pastry, jam","Cut pastry|Place in cases|Add jam|Bake|Cool"],
+
+["Chocolate Cake","🎂","Classic chocolate cake","Flour, cocoa, sugar, eggs, butter","Mix ingredients|Pour into tin|Bake|Cool|Decorate"],
+
+["Vanilla Sponge","🍰","Light vanilla sponge","Flour, sugar, eggs, butter, vanilla","Cream butter and sugar|Add eggs|Fold flour|Add vanilla|Bake|Cool"],
+
+["Rocky Road","🍫","Chocolate fridge treat","Chocolate, biscuits, marshmallows","Melt chocolate|Break biscuits|Mix together|Add marshmallows|Chill|Slice"],
+
+["Rice Krispie Treats","🍚","Crispy chocolate treats","Cereal, chocolate, marshmallows","Melt ingredients|Mix cereal|Press into tin|Chill|Cut"],
+
+["Shortbread","🧈","Buttery biscuits","Butter, flour, sugar","Mix butter and sugar|Add flour|Make dough|Shape|Bake|Cool"],
+
+["Jam Cookies","🍓","Jam-filled cookies","Flour, butter, sugar, jam","Make dough|Shape balls|Make a small hole|Add jam|Bake"],
+
+["Peanut Butter Cookies","🥜","Soft peanut cookies","Peanut butter, sugar, egg, flour","Mix ingredients|Shape balls|Flatten|Bake|Cool"],
+
+["Coconut Macaroons","🥥","Chewy coconut treats","Coconut, egg whites, sugar","Mix ingredients|Shape|Bake|Cool"],
+
+["Orange Cake","🍊","Citrus sponge","Flour, sugar, eggs, butter, orange","Mix ingredients|Add orange zest|Bake|Cool"],
+
+["Marble Cake","🍰","Vanilla and chocolate swirls","Flour, sugar, eggs, butter, cocoa","Make batter|Split mixture|Add cocoa to half|Layer|Swirl|Bake"],
+
+["Blueberry Cake","🫐","Soft fruity cake","Flour, sugar, eggs, butter, blueberries","Mix batter|Fold blueberries|Bake|Cool"],
+
+["Chocolate Orange Brownies","🍊","Chocolate orange brownies","Chocolate, butter, sugar, eggs, flour, orange","Melt chocolate|Mix ingredients|Add orange|Bake|Cool"],
+
+["Funfetti Cupcakes","🌈","Colourful cupcakes","Flour, sugar, eggs, butter, sprinkles","Make batter|Add sprinkles|Fill cases|Bake|Decorate"],
+
+["Cookie Bars","🍪","Big chewy cookie bars","Butter, sugar, flour, egg, chocolate","Mix dough|Press into tin|Add chocolate|Bake|Cool|Slice"],
+
+["Mango Muffins","🥭","Fruity muffins","Mango, flour, sugar, eggs, milk","Mix batter|Add mango|Fill cases|Bake"],
+
+["Raspberry Muffins","🫐","Raspberry muffins","Raspberries, flour, sugar, eggs, milk","Mix batter|Fold raspberries|Fill cases|Bake"],
+
+["Chocolate Muffins","🍫","Double chocolate muffins","Flour, cocoa, sugar, eggs, milk, chocolate","Mix dry ingredients|Add wet ingredients|Add chocolate|Bake"],
+
+["Lemon Muffins","🍋","Fresh lemon muffins","Flour, sugar, eggs, milk, lemon","Mix batter|Add lemon|Fill cases|Bake"],
+
+["Banana Muffins","🍌","Banana muffins","Bananas, flour, sugar, eggs","Mash bananas|Mix ingredients|Fill cases|Bake"],
+
+["Pear Crumble","🍐","Warm pear dessert","Pears, flour, butter, sugar","Slice pears|Make crumble|Cover pears|Bake"],
+
+["Peach Crumble","🍑","Sweet peach dessert","Peaches, flour, butter, sugar","Prepare peaches|Make crumble|Bake"],
+
+["Chocolate Fudge Cake","🍫","Extra chocolatey cake","Chocolate, flour, sugar, eggs, butter","Melt chocolate|Mix batter|Bake|Cool|Decorate"],
+
+["Coffee Cake","☕","Coffee-flavoured sponge","Flour, sugar, eggs, butter, coffee","Mix batter|Add coffee|Bake|Cool"],
+
+["Ginger Cake","🫚","Warm spiced cake","Flour, sugar, ginger, eggs, butter","Mix ingredients|Add ginger|Bake|Cool"],
+
+["Sticky Toffee Pudding","🍮","Warm sticky dessert","Dates, flour, sugar, butter","Prepare dates|Make batter|Bake|Add sauce"],
+
+["Bread Pudding","🍞","Cosy baked dessert","Bread, milk, eggs, sugar, raisins","Soak bread|Mix ingredients|Place in dish|Bake"],
+
+["Chocolate Tart","🍫","Creamy chocolate tart","Pastry, chocolate, cream","Bake pastry|Make filling|Pour in|Chill"],
+
+["Lemon Tart","🍋","Sharp lemon dessert","Pastry, eggs, lemon, sugar","Bake pastry|Make filling|Pour in|Bake|Cool"],
+
+["Apple Pie","🥧","Classic apple pie","Apples, pastry, sugar, cinnamon","Prepare apples|Fill pastry|Cover|Bake"],
+
+["Cherry Pie","🍒","Cherry-filled pie","Cherries, pastry, sugar","Prepare cherries|Fill pastry|Bake"],
+
+["Blueberry Pie","🫐","Blueberry pie","Blueberries, pastry, sugar","Fill pastry|Cover|Bake"],
+
+["Strawberry Tart","🍓","Fresh strawberry tart","Pastry, strawberries, cream","Bake pastry|Add cream|Top with strawberries"],
+
+["Chocolate Truffles","🍫","Small chocolate treats","Chocolate, cream","Melt chocolate|Add cream|Chill|Roll into balls"],
+
+["Coconut Cake","🥥","Soft coconut cake","Flour, coconut, sugar, eggs","Mix batter|Add coconut|Bake"],
+
+["Pineapple Cake","🍍","Tropical cake","Pineapple, flour, sugar, eggs","Mix batter|Add pineapple|Bake"],
+
+["Raspberry Cake","🫐","Fruity raspberry cake","Raspberries, flour, sugar, eggs","Mix batter|Add berries|Bake"],
+
+["Blackberry Crumble","🫐","Warm berry crumble","Blackberries, flour, butter, sugar","Add berries|Make crumble|Bake"],
+
+["Chocolate Chip Scones","🍫","Chocolate scones","Flour, butter, sugar, milk, chocolate","Make dough|Add chocolate|Shape|Cut|Bake"],
+
+["Plain Scones","🥐","Classic scones","Flour, butter, milk, sugar","Make dough|Roll|Cut|Bake|Cool"],
+
+["Cheese Scones","🧀","Savoury scones","Flour, cheese, butter, milk","Mix ingredients|Shape|Cut|Bake"],
+
+["Blueberry Scones","🫐","Berry scones","Flour, butter, milk, blueberries","Make dough|Add blueberries|Cut|Bake"],
+
+["Chocolate Croissants","🥐","Chocolate-filled pastries","Pastry, chocolate","Add chocolate|Roll pastry|Bake"],
+
+["Apple Turnovers","🍎","Apple pastries","Apples, pastry, sugar","Prepare apples|Fill pastry|Fold|Bake"],
+
+["Cinnamon Biscuits","🍪","Cinnamon biscuits","Flour, butter, sugar, cinnamon","Make dough|Add cinnamon|Shape|Bake"],
+
+["Ginger Biscuits","🍪","Crunchy ginger biscuits","Flour, butter, sugar, ginger","Mix dough|Shape|Bake"],
+
+["Chocolate Biscuits","🍫","Chocolate biscuits","Flour, butter, sugar, cocoa","Mix dough|Shape|Bake"],
+
+["Vanilla Biscuits","🍪","Simple vanilla biscuits","Flour, butter, sugar, vanilla","Mix dough|Shape|Bake"],
+
+["Lemon Biscuits","🍋","Lemon biscuits","Flour, butter, sugar, lemon","Mix dough|Add lemon|Bake"],
+
+["Orange Biscuits","🍊","Orange biscuits","Flour, butter, sugar, orange","Mix dough|Add orange|Bake"],
+
+["Sprinkle Cookies","🌈","Colourful cookies","Flour, butter, sugar, sprinkles","Make dough|Add sprinkles|Shape|Bake"],
+
+["Smartie Cookies","🍬","Colourful chocolate cookies","Flour, butter, sugar, chocolate sweets","Make dough|Add sweets|Bake"],
+
+["White Chocolate Cookies","🤍","Sweet white chocolate cookies","Flour, butter, sugar, white chocolate","Mix dough|Add chocolate|Bake"],
+
+["Double Chocolate Cookies","🍫","Extra chocolate cookies","Flour, cocoa, butter, sugar, chocolate","Mix dough|Add chocolate|Bake"],
+
+["Triple Chocolate Brownies","🍫","Three-chocolate brownies","Dark, milk and white chocolate","Melt chocolate|Mix batter|Add chocolate|Bake"],
+
+["Biscoff Cheesecake","🍰","No-bake cheesecake","Cream cheese, biscuits, butter, sugar","Make biscuit base|Mix filling|Add filling|Chill"],
+
+["Strawberry Cheesecake","🍓","Creamy strawberry cheesecake","Cream cheese, biscuits, strawberries","Make base|Make filling|Chill|Add strawberries"],
+
+["Chocolate Cheesecake","🍫","Chocolate cheesecake","Cream cheese, chocolate, biscuits","Make base|Melt chocolate|Mix filling|Chill"],
+
+["Lemon Cheesecake","🍋","Fresh lemon cheesecake","Cream cheese, biscuits, lemon","Make base|Mix filling|Add lemon|Chill"],
+
+["Mini Cheesecakes","🧁","Tiny cheesecakes","Cream cheese, biscuits, sugar","Make bases|Add filling|Chill"],
+
+["Chocolate Mousse","🍫","Light chocolate mousse","Chocolate, cream","Melt chocolate|Whip cream|Fold together|Chill"],
+
+["Strawberry Mousse","🍓","Fruity mousse","Strawberries, cream, sugar","Blend strawberries|Whip cream|Fold together|Chill"],
+
+["Lemon Mousse","🍋","Light lemon mousse","Lemon, cream, sugar","Mix ingredients|Whip cream|Fold together|Chill"],
+
+["Banana Pancakes","🍌","Fluffy banana pancakes","Banana, flour, egg, milk","Mash banana|Mix batter|Cook pancakes"],
+
+["American Pancakes","🥞","Fluffy pancakes","Flour, milk, eggs, sugar","Mix batter|Heat pan|Cook pancakes|Flip"],
+
+["Chocolate Pancakes","🍫","Chocolate pancakes","Flour, cocoa, milk, eggs","Mix batter|Cook|Flip"],
+
+["Blueberry Pancakes","🫐","Blueberry pancakes","Flour, milk, eggs, blueberries","Make batter|Add berries|Cook"],
+
+["Waffles","🧇","Crispy waffles","Flour, milk, eggs, butter","Mix batter|Heat waffle maker|Cook"],
+
+["Chocolate Waffles","🍫","Chocolate waffles","Flour, cocoa, milk, eggs","Mix batter|Cook in waffle maker"],
+
+["French Toast","🍞","Sweet French toast","Bread, eggs, milk, cinnamon","Mix egg mixture|Dip bread|Cook"],
+
+["Chocolate French Toast","🍫","Chocolate French toast","Bread, egg, milk, cocoa","Make mixture|Dip bread|Cook"],
+
+["Berry French Toast","🫐","Berry-topped French toast","Bread, eggs, milk, berries","Cook French toast|Add berries"],
+
+["Chocolate Mug Cake","🍫","Quick chocolate cake","Flour, cocoa, sugar, milk","Mix ingredients|Put in mug|Microwave carefully"],
+
+["Vanilla Mug Cake","🍰","Quick vanilla cake","Flour, sugar, milk, vanilla","Mix ingredients|Put in mug|Microwave carefully"],
+
+["Cinnamon Mug Cake","🫚","Warm cinnamon cake","Flour, sugar, milk, cinnamon","Mix|Microwave carefully"],
+
+["Cookie Mug Cake","🍪","Cookie-inspired mug cake","Flour, sugar, milk, chocolate","Mix|Add chocolate|Microwave carefully"],
+
+["Chocolate Milkshake","🥤","Creamy chocolate drink","Milk, ice cream, cocoa","Blend ingredients"],
+
+["Strawberry Milkshake","🍓","Strawberry shake","Milk, strawberries, ice cream","Blend ingredients"],
+
+["Banana Milkshake","🍌","Banana shake","Milk, banana, ice cream","Blend ingredients"],
+
+["Vanilla Milkshake","🥛","Classic vanilla shake","Milk, vanilla ice cream","Blend ingredients"],
+
+["Chocolate Fudge","🍫","Sweet fudge","Chocolate, condensed milk","Melt together|Pour into tin|Chill|Cut"],
+
+["Vanilla Fudge","🍦","Creamy vanilla fudge","Sugar, butter, milk, vanilla","Cook mixture with adult help|Pour into tin|Cool"],
+
+["Rock Cakes","🍰","Classic rock cakes","Flour, butter, sugar, dried fruit","Mix dough|Shape|Bake"],
+
+["Fairy Cakes","🧁","Mini sponge cakes","Flour, sugar, eggs, butter","Make batter|Fill cases|Bake|Decorate"],
+
+["Chocolate Fairy Cakes","🍫","Mini chocolate cakes","Flour, cocoa, sugar, eggs","Make batter|Fill cases|Bake"],
+
+["Mini Brownies","🍫","Tiny brownies","Chocolate, butter, sugar, eggs, flour","Make batter|Fill small tin|Bake|Cool"],
+
+["Chocolate Orange Cake","🍊","Chocolate citrus cake","Chocolate, flour, orange, eggs","Mix batter|Add orange|Bake"],
+
+["Raspberry White Chocolate Cookies","🤍","Sweet berry cookies","Flour, butter, sugar, raspberries, white chocolate","Make dough|Add ingredients|Bake"],
+
+["Nutella Brownies","🍫","Chocolate spread brownies","Chocolate spread, eggs, flour","Mix ingredients|Pour into tin|Bake"],
+
+["Chocolate Pretzel Cookies","🥨","Sweet and salty cookies","Flour, butter, sugar, chocolate, pretzels","Make dough|Add chocolate and pretzels|Bake"],
+
+["Caramel Shortbread","🍯","Three-layer shortbread","Shortbread, caramel, chocolate","Bake shortbread|Add caramel|Top with chocolate|Chill"],
+
+["Millionaire's Shortbread","🍫","Rich layered treat","Shortbread, caramel, chocolate","Bake base|Add caramel|Add chocolate|Chill"],
+
+["Chocolate Flapjacks","🍫","Chewy chocolate flapjacks","Oats, butter, sugar, chocolate","Melt butter|Mix oats|Bake|Add chocolate"],
+
+["Honey Flapjacks","🍯","Sweet oat flapjacks","Oats, butter, honey","Mix ingredients|Bake|Cool"],
+
+["Berry Flapjacks","🫐","Fruity flapjacks","Oats, butter, sugar, berries","Mix|Add berries|Bake"],
+
+["Coconut Flapjacks","🥥","Coconut oat bars","Oats, butter, sugar, coconut","Mix|Bake|Cool"],
+
+["Chocolate Rice Krispie Cakes","🍫","Crispy chocolate cakes","Cereal, chocolate","Melt chocolate|Mix cereal|Spoon into cases|Chill"],
+
+["Marshmallow Crispy Cakes","☁️","Marshmallow treats","Cereal, marshmallows, butter","Melt marshmallows with adult help|Mix cereal|Press into tin|Cool"],
+
+["Fruit Scones","🍇","Fruit-filled scones","Flour, butter, milk, dried fruit","Make dough|Add fruit|Cut|Bake"],
+
+["Chocolate Banana Bread","🍌","Chocolate banana loaf","Bananas, flour, cocoa, eggs","Mash bananas|Mix ingredients|Bake"],
+
+["Blueberry Lemon Loaf","🫐","Blueberry lemon loaf","Blueberries, lemon, flour, eggs","Make batter|Add berries and lemon|Bake"],
+
+["Strawberry Muffins","🍓","Strawberry muffins","Strawberries, flour, sugar, eggs","Make batter|Add strawberries|Bake"],
+
+["Chocolate Strawberry Cake","🍓","Chocolate berry cake","Chocolate, flour, strawberries, eggs","Make cake|Bake|Cool|Add strawberries"],
+
+["Apple Cinnamon Cake","🍎","Apple cinnamon cake","Apples, flour, sugar, cinnamon","Make batter|Add apples|Bake"],
+
+["Pear Chocolate Cake","🍐","Chocolate pear cake","Pears, chocolate, flour, eggs","Make batter|Add pears|Bake"],
+
+["Mini Apple Pies","🍎","Tiny apple pies","Pastry, apples, sugar, cinnamon","Fill pastry|Close|Bake"],
+
+["Mini Chocolate Tarts","🍫","Tiny chocolate tarts","Pastry, chocolate, cream","Bake pastry|Add filling|Chill"],
+
+["Raspberry Tart","🫐","Raspberry tart","Pastry, raspberries, cream","Bake pastry|Add cream|Add berries"],
+
+["Chocolate Coconut Balls","🥥","No-bake coconut treats","Coconut, chocolate, condensed milk","Mix|Shape balls|Chill"],
+
+["Peanut Butter Balls","🥜","No-bake peanut treats","Peanut butter, oats, honey","Mix|Shape balls|Chill"],
+
+["Chocolate Oat Bars","🍫","Easy oat bars","Oats, chocolate, butter","Melt ingredients|Mix|Press into tin|Chill"]
+
+];
+
+
+/* =========================
+   NATURE FACTS
+========================= */
+
+const facts = [
+
+["🦋 Butterflies","Butterflies taste using sensors on their feet."],
+["🐝 Bees","Honeybees use a waggle dance to communicate where food is."],
+["🦊 Foxes","Foxes have excellent hearing."],
+["🌻 Sunflowers","Young sunflowers can move to follow the sun."],
+["🌳 Trees","Trees and fungi can form complex underground networks."],
+["🐬 Dolphins","Dolphins use individual signature whistles."],
+["🦉 Owls","Owls can turn their heads very far because of special adaptations."],
+["🐧 Penguins","Many penguins have waterproof feathers."],
+["🐙 Octopuses","Octopuses have three hearts."],
+["🦒 Giraffes","Giraffes have very long necks but only seven neck vertebrae, like humans."],
+["🐘 Elephants","Elephants communicate using sounds and vibrations."],
+["🦇 Bats","Bats are the only mammals capable of true sustained flight."],
+["🐢 Turtles","Some turtles can live for many decades."],
+["🦔 Hedgehogs","Hedgehogs have thousands of spines."],
+["🐸 Frogs","Frogs absorb water through their skin."],
+["🌈 Rainbows","A rainbow is produced when light interacts with water droplets."],
+["🌊 Oceans","Oceans cover most of Earth's surface."],
+["🌙 Moon","The Moon reflects sunlight rather than producing its own visible light."],
+["☁️ Clouds","Clouds are made from tiny water droplets or ice crystals."],
+["🌧️ Rain","Rain begins when water droplets become large enough to fall from clouds."],
+["🐨 Koalas","Koalas spend much of their time sleeping."],
+["🦁 Lions","Lions are the only big cats that commonly live in social groups."],
+["🐅 Tigers","Tigers have striped coats."],
+["🐻 Bears","Some bear species can slow their metabolism dramatically during winter."],
+["🐺 Wolves","Wolves use body language, sounds and scent to communicate."],
+["🦌 Deer","Many deer species grow new antlers each year."],
+["🦜 Parrots","Some parrots can imitate human speech."],
+["🐧 Penguins","Penguin feathers help keep them warm in cold water."],
+["🦎 Lizards","Many lizards can regrow lost tails to some degree."],
+["🐍 Snakes","Snakes use their tongues to collect chemical information from the air."],
+["🌵 Cacti","Many cacti are adapted to survive with very little water."],
+["🌴 Palm trees","Different palm species grow in many warm regions around the world."],
+["🍄 Fungi","Fungi are a separate biological kingdom from plants."],
+["🌱 Seeds","Seeds can remain dormant until conditions are suitable for growth."],
+["🌼 Flowers","Flowers help many plants reproduce by attracting pollinators."],
+["🐞 Ladybirds","Ladybirds are beetles."],
+["🐜 Ants","Ant colonies can contain many thousands of individuals."],
+["🕷️ Spiders","Spiders are arachnids, not insects."],
+["🐌 Snails","Snails belong to a group called gastropods."],
+["🪲 Beetles","Beetles are one of the most diverse groups of animals."],
+["🦗 Grasshoppers","Grasshoppers have powerful hind legs for jumping."],
+["🦀 Crabs","Crabs are crustaceans."],
+["🦐 Shrimp","Shrimp use their legs and swimmerets to move."],
+["🐳 Whales","Blue whales are the largest known animals."],
+["🦈 Sharks","Sharks have skeletons made mainly of cartilage."],
+["🐠 Fish","Fish use gills to extract oxygen from water."],
+["🪼 Jellyfish","Jellyfish do not have a brain like humans do."],
+["🌋 Volcanoes","Volcanoes can create new land."],
+["🏔️ Mountains","Mountains can form where tectonic plates interact."],
+["🏜️ Deserts","Deserts can be hot or cold."],
+["🌲 Forests","Forests provide habitats for huge numbers of species."],
+["❄️ Snow","Snowflakes form when water vapour freezes into ice crystals."],
+["⚡ Lightning","Lightning is a huge electrical discharge."],
+["🌬️ Wind","Wind is moving air."],
+["🌍 Earth","Earth is the only planet currently known to support life."],
+["☀️ Sun","The Sun is a star."],
+["⭐ Stars","Stars produce energy through nuclear fusion."],
+["🌌 Space","Space is extremely large and contains billions of galaxies."],
+["🪐 Saturn","Saturn is famous for its bright ring system."],
+["🔴 Mars","Mars is often called the Red Planet."],
+["🌕 Moon","The Moon has a much weaker gravity than Earth."],
+["🛰️ Satellites","Satellites can orbit Earth."],
+["🌊 Tides","The Moon plays a major role in Earth's tides."],
+["🌿 Plants","Plants use photosynthesis to turn light energy into chemical energy."],
+["🍃 Leaves","Leaves are major sites of photosynthesis."],
+["🌾 Grass","Grasses belong to a huge plant family."],
+["🌳 Roots","Roots help plants absorb water and minerals."],
+["🌺 Pollination","Pollination helps many plants produce seeds."],
+["🐛 Caterpillars","Caterpillars transform dramatically during metamorphosis."],
+["🕸️ Webs","Spider silk is extremely strong for its thickness."],
+["🦅 Eagles","Eagles have excellent eyesight."],
+["🦢 Swans","Many swans form long-term pair bonds."],
+["🦆 Ducks","Duck feathers have waterproof properties."],
+["🐓 Chickens","Chickens communicate with many different calls."],
+["🐄 Cows","Cows are ruminants."],
+["🐑 Sheep","Sheep have wool that can be used as a fibre."],
+["🐐 Goats","Goats are excellent climbers."],
+["🐎 Horses","Horses can sleep both lying down and standing up."],
+["🐕 Dogs","Dogs have a highly developed sense of smell."],
+["🐈 Cats","Cats have whiskers that help them sense their surroundings."],
+["🐇 Rabbits","Rabbits have continuously growing teeth."],
+["🐿️ Squirrels","Some squirrels store food for later."],
+["🦦 Otters","Sea otters can use rocks to help open food."],
+["🦥 Sloths","Sloths have very slow metabolisms."],
+["🦘 Kangaroos","Kangaroos use their tails for balance."],
+["🐼 Pandas","Giant pandas mainly eat bamboo."],
+["🦒 Giraffes","A giraffe's heart must pump blood a long distance to its brain."],
+["🦏 Rhinos","Rhinoceros horns are made largely from keratin."],
+["🦛 Hippos","Hippos spend a lot of time in water."],
+["🐊 Crocodiles","Crocodiles are reptiles."],
+["🐳 Humpback whales","Humpback whales are known for complex songs."],
+["🦭 Seals","Seals are marine mammals."],
+["🐧 Emperor penguins","Emperor penguins breed in Antarctica."],
+["🌊 Coral reefs","Coral reefs provide habitats for many ocean species."],
+["🪸 Coral","Corals are animals, not plants."],
+["🌱 Moss","Mosses reproduce using spores."],
+["🍄 Mushrooms","A mushroom is the reproductive structure of some fungi."],
+["🌰 Acorns","Acorns are the nuts of oak trees."],
+["🍁 Leaves","Some leaves change colour when seasons change."],
+["🌲 Evergreens","Many evergreen trees keep their leaves or needles through winter."],
+["🌧️ Water cycle","Water continually moves through evaporation, condensation and precipitation."],
+["💧 Evaporation","Evaporation changes liquid water into water vapour."],
+["☁️ Condensation","Condensation turns water vapour into liquid droplets."],
+["🌍 Gravity","Gravity keeps us attached to Earth's surface."],
+["🌡️ Temperature","Temperature measures how hot or cold something is."],
+["🌪️ Storms","Storms can form when different air masses interact."],
+["🌤️ Weather","Weather describes atmospheric conditions at a particular time and place."],
+["🌦️ Forecasts","Weather forecasts use observations and computer models."],
+["🌅 Sunsets","Sunsets can appear red and orange because light is scattered in the atmosphere."],
+["🌄 Mountains","Mountain climates can change quickly with altitude."]
+
+];
+
+
+/* =========================
+   DIY IDEAS
+========================= */
+
+const diyIdeas = [
+
+"🎨 Paint a canvas using only three colours.",
+"📦 Turn a cardboard box into a mini shop.",
+"🌈 Make a rainbow paper decoration.",
+"🧪 Create a safe colour-mixing experiment.",
+"🪴 Decorate a plant pot.",
+"✏️ Design your own notebook cover.",
+"🎭 Make a paper mask.",
+"🏠 Build a cardboard house.",
+"🚀 Build a paper rocket.",
+"🐝 Make a bee-friendly garden sign.",
+"🌳 Create a nature collage.",
+"🦋 Make paper butterflies.",
+"🎨 Try bubble painting.",
+"📚 Make your own bookmark.",
+"🎲 Invent a board game.",
+"🧩 Make your own puzzle.",
+"🧸 Design a tiny cardboard room.",
+"📦 Build a marble maze.",
+"🌟 Make paper stars.",
+"🎵 Create your own musical instrument from safe household materials.",
+"🖼️ Make a collage from old magazines.",
+"🧵 Create a simple friendship bracelet.",
+"🎨 Try painting with different textures.",
+"🌿 Make a leaf-print artwork.",
+"☔ Make a rainy-day themed poster.",
+"🌈 Design a new imaginary planet.",
+"👾 Draw your own alien.",
+"🐉 Design a fantasy creature.",
+"🏰 Build a cardboard castle.",
+"🚗 Design a cardboard vehicle.",
+"🛸 Build a paper UFO.",
+"🧪 Make a colour wheel.",
+"📸 Create a photo scavenger hunt.",
+"🔭 Make a pretend space station.",
+"🌎 Make a model of Earth.",
+"☀️ Make a solar-system poster.",
+"🌙 Design your own moon.",
+"🐾 Make a paw-print art picture.",
+"🎀 Decorate a storage box.",
+"💡 Invent something that solves a small problem.",
+"📝 Create your own magazine.",
+"📰 Make a mini newspaper.",
+"🎟️ Design tickets for an imaginary event.",
+"🏪 Create an imaginary business.",
+"☕ Design a café menu.",
+"🍰 Design a bakery menu.",
+"🎮 Design your own video game character.",
+"👕 Design a T-shirt.",
+"🎒 Design a backpack pattern.",
+"🧢 Design a hat.",
+"🎨 Create a colour-themed room poster.",
+"🌸 Make paper flowers.",
+"🍃 Create a nature mobile.",
+"🐦 Build a simple bird observation chart.",
+"🌦️ Make a weather chart.",
+"📅 Design a creative weekly planner.",
+"🗺️ Draw a treasure map.",
+"💎 Design imaginary gemstones.",
+"🧙 Create a fantasy character.",
+"🧟 Design a funny monster.",
+"🐲 Create a dragon profile.",
+"🦄 Design a magical animal.",
+"🌊 Draw an underwater city.",
+"🏝️ Design your own island.",
+"🏙️ Design your own city.",
+"🚀 Design a space colony.",
+"🤖 Design a robot.",
+"🧠 Invent a new invention.",
+"🔧 Draw how your invention works.",
+"📦 Make a tiny shop from cardboard.",
+"🎪 Design a circus.",
+"🎡 Draw an amusement park.",
+"🎢 Design a roller coaster.",
+"🏕️ Design a campsite.",
+"🌲 Make a forest scene.",
+"🌊 Make an ocean scene.",
+"☁️ Make a cloud-themed artwork.",
+"🌧️ Paint a rainy window scene.",
+"🌈 Make a rainbow bookmark.",
+"🍪 Design your dream cookie.",
+"🧁 Design your dream cupcake.",
+"🍫 Invent a new chocolate bar.",
+"🍕 Design a new pizza.",
+"🍦 Invent an ice-cream flavour.",
+"🥤 Design a smoothie.",
+"🎂 Design a birthday cake.",
+"🍬 Invent a sweet.",
+"🎨 Create a logo for RainyDays Labs.",
+"☔ Design a new RainyDays Labs mascot.",
+"✨ Invent a new RainyDays Labs category.",
+"📱 Design a pretend app.",
+"💻 Design a website homepage on paper.",
+"🧪 Create a science fact poster.",
+"🌿 Make a nature fact card.",
+"📚 Write a mini book.",
+"🎭 Create a short play.",
+"🎬 Make a tiny stop-motion animation with an adult's help."
+
+];
+
+
+/* =========================
+   RANDOM IDEAS
+========================= */
+
+const randomIdeas = [
+
+...diyIdeas,
+
+"🍪 Bake something you've never made before.",
+"🎨 Draw with your non-dominant hand.",
+"🌿 Find three interesting things outside.",
+"🎲 Invent a board game in 10 minutes.",
+"🏕️ Build the world's cosiest blanket fort.",
+"📖 Read a chapter of a book.",
+"🎵 Make up a silly song.",
+"🕺 Have a mini dance party.",
+"☔ Watch the rain and write down five things you notice.",
+"🌈 Find something red, orange, yellow, green, blue and purple.",
+"💡 Invent a gadget that would make life easier.",
+"🧠 Learn a completely random fact.",
+"📸 Take five interesting photos.",
+"✏️ Design a new logo.",
+"🗺️ Draw a treasure map.",
+"🐾 Invent a new animal.",
+"🚀 Design a spaceship.",
+"🏰 Design a castle.",
+"🌎 Invent a new country.",
+"🍰 Design your dream bakery.",
+"🎮 Invent a video game.",
+"📱 Invent an app.",
+"🎬 Create a tiny movie.",
+"🎤 Sing your favourite song.",
+"🧩 Make your own puzzle.",
+"📝 Write a mini story.",
+"🎨 Make a piece of abstract art.",
+"🌲 Draw a forest.",
+"🌊 Draw an underwater world.",
+"🌌 Draw outer space.",
+"👾 Design an alien.",
+"🐉 Design a dragon.",
+"🦄 Design a magical creature.",
+"🤖 Design a robot.",
+"🏝️ Design an island.",
+"🏙️ Design a city.",
+"🎡 Design an amusement park.",
+"🎪 Design a circus.",
+"🍫 Invent a chocolate flavour.",
+"🍦 Invent an ice cream flavour.",
+"🍪 Invent a cookie flavour.",
+"🧁 Invent a cupcake flavour.",
+"🥤 Invent a drink.",
+"🎁 Design the world's best gift.",
+"💰 Invent a business.",
+"☔ Invent a RainyDays Labs product.",
+"✨ Come up with a brand-new website idea."
+
+];
+
+
+/* =========================
+   MAKE RECIPE CARD
+========================= */
+
+function makeRecipe(recipe, index) {
+
+  const card = document.createElement("div");
+
+  card.className = "recipe";
+
+  const ingredients =
+    recipe[3]
+      .split(",")
+      .map(x => `<li>${x.trim()}</li>`)
+      .join("");
+
+  const steps =
+    recipe[4]
+      .split("|")
+      .map(x => `<li>${x}</li>`)
+      .join("");
+
+  card.innerHTML = `
+
+    <div class="recipeEmoji">
+      ${recipe[1]}
+    </div>
+
+    <h3>
+      ${index + 1}. ${recipe[0]}
+    </h3>
+
+    <p>
+      ${recipe[2]}
+    </p>
+
+    <button
+      class="primary"
+      onclick="toggleRecipe(${index})"
+    >
+      View Recipe →
+    </button>
+
+    <div
+      class="recipeDetails"
+      id="recipe${index}"
+    >
+
+      <h4>
+        🛒 Ingredients
+      </h4>
+
+      <ul>
+        ${ingredients}
+      </ul>
+
+      <h4>
+        👩‍🍳 Steps
+      </h4>
+
+      <ol>
+        ${steps}
+      </ol>
+
+    </div>
+
+  `;
+
+  return card;
+
+}
+
+
+/* =========================
+   LOAD RECIPES
+========================= */
+
+function loadRecipes() {
+
+  const list =
+    document.getElementById("recipeList");
+
+  recipes.forEach((recipe,index) => {
+
+    list.appendChild(
+      makeRecipe(recipe,index)
+    );
+
+  });
+
+
+  const today =
+    document.getElementById("todayRecipes");
+
+  recipes.slice(0,3).forEach((recipe,index) => {
+
+    today.appendChild(
+      makeRecipe(recipe,index)
+    );
+
+  });
+
+}
+
+
+/* =========================
+   OPEN RECIPE
+========================= */
+
+function toggleRecipe(index) {
+
+  const element =
+    document.getElementById(
+      "recipe" + index
+    );
+
+  element.classList.toggle("open");
+
+}
+
+
+/* =========================
+   LOAD FACTS
+========================= */
+
+function loadFacts() {
+
+  const list =
+    document.getElementById("factList");
+
+  facts.forEach(fact => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "fact";
+
+    card.innerHTML = `
+
+      <h3>
+        ${fact[0]}
+      </h3>
+
+      <p>
+        ${fact[1]}
+      </p>
+
+    `;
+
+    list.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================
+   LOAD DIY
+========================= */
+
+function loadDIY() {
+
+  const list =
+    document.getElementById("diyList");
+
+  diyIdeas.forEach((idea,index) => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "diy";
+
+    card.innerHTML = `
+
+      <h3>
+        DIY Idea ${index + 1}
+      </h3>
+
+      <p>
+        ${idea}
+      </p>
+
+    `;
+
+    list.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================
+   PAGE SYSTEM
+========================= */
 
 function showHome() {
 
-  document.getElementById("homePage").style.display = "block";
+  document.getElementById(
+    "homePage"
+  ).style.display = "block";
 
-  document.querySelectorAll(".page").forEach(function(page) {
 
-    page.classList.remove("active");
+  document.querySelectorAll(".page")
+    .forEach(page => {
 
-    page.style.display = "none";
+      page.style.display = "none";
 
-  });
+    });
+
 
   window.scrollTo({
     top: 0,
@@ -1812,21 +2055,24 @@ function showHome() {
 
 function showPage(id) {
 
-  document.getElementById("homePage").style.display = "none";
+  document.getElementById(
+    "homePage"
+  ).style.display = "none";
 
-  document.querySelectorAll(".page").forEach(function(page) {
 
-    page.classList.remove("active");
+  document.querySelectorAll(".page")
+    .forEach(page => {
 
-    page.style.display = "none";
+      page.style.display = "none";
 
-  });
+    });
 
-  const page = document.getElementById(id);
+
+  const page =
+    document.getElementById(id);
 
   page.style.display = "block";
 
-  page.classList.add("active");
 
   window.scrollTo({
     top: 0,
@@ -1836,37 +2082,21 @@ function showPage(id) {
 }
 
 
-function scrollToHighlights() {
-
-  document.getElementById("highlights").scrollIntoView({
-    behavior: "smooth"
-  });
-
-}
-
-
-function focusWeather() {
-
-  document.getElementById("weatherBox").scrollIntoView({
-    behavior: "smooth"
-  });
-
-  setTimeout(function() {
-
-    document.getElementById("city").focus();
-
-  }, 500);
-
-}
-
+/* =========================
+   WEATHER
+========================= */
 
 function checkWeather() {
 
   const city =
-    document.getElementById("city").value.trim();
+    document.getElementById("city")
+      .value.trim();
 
   const result =
-    document.getElementById("weatherResult");
+    document.getElementById(
+      "weatherResult"
+    );
+
 
   if (!city) {
 
@@ -1877,140 +2107,276 @@ function checkWeather() {
 
   }
 
+
   result.innerText =
     "🌦️ Weather checker ready for " +
     city +
     "!";
 
+
 }
 
+
+function focusWeather() {
+
+  document.getElementById(
+    "weatherBox"
+  ).scrollIntoView({
+    behavior: "smooth"
+  });
+
+
+  setTimeout(() => {
+
+    document.getElementById(
+      "city"
+    ).focus();
+
+  },500);
+
+}
+
+
+/* =========================
+   RANDOM
+========================= */
 
 function randomIdea() {
 
-  const ideas = [
+  const result =
+    document.getElementById(
+      "randomResult"
+    );
 
-    "🍪 Bake something you've never made before!",
 
-    "🎨 Draw a completely imaginary animal!",
+  const idea =
+    randomIdeas[
+      Math.floor(
+        Math.random() *
+        randomIdeas.length
+      )
+    ];
 
-    "🌿 Find three interesting things outside!",
 
-    "🏕️ Build a cosy blanket fort!",
-
-    "🧪 Invent a safe mini experiment!",
-
-    "🎲 Invent your own board game!",
-
-    "📦 Turn an old box into something amazing!",
-
-    "🌈 Make something using every colour of the rainbow!",
-
-    "💡 Invent something that solves a problem!",
-
-    "🎵 Make up a song about rain!"
-
-  ];
-
-  const choice =
-    ideas[Math.floor(Math.random() * ideas.length)];
-
-  document.getElementById("randomResult").innerText =
-    choice;
+  result.innerText = idea;
 
 }
 
+
+/* =========================
+   DARK MODE
+========================= */
 
 function toggleDark() {
 
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle(
+    "dark"
+  );
 
 }
 
 
+/* =========================
+   SEARCH
+========================= */
+
 function searchSite() {
 
+  const input =
+    document.getElementById(
+      "searchInput"
+    );
+
   const query =
-    document.getElementById("searchInput").value
-    .toLowerCase()
-    .trim();
+    input.value
+      .toLowerCase()
+      .trim();
+
+
+  const results =
+    document.getElementById(
+      "searchResults"
+    );
+
 
   if (!query) {
 
-    alert("🔎 Type something to search!");
+    results.style.display = "none";
 
     return;
 
   }
 
 
-  if (
-    query.includes("bake") ||
-    query.includes("recipe") ||
-    query.includes("cookie") ||
-    query.includes("cake") ||
-    query.includes("brownie")
-  ) {
-
-    showPage("bakesPage");
-
-  }
-
-  else if (
-    query.includes("nature") ||
-    query.includes("animal") ||
-    query.includes("plant") ||
-    query.includes("tree")
-  ) {
-
-    showPage("naturePage");
-
-  }
-
-  else if (
-    query.includes("diy") ||
-    query.includes("craft") ||
-    query.includes("make")
-  ) {
-
-    showPage("diyPage");
-
-  }
-
-  else if (
-    query.includes("random") ||
-    query.includes("fun")
-  ) {
-
-    showPage("randomPage");
-
-  }
-
-  else if (
-    query.includes("weather") ||
-    query.includes("rain")
-  ) {
-
-    showHome();
-
-    setTimeout(function() {
-
-      focusWeather();
-
-    }, 300);
-
-  }
-
-  else {
-
-    alert(
-      "🔎 RainyDays Labs couldn't find that yet!\n\nTry searching for bakes, nature, DIY, random or weather."
+  const recipeMatches =
+    recipes.filter(recipe =>
+      recipe.join(" ")
+        .toLowerCase()
+        .includes(query)
     );
 
+
+  const factMatches =
+    facts.filter(fact =>
+      fact.join(" ")
+        .toLowerCase()
+        .includes(query)
+    );
+
+
+  const diyMatches =
+    diyIdeas.filter(idea =>
+      idea.toLowerCase()
+        .includes(query)
+    );
+
+
+  const total =
+    recipeMatches.length +
+    factMatches.length +
+    diyMatches.length;
+
+
+  showHome();
+
+
+  results.style.display = "block";
+
+
+  if (total === 0) {
+
+    results.innerHTML = `
+
+      <h3>
+        🔎 No results found
+      </h3>
+
+      <p>
+        Try searching for cookies, chocolate,
+        animals, trees, DIY, cake, nature, etc.
+      </p>
+
+    `;
+
+    return;
+
   }
+
+
+  let html = `
+
+    <h2>
+      🔎 Search Results
+    </h2>
+
+    <p>
+      Found ${total} result(s) for
+      "<strong>${query}</strong>"
+    </p>
+
+  `;
+
+
+  if (recipeMatches.length) {
+
+    html += `
+
+      <h3 style="margin-top:18px">
+        🍪 Bakes
+      </h3>
+
+      <p>
+        ${recipeMatches
+          .slice(0,10)
+          .map(x => x[0])
+          .join(" • ")}
+      </p>
+
+      <button
+        class="primary"
+        onclick="showPage('bakesPage')"
+      >
+        Open Bakes
+      </button>
+
+    `;
+
+  }
+
+
+  if (factMatches.length) {
+
+    html += `
+
+      <h3 style="margin-top:18px">
+        🌿 Nature
+      </h3>
+
+      <p>
+        ${factMatches
+          .slice(0,10)
+          .map(x => x[0])
+          .join(" • ")}
+      </p>
+
+      <button
+        class="primary"
+        onclick="showPage('naturePage')"
+      >
+        Open Nature
+      </button>
+
+    `;
+
+  }
+
+
+  if (diyMatches.length) {
+
+    html += `
+
+      <h3 style="margin-top:18px">
+        🧪 DIY
+      </h3>
+
+      <p>
+        ${diyMatches
+          .slice(0,10)
+          .join(" • ")}
+      </p>
+
+      <button
+        class="primary"
+        onclick="showPage('diyPage')"
+      >
+        Open DIY
+      </button>
+
+    `;
+
+  }
+
+
+  results.innerHTML = html;
 
 }
 
+
+/* =========================
+   START EVERYTHING
+========================= */
+
+loadRecipes();
+
+loadFacts();
+
+loadDIY();
+
+showHome();
+
 </script>
 
+
 </body>
+
 </html>
