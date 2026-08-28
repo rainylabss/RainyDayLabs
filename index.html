@@ -1798,7 +1798,126 @@ function renderToday(){
    FULL RECIPE PAGE
 ===================================================== */
 
-function openRecipe(id){
+function openRecipe(id) {
+
+  const recipe = recipes[id];
+
+  if (!recipe) {
+    alert("Sorry! I couldn't find that recipe.");
+    return;
+  }
+
+  // Hide every page
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  // Show the recipe page
+  const recipePage = document.getElementById("recipePage");
+  recipePage.classList.add("active");
+
+  // Make the ingredients
+  const ingredientsHTML = recipe.ingredients.map(item => `
+    <li>🛒 ${item}</li>
+  `).join("");
+
+  // Make the steps
+  const stepsHTML = recipe.steps.map((step, index) => `
+    <li>${step}</li>
+  `).join("");
+
+  // Put the recipe onto the page
+  document.getElementById("recipeContent").innerHTML = `
+
+    <div class="backRow">
+
+      <button
+        class="secondary"
+        onclick="openPage('bakes')">
+        ← Back to Bakes
+      </button>
+
+      <button
+        class="secondary"
+        onclick="goHome()">
+        🏠 Home
+      </button>
+
+    </div>
+
+    <div class="recipeHero">
+
+      <div class="big">
+        ${recipe.emoji}
+      </div>
+
+      <h1>
+        ${recipe.name}
+      </h1>
+
+      <p>
+        ${recipe.description}
+      </p>
+
+      <div class="stats">
+
+        <span class="stat">
+          ⏱️ ${recipe.time}
+        </span>
+
+        <span class="stat">
+          ⭐ ${recipe.difficulty}
+        </span>
+
+        <span class="stat">
+          🍪 RainyDays Recipe
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="recipeColumns">
+
+      <div class="recipeBox">
+
+        <h2>🛒 Ingredients</h2>
+
+        <ul class="ingredients">
+          ${ingredientsHTML}
+        </ul>
+
+      </div>
+
+      <div class="recipeBox">
+
+        <h2>👩‍🍳 Method</h2>
+
+        <ol class="steps">
+          ${stepsHTML}
+        </ol>
+
+      </div>
+
+    </div>
+
+    <div class="tip">
+
+      <strong>☔ RainyDays tip</strong>
+
+      <br><br>
+
+      Take your time and have fun! If you're using
+      an oven, hot pan or sharp equipment, ask an
+      adult to help.
+
+    </div>
+
+  `;
+
+  // ALWAYS jump to the very top
+  window.scrollTo(0, 0);
+}
 
   const recipe=recipes.find(r=>r.id===id);
 
