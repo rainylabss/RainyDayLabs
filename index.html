@@ -3,149 +3,882 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RainyDayLabs</title>
+
+<title>RainyDayLabs 🌧️</title>
+
 <style>
-*{box-sizing:border-box}
-body{
+*{
+  box-sizing:border-box;
   margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#dff4ff,#f5efff);
-  color:#182033;
+  padding:0;
 }
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f8fc;
+  color:#172033;
+}
+
+/* HEADER */
+
 header{
-  padding:22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(255,255,255,.8);
-  backdrop-filter:blur(10px);
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #e5e9f0;
 }
-.logo{font-size:25px;font-weight:800}
-nav a{
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.navlinks{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.navlinks a{
   text-decoration:none;
-  color:#182033;
-  margin-left:18px;
+  color:#172033;
   font-weight:700;
 }
+
+.navlinks a:hover{
+  color:#5577ff;
+}
+
+/* HERO */
+
 .hero{
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   text-align:center;
-  padding:80px 20px 55px;
+  padding:70px 20px;
+  background:
+    radial-gradient(circle at 20% 20%,#ccecff,transparent 35%),
+    radial-gradient(circle at 80% 30%,#e5d7ff,transparent 35%),
+    linear-gradient(135deg,#eaf8ff,#f5efff);
 }
-.hero h1{font-size:55px;margin:10px 0}
-.hero p{font-size:19px;color:#596277}
+
+.hero-content{
+  max-width:800px;
+}
+
+.hero-icon{
+  font-size:65px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:clamp(42px,8vw,72px);
+  margin-bottom:15px;
+}
+
+.hero p{
+  font-size:20px;
+  color:#5d687b;
+  line-height:1.5;
+}
+
 .search{
-  width:min(600px,90%);
-  padding:16px 20px;
+  margin-top:30px;
+  width:min(650px,100%);
+  padding:18px 24px;
   border:0;
-  border-radius:30px;
-  box-shadow:0 8px 25px #0001;
-  font-size:16px;
-  margin-top:20px;
+  border-radius:35px;
+  font-size:17px;
+  outline:none;
+  box-shadow:0 10px 35px #00000012;
 }
-.container{max-width:1100px;margin:auto;padding:20px}
+
+/* MAIN */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.section-title h2{
+  font-size:34px;
+  margin-bottom:8px;
+}
+
+.section-title p{
+  color:#687386;
+}
+
+/* FEATURED */
+
+.featured{
+  background:#172033;
+  color:white;
+  border-radius:28px;
+  padding:35px;
+  margin-bottom:55px;
+  box-shadow:0 15px 40px #0002;
+}
+
+.featured span{
+  background:#ffffff22;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.featured h2{
+  font-size:32px;
+  margin:18px 0 10px;
+}
+
+.featured p{
+  color:#d6dbe5;
+  line-height:1.6;
+}
+
+/* CATEGORY GRID */
+
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
   gap:22px;
 }
+
 .card{
-  background:#fff;
-  padding:28px;
+  background:white;
   border-radius:25px;
-  box-shadow:0 10px 30px #0001;
+  padding:28px;
+  box-shadow:0 8px 30px #0000000d;
   transition:.25s;
+  border:1px solid #edf0f5;
 }
-.card:hover{transform:translateY(-6px)}
-.icon{font-size:40px}
-.card h2{margin-bottom:8px}
+
+.card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 18px 40px #00000014;
+}
+
+.card-icon{
+  font-size:45px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#687386;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+
 button{
   border:0;
-  border-radius:14px;
-  padding:12px 18px;
-  background:#182033;
+  background:#172033;
   color:white;
+  padding:12px 17px;
+  border-radius:13px;
   font-weight:bold;
   cursor:pointer;
 }
-footer{text-align:center;padding:50px;color:#667085}
+
+button:hover{
+  transform:scale(1.03);
+}
+
+/* CONTENT CARDS */
+
+.content-card{
+  background:white;
+  border-radius:22px;
+  padding:23px;
+  box-shadow:0 7px 25px #0000000c;
+  border:1px solid #edf0f5;
+}
+
+.content-card .emoji{
+  font-size:34px;
+}
+
+.content-card h3{
+  margin:12px 0 7px;
+}
+
+.content-card p{
+  color:#687386;
+  line-height:1.5;
+}
+
+.tag{
+  display:inline-block;
+  margin-top:15px;
+  padding:6px 10px;
+  background:#eef3ff;
+  border-radius:15px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+/* PROJECTS */
+
+.project{
+  position:relative;
+  overflow:hidden;
+}
+
+.project-badge{
+  position:absolute;
+  right:20px;
+  top:20px;
+  background:#eef3ff;
+  padding:7px 10px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+/* RANDOM */
+
+.random-box{
+  text-align:center;
+  background:linear-gradient(135deg,#fff,#eef6ff);
+  padding:40px 20px;
+  border-radius:28px;
+  border:1px solid #e4eaf2;
+}
+
+.random-result{
+  font-size:22px;
+  font-weight:bold;
+  margin:25px auto;
+  max-width:650px;
+  min-height:35px;
+}
+
+/* FOOTER */
+
+footer{
+  background:#172033;
+  color:white;
+  padding:45px 20px;
+  text-align:center;
+}
+
+footer p{
+  color:#aeb6c5;
+  margin-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .nav{
+    flex-direction:column;
+  }
+
+  .navlinks{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero{
+    min-height:480px;
+  }
+
+  .hero h1{
+    font-size:45px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+}
 </style>
 </head>
+
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <div class="logo">🌧️ RainyDayLabs</div>
-  <nav>
-    <a href="#projects">Projects</a>
-    <a href="#about">About</a>
-  </nav>
+  <div class="nav">
+
+    <div class="logo">
+      🌧️ RainyDayLabs
+    </div>
+
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#explore">Explore</a>
+      <a href="#projects">Projects</a>
+      <a href="#random">Random</a>
+    </div>
+
+  </div>
 </header>
 
-<section class="hero">
-  <div style="font-size:50px">🌧️✨</div>
-  <h1>Welcome to RainyDayLabs!</h1>
-  <p>Home of random ideas, games, news, baking, nature & DIY.</p>
-  <input class="search" id="search" placeholder="🔎 Search RainyDayLabs...">
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <div class="hero-icon">
+      🌧️✨
+    </div>
+
+    <h1>
+      Welcome to RainyDayLabs!
+    </h1>
+
+    <p>
+      A place for baking, DIY, games, nature, news,
+      random ideas and everything in between.
+    </p>
+
+    <input
+      class="search"
+      id="search"
+      placeholder="🔎 Search RainyDayLabs..."
+    >
+
+  </div>
+
 </section>
 
-<main class="container" id="projects">
-  <h2>🚀 Our Projects</h2>
+
+<main class="container">
+
+<!-- FEATURED -->
+
+<section>
+
+  <div class="featured">
+
+    <span>⭐ FEATURED</span>
+
+    <h2>
+      Welcome to the new RainyDayLabs!
+    </h2>
+
+    <p>
+      Explore all the different corners of RainyDayLabs,
+      discover new ideas and play our games.
+      There's always something new to find.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- EXPLORE -->
+
+<section id="explore">
+
+  <div class="section-title">
+
+    <h2>✨ Explore RainyDayLabs</h2>
+
+    <p>
+      Pick a category and start exploring.
+    </p>
+
+  </div>
+
 
   <div class="grid">
-    <div class="card searchable">
-      <div class="icon">💼</div>
-      <h2>RainyEmps</h2>
-      <p>Build your business, make money and become a tycoon.</p>
-      <button onclick="location.href='https://rainylabs21.github.io/RainyEmps/'">Play Game</button>
-    </div>
+
+
+    <!-- BAKING -->
 
     <div class="card searchable">
-      <div class="icon">📰</div>
-      <h2>RainyNews</h2>
-      <p>Discover what's happening around the Rainy universe.</p>
-      <button onclick="location.href='https://rainylabs21.github.io/RainyNews/'">Read News</button>
+
+      <div class="card-icon">
+        🧁
+      </div>
+
+      <h3>Baking</h3>
+
+      <p>
+        Recipes, cookies, cakes, desserts
+        and delicious experiments.
+      </p>
+
+      <button onclick="showMessage('🧁 Baking recipes are coming soon!')">
+        Explore Baking
+      </button>
+
     </div>
 
-    <div class="card searchable">
-      <div class="icon">🧁</div>
-      <h2>RainyBakes</h2>
-      <p>Recipes, baking ideas and delicious experiments.</p>
-      <button onclick="alert('RainyBakes is coming soon! 🧁')">Coming Soon</button>
-    </div>
+
+    <!-- DIY -->
 
     <div class="card searchable">
-      <div class="icon">🌿</div>
-      <h2>RainyNature</h2>
-      <p>Nature, weather and relaxing outdoor ideas.</p>
-      <button onclick="alert('RainyNature is coming soon! 🌿')">Explore</button>
+
+      <div class="card-icon">
+        🛠️
+      </div>
+
+      <h3>DIY</h3>
+
+      <p>
+        Crafts, room ideas, slime, art and
+        things you can make yourself.
+      </p>
+
+      <button onclick="showMessage('🛠️ DIY projects are coming soon!')">
+        Explore DIY
+      </button>
+
     </div>
+
+
+    <!-- NATURE -->
+
+    <div class="card searchable">
+
+      <div class="card-icon">
+        🌿
+      </div>
+
+      <h3>Nature</h3>
+
+      <p>
+        Animals, plants, outdoors, weather
+        and interesting nature facts.
+      </p>
+
+      <button onclick="showMessage('🌿 Nature content is coming soon!')">
+        Explore Nature
+      </button>
+
+    </div>
+
+
+    <!-- GAMES -->
+
+    <div class="card searchable">
+
+      <div class="card-icon">
+        🎮
+      </div>
+
+      <h3>Games</h3>
+
+      <p>
+        Play RainyEmps and discover more
+        RainyDayLabs games.
+      </p>
+
+      <button onclick="location.href='https://rainylabs21.github.io/RainyEmps/'">
+        Play RainyEmps
+      </button>
+
+    </div>
+
+
+    <!-- NEWS -->
+
+    <div class="card searchable">
+
+      <div class="card-icon">
+        📰
+      </div>
+
+      <h3>RainyNews</h3>
+
+      <p>
+        Stories, trends, technology,
+        games and interesting news.
+      </p>
+
+      <button onclick="location.href='https://rainylabs21.github.io/RainyNews/'">
+        Open RainyNews
+      </button>
+
+    </div>
+
+
+    <!-- RANDOM -->
+
+    <div class="card searchable">
+
+      <div class="card-icon">
+        🎲
+      </div>
+
+      <h3>Random</h3>
+
+      <p>
+        Random ideas, weird facts,
+        challenges and completely unexpected stuff.
+      </p>
+
+      <button onclick="document.getElementById('random').scrollIntoView()">
+        Surprise Me
+      </button>
+
+    </div>
+
   </div>
-</main>
 
-<section class="container" id="about">
-  <div class="card">
-    <h2>☁️ What is RainyDayLabs?</h2>
-    <p>
-      RainyDayLabs is a collection of fun projects, experiments,
-      games and random ideas. New things are always being created.
-    </p>
-  </div>
 </section>
 
+
+<!-- LATEST CONTENT -->
+
+<section style="margin-top:70px">
+
+  <div class="section-title">
+
+    <h2>🔥 Latest from RainyDayLabs</h2>
+
+    <p>
+      Things you can discover right now.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+
+    <div class="content-card searchable">
+
+      <div class="emoji">🍪</div>
+
+      <h3>Cookie Lab</h3>
+
+      <p>
+        Experiment with chocolate, Kinder pieces
+        and your own cookie creations.
+      </p>
+
+      <span class="tag">
+        BAKING
+      </span>
+
+    </div>
+
+
+    <div class="content-card searchable">
+
+      <div class="emoji">🧪</div>
+
+      <h3>DIY Experiments</h3>
+
+      <p>
+        Try fun crafts and creative projects
+        using things you already have.
+      </p>
+
+      <span class="tag">
+        DIY
+      </span>
+
+    </div>
+
+
+    <div class="content-card searchable">
+
+      <div class="emoji">🎮</div>
+
+      <h3>RainyEmps</h3>
+
+      <p>
+        Build your business empire,
+        earn money and unlock upgrades.
+      </p>
+
+      <span class="tag">
+        GAME
+      </span>
+
+    </div>
+
+
+    <div class="content-card searchable">
+
+      <div class="emoji">🌦️</div>
+
+      <h3>Rainy Day Ideas</h3>
+
+      <p>
+        Find things to do when it's raining
+        outside.
+      </p>
+
+      <span class="tag">
+        RANDOM
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects" style="margin-top:70px">
+
+  <div class="section-title">
+
+    <h2>🚀 RainyDayLabs Projects</h2>
+
+    <p>
+      The bigger projects we're building.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+
+    <div class="card project">
+
+      <div class="project-badge">
+        PLAY
+      </div>
+
+      <div class="card-icon">
+        💼
+      </div>
+
+      <h3>RainyEmps</h3>
+
+      <p>
+        Your business tycoon game.
+        Build your company and become a business boss.
+      </p>
+
+      <button onclick="location.href='https://rainylabs21.github.io/RainyEmps/'">
+        Play Now
+      </button>
+
+    </div>
+
+
+    <div class="card project">
+
+      <div class="project-badge">
+        READ
+      </div>
+
+      <div class="card-icon">
+        📰
+      </div>
+
+      <h3>RainyNews</h3>
+
+      <p>
+        The RainyDayLabs news hub for stories,
+        trends and interesting things.
+      </p>
+
+      <button onclick="location.href='https://rainylabs21.github.io/RainyNews/'">
+        Read News
+      </button>
+
+    </div>
+
+
+    <div class="card project">
+
+      <div class="project-badge">
+        SOON
+      </div>
+
+      <div class="card-icon">
+        🧁
+      </div>
+
+      <h3>RainyBakes</h3>
+
+      <p>
+        A future collection of recipes,
+        baking experiments and favourites.
+      </p>
+
+      <button onclick="showMessage('🧁 RainyBakes is coming soon!')">
+        Coming Soon
+      </button>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- RANDOM -->
+
+<section id="random" style="margin-top:70px">
+
+  <div class="section-title">
+
+    <h2>🎲 Random RainyDay Generator</h2>
+
+    <p>
+      Press the button. Get a completely random idea.
+    </p>
+
+  </div>
+
+
+  <div class="random-box">
+
+    <div class="random-result" id="randomResult">
+      What will you get? 👀
+    </div>
+
+    <button onclick="randomIdea()">
+      🎲 Give Me An Idea
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
 <footer>
-  © 2026 RainyDayLabs 🌧️
+
+  <h2>
+    🌧️ RainyDayLabs
+  </h2>
+
+  <p>
+    Making random ideas into real things.
+  </p>
+
+  <p style="margin-top:20px">
+    © 2026 RainyDayLabs
+  </p>
+
 </footer>
 
+
 <script>
-const search=document.getElementById("search");
-search.addEventListener("input",()=>{
-  const value=search.value.toLowerCase();
-  document.querySelectorAll(".searchable").forEach(card=>{
-    card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none";
+
+/* SEARCH */
+
+const search = document.getElementById("search");
+
+search.addEventListener("input", function(){
+
+  const query = this.value.toLowerCase();
+
+  document.querySelectorAll(".searchable").forEach(card => {
+
+    const text = card.innerText.toLowerCase();
+
+    if(text.includes(query)){
+      card.style.display = "";
+    }else{
+      card.style.display = "none";
+    }
+
   });
+
 });
+
+
+/* MESSAGE */
+
+function showMessage(message){
+
+  alert(message);
+
+}
+
+
+/* RANDOM IDEAS */
+
+const ideas = [
+
+  "🧁 Bake a giant chocolate chip cookie",
+
+  "🎮 Play RainyEmps and try to reach £100,000",
+
+  "🛠️ Make a DIY room decoration",
+
+  "🌿 Go outside and find five different plants",
+
+  "🍪 Create your own cookie recipe",
+
+  "🎨 Make a piece of pouring art",
+
+  "📱 Design a new app idea",
+
+  "💡 Come up with a completely new business",
+
+  "🎲 Invent a new board game",
+
+  "🌧️ Make a rainy-day activity list",
+
+  "🧪 Try a safe science experiment",
+
+  "📰 Write your own news story",
+
+  "🏠 Design your dream bedroom",
+
+  "🎮 Invent your own video game",
+
+  "🍰 Design your dream cake"
+
+];
+
+
+function randomIdea(){
+
+  const result =
+    ideas[Math.floor(Math.random()*ideas.length)];
+
+  document.getElementById("randomResult").textContent = result;
+
+}
+
 </script>
 
 </body>
