@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rainy Rush 🌧️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:#07111f;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+}
+
+.top{
+height:70px;
+padding:0 18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+button{
+border:0;
+border-radius:13px;
+padding:11px 15px;
+background:#ffffff15;
+color:white;
+font-weight:800;
+cursor:pointer;
+}
+
+#game{
+position:relative;
+width:min(94vw,500px);
+height:650px;
+max-height:72vh;
+margin:auto;
+overflow:hidden;
+border-radius:25px;
+border:4px solid #ffffff22;
+background:#79b86b;
+}
+
+.grass{
+position:absolute;
+inset:0;
+background:
+linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+background-size:50px 50px;
+}
+
+.road{
+position:absolute;
+left:0;
+width:100%;
+height:125px;
+background:#30343c;
+border-top:5px dashed #ffffff99;
+border-bottom:5px dashed #ffffff99;
+}
+
+.road1{top:120px}
+.road2{top:400px}
+
+.player{
+position:absolute;
+width:42px;
+height:42px;
+display:grid;
+place-items:center;
+font-size:29px;
+z-index:5;
+transition:.08s;
+}
+
+.car{
+position:absolute;
+width:70px;
+height:38px;
+display:grid;
+place-items:center;
+font-size:25px;
+z-index:4;
+}
+
+.star{
+position:absolute;
+font-size:28px;
+z-index:3;
+}
+
+.hud{
+padding:8px;
+font-weight:900;
+}
+
+.controls{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:12px;
+}
+
+.controls button{
+font-size:23px;
+width:60px;
+height:50px;
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:#07111fed;
+display:none;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:20;
+}
+
+.overlay.show{
+display:flex;
+}
+
+.overlay h1{
+font-size:42px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+<button onclick="location.href='index.html'">
+🏠 RainyVerse
+</button>
+
+<b>🌧️ Rainy Rush</b>
+
+<span>⭐ <span id="score">0</span></span>
+
+</div>
+
+
+<div id="game">
+
+<div class="grass"></div>
+
+<div class="road road1"></div>
+<div class="road road2"></div>
+
+<div class="player" id="player">
+🌧️
+</div>
+
+<div class="overlay" id="gameOver">
+
+<h1>💥 OOPS!</h1>
+
+<p>
+Score: <strong id="finalScore">0</strong>
+</p>
+
+<button onclick="startGame()">
+🔄 PLAY AGAIN
+</button>
+
+</div>
+
+</div>
+
+
+<div class="controls">
+
+<button onclick="move(0,-1)">⬆️</button>
+<button onclick="move(-1,0)">⬅️</button>
+<button onclick="move(1,0)">➡️</button>
+<button onclick="move(0,1)">⬇️</button>
+
+</div>
+
+
+<script>
+
+const game=document.getElementById("game");
+const player=document.getElementById("player");
+const scoreText=document.getElementById("score");
+const gameOver=document.getElementById("gameOver");
+
+let x=4;
+let y=10;
+let score=0;
+let running=false;
+let cars=[];
+let stars=[];
+let animation;
+
+
+function cellSize(){
+
+return{
+w:game.clientWidth/9,
+h:game.clientHeight/12
+};
+
+}
+
+
+function renderPlayer(){
+
+const c=cellSize();
+
+player.style.left=
+(x*c.w+c.w/2-21)+"px";
+
+player.style.top=
+(y*c.h+c.h/2-21)+"px";
+
+}
+
+
+function move(dx,dy){
+
+if(!running)return;
+
+x=Math.max(
+0,
+Math.min(8,x+dx)
+);
+
+y=Math.max(
+0,
+Math.min(11,y+dy)
+);
+
+if(dy<0){
+score+=10;
+}
+
+scoreText.textContent=score;
+
+renderPlayer();
+
+checkCollisions();
+
+}
+
+
+function createCar(){
+
+const car=document.createElement("div");
+
+car.className="car";
+car.textContent="🚗";
+
+const lane=
+Math.random()<.5 ? 2 : 8;
+
+const direction=
+Math.random()<.5 ? 1 : -1;
+
+car.dataset.direction=direction;
+
+car.style.top=
+(lane*(game.clientHeight/12)+8)+"px";
+
+car.style.left=
+direction===1
+? "-80px"
+: game.clientWidth+"px";
+
+game.appendChild(car);
+
+cars.push(car);
+
+}
+
+
+function createStar(){
+
+const star=document.createElement("div");
+
+star.className="star";
+star.textContent="⭐";
+
+star.dataset.x=
+Math.floor(Math.random()*9);
+
+star.dataset.y=
+Math.floor(Math.random()*12);
+
+const c=cellSize();
+
+star.style.left=
+(star.dataset.x*c.w+10)+"px";
+
+star.style.top=
+(star.dataset.y*c.h+8)+"px";
+
+game.appendChild(star);
+
+stars.push(star);
+
+}
+
+
+function checkCollisions(){
+
+const p=
+player.getBoundingClientRect();
+
+cars.forEach(car=>{
+
+const r=
+car.getBoundingClientRect();
+
+if(
+r.left<p.right &&
+r.right>p.left &&
+r.top<p.bottom &&
+r.bottom>p.top
+){
+
+endGame();
+
+}
+
+});
+
+
+stars.forEach((star,index)=>{
+
+if(
+Number(star.dataset.x)===x &&
+Number(star.dataset.y)===y
+){
+
+score+=25;
+
+scoreText.textContent=score;
+
+star.remove();
+
+stars.splice(index,1);
+
+createStar();
+
+}
+
+});
+
+}
+
+
+function gameLoop(){
+
+if(!running)return;
+
+cars.forEach((car,index)=>{
+
+let left=
+parseFloat(car.style.left);
+
+const direction=
+Number(car.dataset.direction);
+
+left+=direction*3;
+
+car.style.left=left+"px";
+
+if(
+left<-100 ||
+left>game.clientWidth+100
+){
+
+car.remove();
+
+cars.splice(index,1);
+
+}
+
+});
+
+checkCollisions();
+
+animation=
+requestAnimationFrame(gameLoop);
+
+}
+
+
+function startGame(){
+
+cars.forEach(c=>c.remove());
+stars.forEach(s=>s.remove());
+
+cars=[];
+stars=[];
+
+x=4;
+y=10;
+score=0;
+running=true;
+
+scoreText.textContent="0";
+
+gameOver.classList.remove("show");
+
+renderPlayer();
+
+for(let i=0;i<5;i++){
+
+setTimeout(
+createCar,
+i*600
+);
+
+}
+
+for(let i=0;i<6;i++){
+
+createStar();
+
+}
+
+cancelAnimationFrame(animation);
+
+gameLoop();
+
+}
+
+
+function endGame(){
+
+if(!running)return;
+
+running=false;
+
+document.getElementById("finalScore")
+.textContent=score;
+
+gameOver.classList.add("show");
+
+
+const oldHigh=
+Number(localStorage.getItem("rainHigh"))||0;
+
+if(score>oldHigh){
+
+localStorage.setItem(
+"rainHigh",
+score
+);
+
+}
+
+
+const oldPoints=
+Number(localStorage.getItem("rainPoints"))||0;
+
+localStorage.setItem(
+"rainPoints",
+oldPoints+score
+);
+
+
+const played=
+Number(localStorage.getItem("rainGames"))||0;
+
+localStorage.setItem(
+"rainGames",
+played+1
+);
+
+}
+
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="ArrowUp")
+move(0,-1);
+
+if(e.key==="ArrowDown")
+move(0,1);
+
+if(e.key==="ArrowLeft")
+move(-1,0);
+
+if(e.key==="ArrowRight")
+move(1,0);
+
+}
+);
+
+
+window.addEventListener(
+"resize",
+renderPlayer
+);
+
+
+startGame();
+
+</script>
+
+</body>
+</html>
