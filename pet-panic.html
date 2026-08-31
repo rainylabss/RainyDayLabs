@@ -2,392 +2,648 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pet Panic 🐾</title>
 
 <style>
-
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:linear-gradient(135deg,#16233e,#4b2854);
-color:white;
-min-height:100vh;
-text-align:center;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.top{
-padding:18px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(180deg, #8ed6ff 0%, #d9f4ff 55%, #87cf75 55%);
+  color: #183047;
 }
 
-button{
-border:0;
-border-radius:14px;
-padding:12px 16px;
-background:#ffffff18;
-border:1px solid #ffffff22;
-color:white;
-font-weight:800;
-cursor:pointer;
-transition:.2s;
+#topbar {
+  height: 64px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
 }
 
-button:hover{
-transform:translateY(-2px);
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #356b91;
+  color: white;
 }
 
-.container{
-max-width:700px;
-margin:auto;
-padding:15px;
+button:active {
+  transform: scale(.96);
 }
 
-.pet-card{
-background:#ffffff12;
-border:1px solid #ffffff20;
-border-radius:28px;
-padding:28px;
+#game {
+  max-width: 800px;
+  margin: auto;
+  padding: 25px 15px 40px;
 }
 
-.pet{
-font-size:120px;
-margin:15px;
+#title {
+  text-align: center;
+  margin-bottom: 18px;
 }
 
-.bar{
-height:18px;
-background:#ffffff15;
-border-radius:20px;
-overflow:hidden;
-margin:8px 0 20px;
+#title h1 {
+  margin: 0;
+  font-size: 42px;
 }
 
-.fill{
-height:100%;
-width:70%;
-background:#7dd3fc;
-border-radius:20px;
-transition:.3s;
+#title p {
+  color: #4b6980;
 }
 
-.actions{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:25px;
+#petArea {
+  min-height: 270px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,.8) 0 25px, transparent 26px),
+    radial-gradient(circle at 75% 15%, rgba(255,255,255,.8) 0 35px, transparent 36px),
+    linear-gradient(#7ed0ff 0%, #c7efff 70%, #77c96c 70%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0,0,0,.12);
 }
 
-.actions button{
-padding:18px 8px;
-font-size:16px;
+#pet {
+  width: 145px;
+  height: 155px;
+  position: relative;
+  margin-bottom: 35px;
+  cursor: pointer;
+  transition: transform .2s;
 }
 
-.message{
-min-height:30px;
-margin-top:20px;
-color:#d7e1ef;
+#pet:active {
+  transform: scale(.94);
 }
 
-@media(max-width:500px){
-
-.actions{
-grid-template-columns:1fr 1fr;
+.ear {
+  position: absolute;
+  width: 52px;
+  height: 65px;
+  background: #c88954;
+  top: 8px;
+  border-radius: 50% 50% 18px 18px;
 }
 
-.pet{
-font-size:90px;
+.ear.left {
+  left: 12px;
+  transform: rotate(-28deg);
 }
 
+.ear.right {
+  right: 12px;
+  transform: rotate(28deg);
 }
 
+.head {
+  position: absolute;
+  width: 120px;
+  height: 105px;
+  background: #d99a63;
+  border-radius: 48% 48% 45% 45%;
+  left: 12px;
+  top: 35px;
+  z-index: 2;
+}
+
+.eye {
+  position: absolute;
+  width: 13px;
+  height: 18px;
+  background: #1d2730;
+  border-radius: 50%;
+  top: 35px;
+}
+
+.eye.left {
+  left: 32px;
+}
+
+.eye.right {
+  right: 32px;
+}
+
+.muzzle {
+  position: absolute;
+  width: 50px;
+  height: 35px;
+  background: #f2c295;
+  border-radius: 50%;
+  left: 35px;
+  top: 55px;
+}
+
+.nose {
+  position: absolute;
+  width: 13px;
+  height: 10px;
+  background: #31231e;
+  border-radius: 50%;
+  left: 18px;
+  top: 4px;
+}
+
+.body {
+  position: absolute;
+  width: 95px;
+  height: 75px;
+  background: #c88954;
+  border-radius: 45% 45% 20% 20%;
+  left: 25px;
+  bottom: 0;
+}
+
+.tail {
+  position: absolute;
+  width: 65px;
+  height: 25px;
+  background: #c88954;
+  border-radius: 20px;
+  right: -15px;
+  bottom: 35px;
+  transform: rotate(25deg);
+}
+
+.pet-name {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,.9);
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-weight: 900;
+}
+
+#message {
+  min-height: 55px;
+  text-align: center;
+  padding: 17px;
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.stats {
+  background: rgba(255,255,255,.88);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.stat {
+  margin-bottom: 17px;
+}
+
+.stat:last-child {
+  margin-bottom: 0;
+}
+
+.statTitle {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+.bar {
+  height: 17px;
+  background: #e6edf2;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width .4s;
+}
+
+.hunger { background: #f29b48; }
+.happiness { background: #e879a9; }
+.energy { background: #6d91e9; }
+
+#coins {
+  text-align: center;
+  margin: 18px 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.action {
+  padding: 17px 8px;
+  font-size: 16px;
+}
+
+#eventBox {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.85);
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+#eventBox h2 {
+  margin-top: 0;
+}
+
+#eventButton {
+  margin-top: 8px;
+}
+
+#gameOver {
+  position: fixed;
+  inset: 0;
+  background: rgba(12,23,34,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+#gameOver.show {
+  display: flex;
+}
+
+.panel {
+  width: min(360px,100%);
+  background: white;
+  color: #183047;
+  text-align: center;
+  padding: 30px;
+  border-radius: 28px;
+}
+
+.panel h1 {
+  margin-top: 0;
+}
+
+@media(max-width: 500px) {
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  #petArea {
+    min-height: 240px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="top">
-
-<button onclick="location.href='index.html'">
-🏠 RainyVerse
-</button>
-
-<b>🐾 Pet Panic</b>
-
-<span>
-🪙 <span id="coins">0</span>
-</span>
-
+<div id="topbar">
+  <button onclick="goHome()">🏠 Home</button>
+  <strong>🐾 PET PANIC</strong>
+  <span>🪙 <span id="topCoins">0</span></span>
 </div>
 
+<main id="game">
 
-<div class="container">
+  <div id="title">
+    <h1>🐾 Pet Panic</h1>
+    <p>Look after your pet and keep them happy!</p>
+  </div>
 
-<h1>🐾 Pet Panic</h1>
+  <div id="petArea">
 
-<p>
-Keep your pet happy, clean and energetic!
-</p>
+    <div id="pet" onclick="petClicked()">
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="tail"></div>
+      <div class="body"></div>
 
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="muzzle">
+          <div class="nose"></div>
+        </div>
+      </div>
+    </div>
 
-<div class="pet-card">
+    <div class="pet-name">🐶 Rainy</div>
 
-<div class="pet" id="pet">
-🐶
+  </div>
+
+  <div id="message">
+    Rainy is waiting for you! 🐾
+  </div>
+
+  <section class="stats">
+
+    <div class="stat">
+      <div class="statTitle">
+        <span>🍖 Hunger</span>
+        <span id="hungerText">80%</span>
+      </div>
+      <div class="bar">
+        <div class="fill hunger" id="hungerBar"></div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="statTitle">
+        <span>😊 Happiness</span>
+        <span id="happinessText">80%</span>
+      </div>
+      <div class="bar">
+        <div class="fill happiness" id="happinessBar"></div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="statTitle">
+        <span>⚡ Energy</span>
+        <span id="energyText">80%</span>
+      </div>
+      <div class="bar">
+        <div class="fill energy" id="energyBar"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <div id="coins">
+    🪙 <span id="coinAmount">50</span> Coins
+  </div>
+
+  <section class="actions">
+
+    <button class="action" onclick="feedPet()">
+      🍖<br>Feed
+    </button>
+
+    <button class="action" onclick="playPet()">
+      🎾<br>Play
+    </button>
+
+    <button class="action" onclick="sleepPet()">
+      😴<br>Sleep
+    </button>
+
+  </section>
+
+  <section id="eventBox">
+    <h2>✨ Random Event</h2>
+    <p id="eventText">Something exciting could happen!</p>
+    <button id="eventButton" onclick="randomEvent()">
+      🎲 Get Event
+    </button>
+  </section>
+
+</main>
+
+<div id="gameOver">
+  <div class="panel">
+    <h1>🐾 Pet Panic!</h1>
+    <p>Rainy needs more care!</p>
+    <p>You earned <strong id="finalCoins">0</strong> coins.</p>
+    <br>
+    <button onclick="restartGame()">🔄 Start Again</button>
+    <button onclick="goHome()">🏠 Home</button>
+  </div>
 </div>
-
-<h2 id="petName">
-Buddy
-</h2>
-
-
-<p>🍖 Hunger</p>
-
-<div class="bar">
-<div class="fill" id="hunger"></div>
-</div>
-
-
-<p>❤️ Happiness</p>
-
-<div class="bar">
-<div class="fill" id="happiness"></div>
-</div>
-
-
-<p>⚡ Energy</p>
-
-<div class="bar">
-<div class="fill" id="energy"></div>
-</div>
-
-
-<div class="actions">
-
-<button onclick="feed()">
-🍖 Feed
-</button>
-
-<button onclick="play()">
-🎾 Play
-</button>
-
-<button onclick="clean()">
-🛁 Clean
-</button>
-
-<button onclick="sleepPet()">
-😴 Sleep
-</button>
-
-<button onclick="changePet()">
-🔄 Change Pet
-</button>
-
-<button onclick="reward()">
-🎁 Reward
-</button>
-
-</div>
-
-
-<div class="message" id="message">
-Buddy is waiting for you! 🐾
-</div>
-
-</div>
-
-</div>
-
 
 <script>
 
-let state=
-JSON.parse(
-localStorage.getItem("petState")
-) || {
+let hunger = 80;
+let happiness = 80;
+let energy = 80;
+let coins = 50;
+let earnedCoins = 0;
+let gameRunning = true;
 
-hunger:70,
-happiness:70,
-energy:70,
-coins:0,
-pet:0
+function updateGame() {
 
-};
+  hunger = Math.max(0, Math.min(100, hunger));
+  happiness = Math.max(0, Math.min(100, happiness));
+  energy = Math.max(0, Math.min(100, energy));
 
+  document.getElementById("hungerBar").style.width = hunger + "%";
+  document.getElementById("happinessBar").style.width = happiness + "%";
+  document.getElementById("energyBar").style.width = energy + "%";
 
-const pets=[
-["🐶","Buddy"],
-["🐱","Mochi"],
-["🐰","Bun"],
-["🐹","Nibbles"]
-];
+  document.getElementById("hungerText").textContent = hunger + "%";
+  document.getElementById("happinessText").textContent = happiness + "%";
+  document.getElementById("energyText").textContent = energy + "%";
 
+  document.getElementById("coinAmount").textContent = coins;
+  document.getElementById("topCoins").textContent = coins;
 
-function save(){
+  localStorage.setItem("petPanicCoins", coins);
 
-localStorage.setItem(
-"petState",
-JSON.stringify(state)
-);
-
-render();
-
-}
-
-
-function render(){
-
-document.getElementById("pet")
-.textContent=pets[state.pet][0];
-
-document.getElementById("petName")
-.textContent=pets[state.pet][1];
-
-document.getElementById("hunger")
-.style.width=state.hunger+"%";
-
-document.getElementById("happiness")
-.style.width=state.happiness+"%";
-
-document.getElementById("energy")
-.style.width=state.energy+"%";
-
-document.getElementById("coins")
-.textContent=state.coins;
+  if (hunger === 0 || happiness === 0 || energy === 0) {
+    endGame();
+  }
 
 }
 
+function setMessage(message) {
+  document.getElementById("message").textContent = message;
+}
 
-function feed(){
+function feedPet() {
 
-state.hunger=
-Math.min(100,state.hunger+25);
+  if (!gameRunning) return;
 
-state.happiness=
-Math.min(100,state.happiness+5);
+  if (coins < 5) {
+    setMessage("😢 You need 5 coins to buy food!");
+    return;
+  }
 
-message.textContent=
-"YUM! Your pet loved the food! 🍖";
+  coins -= 5;
+  hunger += 25;
+  happiness += 5;
 
-save();
+  setMessage("YUM! Rainy loved that food! 🍖🐶");
+
+  updateGame();
 
 }
 
+function playPet() {
 
-function play(){
+  if (!gameRunning) return;
 
-if(state.energy<20){
+  happiness += 20;
+  energy -= 12;
+  hunger -= 6;
 
-message.textContent=
-"Your pet is too tired! 😴";
+  earnedCoins += 5;
+  coins += 5;
 
-return;
+  setMessage("🎾 Rainy had SO much fun! +5 coins!");
 
-}
-
-state.energy-=20;
-
-state.happiness=
-Math.min(100,state.happiness+25);
-
-state.hunger=
-Math.max(0,state.hunger-10);
-
-state.coins+=10;
-
-message.textContent=
-"SO MUCH FUN! 🎾 +10 coins";
-
-save();
+  updateGame();
 
 }
 
+function sleepPet() {
 
-function clean(){
+  if (!gameRunning) return;
 
-state.happiness=
-Math.min(100,state.happiness+15);
+  energy += 30;
+  hunger -= 8;
 
-message.textContent=
-"Sparkly clean! ✨";
+  setMessage("😴 Zzz... Rainy feels refreshed!");
 
-save();
-
-}
-
-
-function sleepPet(){
-
-state.energy=
-Math.min(100,state.energy+35);
-
-state.hunger=
-Math.max(0,state.hunger-8);
-
-message.textContent=
-"Zzzzz... your pet is sleeping. 😴";
-
-save();
+  updateGame();
 
 }
 
+function petClicked() {
 
-function changePet(){
+  if (!gameRunning) return;
 
-state.pet=
-(state.pet+1)%pets.length;
+  happiness += 4;
+  earnedCoins += 1;
+  coins += 1;
 
-message.textContent=
-"You got a new RainyVerse pet! 🐾";
+  setMessage("🐶 Rainy loves the attention! +1 coin!");
 
-save();
-
-}
-
-
-function reward(){
-
-state.coins+=25;
-
-state.happiness=
-Math.min(100,state.happiness+10);
-
-message.textContent=
-"🎁 Daily reward! +25 coins";
-
-save();
+  updateGame();
 
 }
 
+function randomEvent() {
 
-setInterval(
+  if (!gameRunning) return;
 
-function(){
+  const events = [
 
-state.hunger=
-Math.max(0,state.hunger-2);
+    {
+      text: "🎁 Rainy found a treasure chest! +15 coins!",
+      coins: 15,
+      happiness: 5
+    },
 
-state.energy=
-Math.max(0,state.energy-1);
+    {
+      text: "🌧️ It's raining! Rainy wants to play outside! +10 happiness!",
+      coins: 0,
+      happiness: 10
+    },
 
-state.happiness=
-Math.max(0,state.happiness-1);
+    {
+      text: "🍖 A neighbour gave Rainy a snack! +20 hunger!",
+      coins: 0,
+      hunger: 20
+    },
 
-save();
+    {
+      text: "🎾 Rainy found a ball! +8 coins!",
+      coins: 8,
+      happiness: 8
+    },
 
-},
+    {
+      text: "😴 Rainy had a cosy nap! +15 energy!",
+      coins: 0,
+      energy: 15
+    }
 
-10000
+  ];
 
-);
+  const event =
+    events[Math.floor(Math.random() * events.length)];
 
+  document.getElementById("eventText").textContent =
+    event.text;
 
-render();
+  coins += event.coins || 0;
+  earnedCoins += event.coins || 0;
+
+  hunger += event.hunger || 0;
+  happiness += event.happiness || 0;
+  energy += event.energy || 0;
+
+  updateGame();
+
+}
+
+function petNeeds() {
+
+  if (!gameRunning) return;
+
+  hunger -= 2;
+  happiness -= 1;
+  energy -= 1;
+
+  updateGame();
+
+}
+
+function endGame() {
+
+  if (!gameRunning) return;
+
+  gameRunning = false;
+
+  document.getElementById("finalCoins").textContent =
+    earnedCoins;
+
+  document.getElementById("gameOver")
+    .classList.add("show");
+
+}
+
+function restartGame() {
+
+  hunger = 80;
+  happiness = 80;
+  energy = 80;
+  coins = 50;
+  earnedCoins = 0;
+  gameRunning = true;
+
+  document.getElementById("gameOver")
+    .classList.remove("show");
+
+  document.getElementById("eventText").textContent =
+    "Something exciting could happen!";
+
+  setMessage("Rainy is ready for another day! 🐾");
+
+  updateGame();
+
+}
+
+function goHome() {
+  window.location.href = "index.html";
+}
+
+coins =
+  Number(localStorage.getItem("petPanicCoins")) || 50;
+
+updateGame();
+
+setInterval(petNeeds, 8000);
 
 </script>
 
