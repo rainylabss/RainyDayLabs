@@ -2,511 +2,889 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Rainy Rush 🌧️</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-background:#07111f;
-color:white;
-font-family:Arial,sans-serif;
-text-align:center;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.top{
-height:70px;
-padding:0 18px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+body {
+  margin: 0;
+  background: #101827;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  touch-action: none;
 }
 
-button{
-border:0;
-border-radius:13px;
-padding:11px 15px;
-background:#ffffff15;
-color:white;
-font-weight:800;
-cursor:pointer;
+#topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: #111c2d;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  position: relative;
+  z-index: 20;
 }
 
-#game{
-position:relative;
-width:min(94vw,500px);
-height:650px;
-max-height:72vh;
-margin:auto;
-overflow:hidden;
-border-radius:25px;
-border:4px solid #ffffff22;
-background:#79b86b;
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #273b56;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-.grass{
-position:absolute;
-inset:0;
-background:
-linear-gradient(90deg,#ffffff08 1px,transparent 1px);
-background-size:50px 50px;
+button:active {
+  transform: scale(.95);
 }
 
-.road{
-position:absolute;
-left:0;
-width:100%;
-height:125px;
-background:#30343c;
-border-top:5px dashed #ffffff99;
-border-bottom:5px dashed #ffffff99;
+#scoreBox {
+  text-align: center;
 }
 
-.road1{top:120px}
-.road2{top:400px}
-
-.player{
-position:absolute;
-width:42px;
-height:42px;
-display:grid;
-place-items:center;
-font-size:29px;
-z-index:5;
-transition:.08s;
+#score {
+  font-size: 22px;
+  font-weight: 900;
 }
 
-.car{
-position:absolute;
-width:70px;
-height:38px;
-display:grid;
-place-items:center;
-font-size:25px;
-z-index:4;
+#game {
+  width: 100vw;
+  height: calc(100vh - 150px);
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  background: #76bd70;
 }
 
-.star{
-position:absolute;
-font-size:28px;
-z-index:3;
+#world {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2000px;
+  bottom: 0;
 }
 
-.hud{
-padding:8px;
-font-weight:900;
+.row {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  overflow: hidden;
 }
 
-.controls{
-display:flex;
-justify-content:center;
-gap:8px;
-margin:12px;
+.grass {
+  background:
+    radial-gradient(circle, rgba(255,255,255,.13) 2px, transparent 3px),
+    #6eb866;
+  background-size: 32px 32px;
 }
 
-.controls button{
-font-size:23px;
-width:60px;
-height:50px;
+.road {
+  background: #343942;
+  border-top: 3px solid rgba(255,255,255,.65);
+  border-bottom: 3px solid rgba(255,255,255,.65);
 }
 
-.overlay{
-position:absolute;
-inset:0;
-background:#07111fed;
-display:none;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-z-index:20;
+.road::after {
+  content: "";
+  position: absolute;
+  top: 33px;
+  left: 0;
+  width: 100%;
+  border-top: 3px dashed rgba(255,255,255,.5);
 }
 
-.overlay.show{
-display:flex;
+.water {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.15) 2px, transparent 2px),
+    #3b9dcc;
+  background-size: 25px 25px;
 }
 
-.overlay h1{
-font-size:42px;
+.car {
+  position: absolute;
+  width: 58px;
+  height: 36px;
+  border-radius: 8px;
+  top: 17px;
+  background: #e85757;
+  box-shadow: 0 3px 0 rgba(0,0,0,.2);
 }
 
+.car::before,
+.car::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: #1b2330;
+  bottom: -4px;
+  border-radius: 3px;
+}
+
+.car::before {
+  left: 7px;
+}
+
+.car::after {
+  right: 7px;
+}
+
+.car.alt {
+  background: #f2bd48;
+}
+
+.car.blue {
+  background: #4f9eff;
+}
+
+.tree {
+  position: absolute;
+  font-size: 40px;
+  z-index: 2;
+  user-select: none;
+}
+
+.star {
+  position: absolute;
+  font-size: 28px;
+  z-index: 5;
+  user-select: none;
+}
+
+#player {
+  position: absolute;
+  width: 42px;
+  height: 48px;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  transition: left .08s linear, top .08s linear;
+}
+
+.head {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  background: #f0b48c;
+  border-radius: 50%;
+  top: 1px;
+  left: 11px;
+}
+
+.hair {
+  position: absolute;
+  width: 22px;
+  height: 10px;
+  background: #5d3825;
+  border-radius: 12px 12px 4px 4px;
+  top: 0;
+  left: 9px;
+}
+
+.body {
+  position: absolute;
+  width: 27px;
+  height: 24px;
+  background: #5da6ff;
+  border-radius: 10px 10px 6px 6px;
+  top: 18px;
+  left: 7px;
+}
+
+.leg {
+  position: absolute;
+  width: 9px;
+  height: 13px;
+  background: #25354e;
+  top: 38px;
+  border-radius: 4px;
+}
+
+.leg.left {
+  left: 10px;
+}
+
+.leg.right {
+  right: 10px;
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,13,23,.88);
+  z-index: 50;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+#overlay.show {
+  display: flex;
+}
+
+.panel {
+  background: #1a2638;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 24px;
+  padding: 30px;
+  width: min(90%, 360px);
+}
+
+.panel h1 {
+  margin-top: 0;
+}
+
+#controls {
+  height: 86px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  background: #111c2d;
+}
+
+.control {
+  width: 58px;
+  height: 55px;
+  font-size: 23px;
+  padding: 0;
+}
+
+@media (max-width: 500px) {
+  #game {
+    min-height: 350px;
+  }
+
+  .control {
+    width: 55px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="top">
+<div id="topbar">
+  <button onclick="goHome()">🏠 Home</button>
 
-<button onclick="location.href='index.html'">
-🏠 RainyVerse
-</button>
+  <div id="scoreBox">
+    <div id="score">0</div>
+    <small>RAIN SCORE ⭐</small>
+  </div>
 
-<b>🌧️ Rainy Rush</b>
-
-<span>⭐ <span id="score">0</span></span>
-
+  <div>🏆 <span id="highScore">0</span></div>
 </div>
-
 
 <div id="game">
 
-<div class="grass"></div>
+  <div id="world"></div>
 
-<div class="road road1"></div>
-<div class="road road2"></div>
+  <div id="player">
+    <div class="hair"></div>
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="leg left"></div>
+    <div class="leg right"></div>
+  </div>
 
-<div class="player" id="player">
-🌧️
-</div>
+  <div id="overlay">
+    <div class="panel">
+      <h1>💥 GAME OVER</h1>
+      <p>Your score: <strong id="finalScore">0</strong></p>
+      <p>🏆 Best: <strong id="finalHigh">0</strong></p>
 
-<div class="overlay" id="gameOver">
+      <br>
 
-<h1>💥 OOPS!</h1>
-
-<p>
-Score: <strong id="finalScore">0</strong>
-</p>
-
-<button onclick="startGame()">
-🔄 PLAY AGAIN
-</button>
-
-</div>
-
-</div>
-
-
-<div class="controls">
-
-<button onclick="move(0,-1)">⬆️</button>
-<button onclick="move(-1,0)">⬅️</button>
-<button onclick="move(1,0)">➡️</button>
-<button onclick="move(0,1)">⬇️</button>
+      <button onclick="startGame()">🔄 PLAY AGAIN</button>
+      <button onclick="goHome()">🏠 RAINYVERSE</button>
+    </div>
+  </div>
 
 </div>
 
+<div id="controls">
+  <button class="control" onclick="movePlayer(0,-1)">⬆️</button>
+  <button class="control" onclick="movePlayer(-1,0)">⬅️</button>
+  <button class="control" onclick="movePlayer(1,0)">➡️</button>
+  <button class="control" onclick="movePlayer(0,1)">⬇️</button>
+</div>
 
 <script>
 
-const game=document.getElementById("game");
-const player=document.getElementById("player");
-const scoreText=document.getElementById("score");
-const gameOver=document.getElementById("gameOver");
+const game = document.getElementById("game");
+const world = document.getElementById("world");
+const player = document.getElementById("player");
 
-let x=4;
-let y=10;
-let score=0;
-let running=false;
-let cars=[];
-let stars=[];
-let animation;
+let playerX;
+let playerY;
+let score;
+let cameraY;
+let rows = [];
+let cars = [];
+let stars = [];
+let running = false;
+let animationFrame;
 
+const ROW_HEIGHT = 70;
+const WORLD_ROWS = 45;
 
-function cellSize(){
+function randomType() {
 
-return{
-w:game.clientWidth/9,
-h:game.clientHeight/12
-};
+  const number = Math.random();
 
-}
-
-
-function renderPlayer(){
-
-const c=cellSize();
-
-player.style.left=
-(x*c.w+c.w/2-21)+"px";
-
-player.style.top=
-(y*c.h+c.h/2-21)+"px";
+  if (number < 0.55) return "grass";
+  if (number < 0.88) return "road";
+  return "water";
 
 }
 
+function createRows() {
 
-function move(dx,dy){
+  world.innerHTML = "";
 
-if(!running)return;
+  rows = [];
+  cars = [];
+  stars = [];
 
-x=Math.max(
-0,
-Math.min(8,x+dx)
-);
+  for (let i = 0; i < WORLD_ROWS; i++) {
 
-y=Math.max(
-0,
-Math.min(11,y+dy)
-);
+    let type = randomType();
 
-if(dy<0){
-score+=10;
-}
+    if (i < 6) type = "grass";
 
-scoreText.textContent=score;
+    const row = document.createElement("div");
 
-renderPlayer();
+    row.className = "row " + type;
 
-checkCollisions();
+    row.style.bottom = (i * ROW_HEIGHT) + "px";
 
-}
+    world.appendChild(row);
 
+    rows.push({
+      element: row,
+      type: type,
+      index: i
+    });
 
-function createCar(){
+    if (type === "grass") {
 
-const car=document.createElement("div");
+      if (Math.random() < 0.45) {
 
-car.className="car";
-car.textContent="🚗";
+        const tree = document.createElement("div");
 
-const lane=
-Math.random()<.5 ? 2 : 8;
+        tree.className = "tree";
+        tree.textContent = "🌳";
 
-const direction=
-Math.random()<.5 ? 1 : -1;
+        tree.style.left =
+          (Math.random() * 80 + 5) + "%";
 
-car.dataset.direction=direction;
+        tree.style.top = "10px";
 
-car.style.top=
-(lane*(game.clientHeight/12)+8)+"px";
+        row.appendChild(tree);
 
-car.style.left=
-direction===1
-? "-80px"
-: game.clientWidth+"px";
+      }
 
-game.appendChild(car);
+    }
 
-cars.push(car);
+    if (type === "road") {
 
-}
+      createCars(row, i);
 
+    }
 
-function createStar(){
+    if (Math.random() < 0.18 && type !== "water") {
 
-const star=document.createElement("div");
+      createStar(row, i);
 
-star.className="star";
-star.textContent="⭐";
+    }
 
-star.dataset.x=
-Math.floor(Math.random()*9);
-
-star.dataset.y=
-Math.floor(Math.random()*12);
-
-const c=cellSize();
-
-star.style.left=
-(star.dataset.x*c.w+10)+"px";
-
-star.style.top=
-(star.dataset.y*c.h+8)+"px";
-
-game.appendChild(star);
-
-stars.push(star);
+  }
 
 }
 
+function createCars(row, rowIndex) {
 
-function checkCollisions(){
+  const amount =
+    Math.random() < .5 ? 2 : 3;
 
-const p=
-player.getBoundingClientRect();
+  const direction =
+    Math.random() < .5 ? 1 : -1;
 
-cars.forEach(car=>{
+  for (let i = 0; i < amount; i++) {
 
-const r=
-car.getBoundingClientRect();
+    const car =
+      document.createElement("div");
 
-if(
-r.left<p.right &&
-r.right>p.left &&
-r.top<p.bottom &&
-r.bottom>p.top
-){
+    car.className = "car";
 
-endGame();
+    const styles = ["", "alt", "blue"];
 
-}
+    car.classList.add(
+      styles[Math.floor(Math.random()*styles.length)]
+    );
 
-});
+    let startX;
 
+    if (direction === 1) {
 
-stars.forEach((star,index)=>{
+      startX =
+        -100 - i * 180 -
+        Math.random() * 150;
 
-if(
-Number(star.dataset.x)===x &&
-Number(star.dataset.y)===y
-){
+    } else {
 
-score+=25;
+      startX =
+        game.clientWidth +
+        i * 180 +
+        Math.random() * 150;
 
-scoreText.textContent=score;
+    }
 
-star.remove();
+    car.style.left = startX + "px";
 
-stars.splice(index,1);
+    row.appendChild(car);
 
-createStar();
+    cars.push({
+      element: car,
+      x: startX,
+      y: rowIndex * ROW_HEIGHT,
+      direction: direction,
+      speed:
+        1.5 + Math.random() * 2
+    });
 
-}
-
-});
-
-}
-
-
-function gameLoop(){
-
-if(!running)return;
-
-cars.forEach((car,index)=>{
-
-let left=
-parseFloat(car.style.left);
-
-const direction=
-Number(car.dataset.direction);
-
-left+=direction*3;
-
-car.style.left=left+"px";
-
-if(
-left<-100 ||
-left>game.clientWidth+100
-){
-
-car.remove();
-
-cars.splice(index,1);
+  }
 
 }
 
-});
+function createStar(row, rowIndex) {
 
-checkCollisions();
+  const star =
+    document.createElement("div");
 
-animation=
-requestAnimationFrame(gameLoop);
+  star.className = "star";
+  star.textContent = "⭐";
 
-}
+  const x =
+    10 + Math.random() * 80;
 
+  star.style.left = x + "%";
+  star.style.top = "20px";
 
-function startGame(){
+  row.appendChild(star);
 
-cars.forEach(c=>c.remove());
-stars.forEach(s=>s.remove());
-
-cars=[];
-stars=[];
-
-x=4;
-y=10;
-score=0;
-running=true;
-
-scoreText.textContent="0";
-
-gameOver.classList.remove("show");
-
-renderPlayer();
-
-for(let i=0;i<5;i++){
-
-setTimeout(
-createCar,
-i*600
-);
+  stars.push({
+    element: star,
+    xPercent: x,
+    row: rowIndex,
+    collected: false
+  });
 
 }
 
-for(let i=0;i<6;i++){
+function updatePlayer() {
 
-createStar();
+  player.style.left =
+    playerX + "px";
 
-}
-
-cancelAnimationFrame(animation);
-
-gameLoop();
+  player.style.top =
+    playerY + "px";
 
 }
 
+function movePlayer(dx, dy) {
 
-function endGame(){
+  if (!running) return;
 
-if(!running)return;
+  const newX =
+    playerX + dx * 48;
 
-running=false;
+  const newY =
+    playerY + dy * 52;
 
-document.getElementById("finalScore")
-.textContent=score;
+  playerX =
+    Math.max(
+      22,
+      Math.min(
+        game.clientWidth - 22,
+        newX
+      )
+    );
 
-gameOver.classList.add("show");
+  playerY =
+    Math.max(
+      40,
+      Math.min(
+        game.clientHeight - 25,
+        newY
+      )
+    );
 
+  if (dy < 0) {
 
-const oldHigh=
-Number(localStorage.getItem("rainHigh"))||0;
+    score += 10;
 
-if(score>oldHigh){
+    cameraY += 45;
 
-localStorage.setItem(
-"rainHigh",
-score
-);
+  }
+
+  if (dy > 0) {
+
+    cameraY =
+      Math.max(
+        0,
+        cameraY - 30
+      );
+
+  }
+
+  document.getElementById("score")
+    .textContent = score;
+
+  updatePlayer();
+
+  updateCamera();
+
+  checkWater();
+
+  checkStars();
+
+  checkCars();
 
 }
 
+function updateCamera() {
 
-const oldPoints=
-Number(localStorage.getItem("rainPoints"))||0;
-
-localStorage.setItem(
-"rainPoints",
-oldPoints+score
-);
-
-
-const played=
-Number(localStorage.getItem("rainGames"))||0;
-
-localStorage.setItem(
-"rainGames",
-played+1
-);
+  world.style.transform =
+    "translateY(" +
+    cameraY +
+    "px)";
 
 }
 
+function checkWater() {
+
+  const worldPosition =
+    game.clientHeight -
+    playerY +
+    cameraY;
+
+  const rowNumber =
+    Math.floor(
+      worldPosition / ROW_HEIGHT
+    );
+
+  const row =
+    rows[rowNumber];
+
+  if (
+    row &&
+    row.type === "water"
+  ) {
+
+    endGame();
+
+  }
+
+}
+
+function checkStars() {
+
+  const worldPosition =
+    game.clientHeight -
+    playerY +
+    cameraY;
+
+  const rowNumber =
+    Math.floor(
+      worldPosition / ROW_HEIGHT
+    );
+
+  stars.forEach(star => {
+
+    if (
+      !star.collected &&
+      star.row === rowNumber
+    ) {
+
+      const starX =
+        game.clientWidth *
+        (star.xPercent / 100);
+
+      if (
+        Math.abs(
+          starX - playerX
+        ) < 40
+      ) {
+
+        star.collected = true;
+
+        star.element.style.display =
+          "none";
+
+        score += 25;
+
+        document.getElementById("score")
+          .textContent = score;
+
+      }
+
+    }
+
+  });
+
+}
+
+function checkCars() {
+
+  const playerRect =
+    player.getBoundingClientRect();
+
+  cars.forEach(car => {
+
+    const carRect =
+      car.element.getBoundingClientRect();
+
+    if (
+      playerRect.left <
+        carRect.right - 8 &&
+      playerRect.right >
+        carRect.left + 8 &&
+      playerRect.top <
+        carRect.bottom - 5 &&
+      playerRect.bottom >
+        carRect.top + 5
+    ) {
+
+      endGame();
+
+    }
+
+  });
+
+}
+
+function updateCars() {
+
+  cars.forEach(car => {
+
+    car.x +=
+      car.direction * car.speed;
+
+    if (
+      car.direction === 1 &&
+      car.x > game.clientWidth + 100
+    ) {
+
+      car.x = -120;
+
+    }
+
+    if (
+      car.direction === -1 &&
+      car.x < -120
+    ) {
+
+      car.x =
+        game.clientWidth + 100;
+
+    }
+
+    car.element.style.left =
+      car.x + "px";
+
+  });
+
+}
+
+function gameLoop() {
+
+  if (!running) return;
+
+  updateCars();
+
+  checkCars();
+
+  animationFrame =
+    requestAnimationFrame(gameLoop);
+
+}
+
+function startGame() {
+
+  cancelAnimationFrame(
+    animationFrame
+  );
+
+  running = true;
+
+  score = 0;
+
+  cameraY = 0;
+
+  playerX =
+    game.clientWidth / 2;
+
+  playerY =
+    game.clientHeight - 90;
+
+  document.getElementById("score")
+    .textContent = "0";
+
+  document.getElementById("overlay")
+    .classList.remove("show");
+
+  createRows();
+
+  updatePlayer();
+
+  updateCamera();
+
+  gameLoop();
+
+}
+
+function endGame() {
+
+  if (!running) return;
+
+  running = false;
+
+  cancelAnimationFrame(
+    animationFrame
+  );
+
+  let highScore =
+    Number(
+      localStorage.getItem(
+        "rainyRushHighScore"
+      )
+    ) || 0;
+
+  if (score > highScore) {
+
+    highScore = score;
+
+    localStorage.setItem(
+      "rainyRushHighScore",
+      highScore
+    );
+
+  }
+
+  const points =
+    Number(
+      localStorage.getItem(
+        "rainPoints"
+      )
+    ) || 0;
+
+  localStorage.setItem(
+    "rainPoints",
+    points + score
+  );
+
+  const games =
+    Number(
+      localStorage.getItem(
+        "rainGames"
+      )
+    ) || 0;
+
+  localStorage.setItem(
+    "rainGames",
+    games + 1
+  );
+
+  document.getElementById(
+    "finalScore"
+  ).textContent = score;
+
+  document.getElementById(
+    "finalHigh"
+  ).textContent = highScore;
+
+  document.getElementById(
+    "highScore"
+  ).textContent = highScore;
+
+  document.getElementById(
+    "overlay"
+  ).classList.add("show");
+
+}
+
+function goHome() {
+
+  window.location.href =
+    "index.html";
+
+}
 
 document.addEventListener(
-"keydown",
-function(e){
+  "keydown",
+  function(event) {
 
-if(e.key==="ArrowUp")
-move(0,-1);
+    if (
+      event.key === "ArrowUp"
+    ) movePlayer(0,-1);
 
-if(e.key==="ArrowDown")
-move(0,1);
+    if (
+      event.key === "ArrowDown"
+    ) movePlayer(0,1);
 
-if(e.key==="ArrowLeft")
-move(-1,0);
+    if (
+      event.key === "ArrowLeft"
+    ) movePlayer(-1,0);
 
-if(e.key==="ArrowRight")
-move(1,0);
+    if (
+      event.key === "ArrowRight"
+    ) movePlayer(1,0);
 
-}
+  }
 );
 
+document.getElementById(
+  "highScore"
+).textContent =
+  localStorage.getItem(
+    "rainyRushHighScore"
+  ) || 0;
 
 window.addEventListener(
-"resize",
-renderPlayer
-);
+  "resize",
+  function() {
 
+    if (running) {
+
+      playerX =
+        Math.min(
+          playerX,
+          game.clientWidth - 22
+        );
+
+      playerY =
+        Math.min(
+          playerY,
+          game.clientHeight - 25
+        );
+
+      updatePlayer();
+
+    }
+
+  }
+);
 
 startGame();
 
