@@ -6,511 +6,493 @@
 <title>RainyVerse 🌧️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --bg:#07111f;
-  --bg2:#0d1d33;
-  --card:rgba(255,255,255,.09);
-  --card-hover:rgba(255,255,255,.14);
-  --text:#fff;
-  --muted:#aebdd0;
-  --blue:#63b3ff;
-  --purple:#a78bfa;
-  --pink:#f0abfc;
-  --border:rgba(255,255,255,.12);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body.light{
-  --bg:#eef7ff;
-  --bg2:#dceeff;
-  --card:rgba(255,255,255,.7);
-  --card-hover:rgba(255,255,255,.9);
-  --text:#102033;
-  --muted:#53677d;
-  --border:rgba(20,50,80,.12);
+:root {
+  --bg: #07111f;
+  --bg2: #0d1d33;
+  --card: rgba(255,255,255,0.09);
+  --card-hover: rgba(255,255,255,0.14);
+  --text: #ffffff;
+  --muted: #aebdd0;
+  --blue: #63b3ff;
+  --purple: #a78bfa;
+  --pink: #f0abfc;
+  --border: rgba(255,255,255,0.12);
 }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+body.light {
+  --bg: #eef7ff;
+  --bg2: #dceeff;
+  --card: rgba(255,255,255,0.7);
+  --card-hover: rgba(255,255,255,0.9);
+  --text: #102033;
+  --muted: #53677d;
+  --border: rgba(20,50,80,0.12);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at 10% 10%,rgba(99,179,255,.2),transparent 30%),
-    radial-gradient(circle at 90% 20%,rgba(167,139,250,.18),transparent 30%),
-    linear-gradient(135deg,var(--bg),var(--bg2));
-  color:var(--text);
-  min-height:100vh;
-  transition:.3s;
-  overflow-x:hidden;
+    radial-gradient(circle at 10% 10%, rgba(99,179,255,.2), transparent 30%),
+    radial-gradient(circle at 90% 20%, rgba(167,139,250,.18), transparent 30%),
+    linear-gradient(135deg, var(--bg), var(--bg2));
+  color: var(--text);
+  min-height: 100vh;
+  transition: .3s;
+  overflow-x: hidden;
 }
 
-button{
-  font:inherit;
-  cursor:pointer;
-}
+/* RAIN */
 
-.rain{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  opacity:.22;
+.rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .22;
   background-image:
-    linear-gradient(105deg,transparent 45%,rgba(255,255,255,.7) 46%,transparent 48%);
-  background-size:35px 55px;
-  animation:rain 1s linear infinite;
+    linear-gradient(
+      105deg,
+      transparent 45%,
+      rgba(255,255,255,.7) 46%,
+      transparent 48%
+    );
+  background-size: 35px 55px;
+  animation: rain 1s linear infinite;
 }
 
-@keyframes rain{
-  from{background-position:0 0}
-  to{background-position:35px 55px}
+@keyframes rain {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 35px 55px;
+  }
 }
 
 /* NAV */
 
-nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-  backdrop-filter:blur(18px);
-  background:rgba(5,15,28,.65);
-  border-bottom:1px solid var(--border);
-  padding:15px 5%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(18px);
+  background: rgba(5,15,28,.65);
+  border-bottom: 1px solid var(--border);
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-body.light nav{
-  background:rgba(255,255,255,.65);
+body.light nav {
+  background: rgba(255,255,255,.65);
 }
 
-.logo{
-  font-size:1.35rem;
-  font-weight:900;
-  letter-spacing:-1px;
+.logo {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -1px;
 }
 
-.logo span{
-  background:linear-gradient(90deg,var(--blue),var(--purple),var(--pink));
-  -webkit-background-clip:text;
-  color:transparent;
+.logo span {
+  background: linear-gradient(
+    90deg,
+    var(--blue),
+    var(--purple),
+    var(--pink)
+  );
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.navlinks{
-  display:flex;
-  gap:10px;
+.navlinks {
+  display: flex;
+  gap: 10px;
 }
 
-.navlinks button,.theme{
-  background:transparent;
-  color:var(--text);
-  border:0;
-  padding:9px 13px;
-  border-radius:12px;
-  font-weight:700;
+.navlinks button,
+.theme {
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  padding: 9px 13px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
 }
 
-.navlinks button:hover,.theme:hover{
-  background:var(--card);
+.navlinks button:hover,
+.theme:hover {
+  background: var(--card);
 }
 
 /* HERO */
 
-.hero{
-  position:relative;
-  z-index:1;
-  min-height:590px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:70px 20px;
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 20px;
 }
 
-.hero-content{
-  max-width:850px;
+.hero-content {
+  max-width: 850px;
 }
 
-.badge{
-  display:inline-block;
-  padding:9px 15px;
-  border-radius:999px;
-  background:var(--card);
-  border:1px solid var(--border);
-  color:var(--muted);
-  margin-bottom:22px;
-  backdrop-filter:blur(10px);
+.badge {
+  display: inline-block;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  margin-bottom: 22px;
+  backdrop-filter: blur(10px);
 }
 
-.hero h1{
-  font-size:clamp(3.5rem,11vw,8rem);
-  line-height:.9;
-  letter-spacing:-7px;
-  margin-bottom:25px;
+.hero h1 {
+  font-size: clamp(3.5rem, 11vw, 8rem);
+  line-height: .9;
+  letter-spacing: -7px;
+  margin-bottom: 25px;
 }
 
-.gradient{
-  background:linear-gradient(90deg,#63b3ff,#a78bfa,#f0abfc);
-  -webkit-background-clip:text;
-  color:transparent;
+.gradient {
+  background: linear-gradient(
+    90deg,
+    #63b3ff,
+    #a78bfa,
+    #f0abfc
+  );
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.hero p{
-  font-size:1.2rem;
-  color:var(--muted);
-  max-width:600px;
-  margin:auto;
-  line-height:1.6;
+.hero p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
 }
 
-.hero-buttons{
-  margin-top:35px;
-  display:flex;
-  justify-content:center;
-  gap:13px;
-  flex-wrap:wrap;
+.hero-buttons {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  flex-wrap: wrap;
 }
 
-.primary,.secondary{
-  border:0;
-  padding:14px 22px;
-  border-radius:15px;
-  font-size:1rem;
-  font-weight:800;
-  transition:.2s;
+.primary,
+.secondary {
+  border: 0;
+  padding: 14px 22px;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: .2s;
 }
 
-.primary{
-  background:linear-gradient(90deg,var(--blue),var(--purple));
-  color:white;
-  box-shadow:0 10px 35px rgba(99,179,255,.25);
+.primary {
+  background: linear-gradient(
+    90deg,
+    var(--blue),
+    var(--purple)
+  );
+  color: white;
+  box-shadow: 0 10px 35px rgba(99,179,255,.25);
 }
 
-.secondary{
-  background:var(--card);
-  color:var(--text);
-  border:1px solid var(--border);
+.secondary {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
-.primary:hover,.secondary:hover{
-  transform:translateY(-3px);
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-3px);
 }
 
 /* MAIN */
 
-main{
-  position:relative;
-  z-index:2;
-  max-width:1200px;
-  margin:auto;
-  padding:20px 20px 80px;
+main {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px 20px 80px;
 }
 
-.section{
-  margin-top:65px;
+.section {
+  margin-top: 65px;
 }
 
-.section-title{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  margin-bottom:20px;
+.section-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.section-title h2{
-  font-size:2rem;
+.section-title h2 {
+  font-size: 2rem;
 }
 
-.section-title p{
-  color:var(--muted);
+.section-title p {
+  color: var(--muted);
 }
 
 /* CARDS */
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:25px;
-  backdrop-filter:blur(15px);
-  transition:.25s;
-  overflow:hidden;
-  position:relative;
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+  transition: .25s;
+  overflow: hidden;
+  position: relative;
 }
 
-.card:hover{
-  transform:translateY(-7px);
-  background:var(--card-hover);
+.card:hover {
+  transform: translateY(-7px);
+  background: var(--card-hover);
+  border-color: rgba(255,255,255,.22);
 }
 
-.icon{
-  font-size:2.7rem;
-  margin-bottom:17px;
+.icon {
+  font-size: 2.7rem;
+  margin-bottom: 17px;
 }
 
-.card h3{
-  font-size:1.35rem;
-  margin-bottom:8px;
+.card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
 }
 
-.card p{
-  color:var(--muted);
-  line-height:1.5;
+.card p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
-.card button{
-  margin-top:18px;
+.card button {
+  margin-top: 18px;
+}
+
+/* WEBSITE HUB */
+
+.website-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.website-card {
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.website-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+}
+
+.website-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(99,179,255,.12);
+  color: var(--blue);
+  font-size: .8rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.website-card h3 {
+  font-size: 1.7rem;
+}
+
+.website-card p {
+  margin-top: 8px;
+}
+
+.website-button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
 }
 
 /* FEATURE */
 
-.feature{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:20px;
+.feature {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
 }
 
-.big-card{
-  min-height:280px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+.big-card {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.challenge{
+.challenge {
   background:
-    radial-gradient(circle at 90% 10%,rgba(167,139,250,.4),transparent 35%),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(167,139,250,.4),
+      transparent 35%
+    ),
     var(--card);
 }
 
-.challenge-number{
-  font-size:4rem;
-  font-weight:900;
-  margin:15px 0;
+.challenge-number {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 15px 0;
 }
 
 /* STATS */
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
 }
 
-.stat{
-  text-align:center;
-  padding:22px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
+.stat {
+  text-align: center;
+  padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
 }
 
-.stat strong{
-  display:block;
-  font-size:2rem;
-  margin-bottom:4px;
+.stat strong {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 4px;
 }
 
 /* PROFILE */
 
-.profile{
-  display:flex;
-  align-items:center;
-  gap:20px;
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.avatar{
-  width:70px;
-  height:70px;
-  border-radius:22px;
-  display:grid;
-  place-items:center;
-  font-size:2rem;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--blue),
+    var(--purple)
+  );
 }
 
-.progress{
-  height:9px;
-  background:rgba(255,255,255,.1);
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:13px;
+.progress {
+  height: 9px;
+  background: rgba(255,255,255,.1);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 13px;
 }
 
-.progress div{
-  height:100%;
-  width:3%;
-  background:linear-gradient(90deg,var(--blue),var(--purple));
-  border-radius:inherit;
-  transition:.5s;
-}
-
-/* GAME AREA */
-
-.game-area{
-  margin-top:25px;
-  display:none;
-}
-
-.game-area.active{
-  display:block;
-}
-
-.game-box{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:30px;
-  text-align:center;
-}
-
-.game-score{
-  font-size:2rem;
-  font-weight:900;
-  margin:15px;
-}
-
-.game-target{
-  font-size:5rem;
-  padding:35px;
-  display:inline-block;
-  user-select:none;
-  transition:.15s;
-}
-
-.game-target:active{
-  transform:scale(.8);
-}
-
-/* DISCOVER PANEL */
-
-.discover-panel{
-  display:none;
-  margin-top:20px;
-}
-
-.discover-panel.active{
-  display:block;
-}
-
-.recipe{
-  margin-top:15px;
-  padding:18px;
-  border-radius:18px;
-  background:var(--card);
-  border:1px solid var(--border);
-}
-
-.recipe h3{
-  margin-bottom:7px;
+.progress div {
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(
+    90deg,
+    var(--blue),
+    var(--purple)
+  );
+  border-radius: inherit;
 }
 
 /* FOOTER */
 
-footer{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:40px 20px;
-  color:var(--muted);
-  border-top:1px solid var(--border);
+footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
 }
 
 /* TOAST */
 
-.toast{
-  position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%) translateY(100px);
-  background:#111d30;
-  color:white;
-  padding:14px 20px;
-  border-radius:15px;
-  z-index:100;
-  transition:.3s;
-  border:1px solid rgba(255,255,255,.15);
-  text-align:center;
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #111d30;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 15px;
+  z-index: 100;
+  transition: .3s;
+  border: 1px solid rgba(255,255,255,.15);
 }
 
-.toast.show{
-  transform:translateX(-50%) translateY(0);
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:90;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(500px,100%);
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:30px;
-  text-align:center;
-}
-
-.modal-box h2{
-  margin-bottom:12px;
-}
-
-.modal-box p{
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.modal-close{
-  margin-top:20px;
+.toast.show {
+  transform: translateX(-50%) translateY(0);
 }
 
 /* MOBILE */
 
-@media(max-width:800px){
+@media(max-width:800px) {
 
-  .navlinks{
-    display:none;
+  .navlinks {
+    display: none;
   }
 
-  .hero h1{
-    letter-spacing:-4px;
+  .hero h1 {
+    letter-spacing: -4px;
   }
 
-  .grid,.feature,.stats{
-    grid-template-columns:1fr;
+  .grid,
+  .feature,
+  .stats,
+  .website-grid {
+    grid-template-columns: 1fr;
   }
 
-  .hero{
-    min-height:520px;
+  .hero {
+    min-height: 520px;
   }
-
-  .section-title{
-    display:block;
-  }
-
-  .section-title p{
-    margin-top:5px;
-  }
-
 }
 </style>
 </head>
@@ -519,19 +501,45 @@ footer{
 
 <div class="rain"></div>
 
+<!-- NAV -->
+
 <nav>
 
-  <div class="logo">🌧️ <span>RainyVerse</span></div>
-
-  <div class="navlinks">
-    <button onclick="scrollToSection('games')">🎮 Games</button>
-    <button onclick="scrollToSection('discover')">✨ Discover</button>
-    <button onclick="scrollToSection('profile')">👤 Profile</button>
+  <div class="logo">
+    🌧️ <span>RainyVerse</span>
   </div>
 
-  <button class="theme" id="themeButton" onclick="toggleTheme()">🌙</button>
+  <div class="navlinks">
+
+    <button onclick="scrollToSection('games')">
+      Games
+    </button>
+
+    <button onclick="scrollToSection('websites')">
+      Websites
+    </button>
+
+    <button onclick="scrollToSection('discover')">
+      Discover
+    </button>
+
+    <button onclick="scrollToSection('profile')">
+      Profile
+    </button>
+
+  </div>
+
+  <button
+    class="theme"
+    id="themeButton"
+    onclick="toggleTheme()">
+    🌙
+  </button>
 
 </nav>
+
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -543,21 +551,28 @@ footer{
 
     <h1>
       Welcome to<br>
-      <span class="gradient">RainyVerse.</span>
+      <span class="gradient">
+        RainyVerse.
+      </span>
     </h1>
 
     <p>
       Play games. Discover ideas. Bake something amazing.
-      Create, explore and collect your way through your own little universe.
+      Create, explore and collect your way through your
+      own little universe.
     </p>
 
     <div class="hero-buttons">
 
-      <button class="primary" onclick="scrollToSection('games')">
+      <button
+        class="primary"
+        onclick="scrollToSection('games')">
         🎮 Explore RainyVerse
       </button>
 
-      <button class="secondary" onclick="dailyChallenge()">
+      <button
+        class="secondary"
+        onclick="dailyChallenge()">
         ✨ Daily Challenge
       </button>
 
@@ -567,7 +582,10 @@ footer{
 
 </section>
 
+
 <main>
+
+<!-- STATS -->
 
 <section class="stats">
 
@@ -588,378 +606,555 @@ footer{
 
 </section>
 
+
+<!-- FEATURE -->
+
 <section class="section">
 
-<div class="feature">
+  <div class="feature">
 
-  <div class="card big-card challenge">
+    <div class="card big-card challenge">
+
+      <div>
+
+        <div class="badge">
+          🔥 DAILY CHALLENGE
+        </div>
+
+        <h2>
+          Today's Mission
+        </h2>
+
+        <div class="challenge-number">
+          🎮
+        </div>
+
+        <p>
+          Play a game and earn your first
+          100 RainPoints today.
+        </p>
+
+      </div>
+
+      <button
+        class="primary"
+        onclick="completeChallenge()">
+        Complete Challenge
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🌦️
+      </div>
+
+      <h3>
+        Today's Vibe
+      </h3>
+
+      <p>
+        Rainy, cosy and creative.
+        Perfect weather for exploring RainyVerse.
+      </p>
+
+      <button
+        class="secondary"
+        onclick="showVibe()">
+        ✨ Reveal Vibe
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MY WEBSITES -->
+
+<section
+  class="section"
+  id="websites">
+
+  <div class="section-title">
 
     <div>
 
-      <div class="badge">🔥 DAILY CHALLENGE</div>
+      <h2>
+        🌐 My Websites
+      </h2>
 
-      <h2 id="challengeTitle">Today's Mission</h2>
-
-      <div class="challenge-number" id="challengeIcon">🎮</div>
-
-      <p id="challengeText">
-        Play a game and earn your first 100 RainPoints today.
+      <p>
+        Explore the other things I've created.
       </p>
 
     </div>
 
-    <button
-      class="primary"
-      id="challengeButton"
-      onclick="completeChallenge()">
-
-      Complete Challenge
-
-    </button>
-
   </div>
 
-  <div class="card">
 
-    <div class="icon">🌦️</div>
+  <div class="website-grid">
 
-    <h3>Today's Vibe</h3>
 
-    <p id="vibeText">
-      Rainy, cosy and creative.
-      Perfect weather for exploring RainyVerse.
-    </p>
+    <!-- RAINYEMPS -->
 
-    <button class="secondary" onclick="showVibe()">
-      ✨ Reveal Vibe
-    </button>
+    <div class="card website-card">
+
+      <div>
+
+        <div class="website-icon">
+          🎮
+        </div>
+
+        <div class="website-tag">
+          GAME WEBSITE
+        </div>
+
+        <h3>
+          RainyEmps
+        </h3>
+
+        <p>
+          Explore RainyEmps — one of the projects
+          created in the Rainy universe.
+        </p>
+
+      </div>
+
+      <a
+        class="primary website-button"
+        href="https://rainylabss.github.io/RainyEmps/"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="showToast('Opening RainyEmps 🎮')">
+
+        Open RainyEmps ↗
+
+      </a>
+
+    </div>
+
+
+    <!-- RAINYNEWS -->
+
+    <div class="card website-card">
+
+      <div>
+
+        <div class="website-icon">
+          📰
+        </div>
+
+        <div class="website-tag">
+          NEWS WEBSITE
+        </div>
+
+        <h3>
+          RainyNews
+        </h3>
+
+        <p>
+          Check out RainyNews for news,
+          stories and everything happening
+          around the web.
+        </p>
+
+      </div>
+
+      <a
+        class="primary website-button"
+        href="https://rainylabss.github.io/RainyNews/"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="showToast('Opening RainyNews 📰')">
+
+        Open RainyNews ↗
+
+      </a>
+
+    </div>
+
 
   </div>
-
-</div>
 
 </section>
+
 
 <!-- GAMES -->
 
-<section class="section" id="games">
+<section
+  class="section"
+  id="games">
 
-<div class="section-title">
+  <div class="section-title">
 
-  <div>
-    <h2>🎮 Rainy Games</h2>
-    <p>Take a break and play something.</p>
-  </div>
+    <div>
 
-</div>
+      <h2>
+        🎮 Rainy Games
+      </h2>
 
-<div class="grid">
-
-  <div class="card">
-
-    <div class="icon">🌧️</div>
-
-    <h3>Rainy Rush</h3>
-
-    <p>
-      Tap the cloud as quickly as possible and score points!
-    </p>
-
-    <button class="primary" onclick="openGame('rush')">
-      Play
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <div class="icon">🐾</div>
-
-    <h3>Pet Panic</h3>
-
-    <p>
-      Catch the pets before they escape!
-    </p>
-
-    <button class="primary" onclick="openGame('pet')">
-      Play
-    </button>
-
-  </div>
-
-  <div class="card">
-
-    <div class="icon">🏝️</div>
-
-    <h3>Rainy Island</h3>
-
-    <p>
-      Explore the island and discover hidden treasures.
-    </p>
-
-    <button class="primary" onclick="openGame('island')">
-      Play
-    </button>
-
-  </div>
-
-</div>
-
-<div class="game-area" id="gameArea">
-
-  <div class="game-box">
-
-    <h2 id="gameTitle">Game</h2>
-
-    <p id="gameInstructions"></p>
-
-    <div class="game-score">
-      Score: <span id="gameScore">0</span>
-    </div>
-
-    <div
-      class="game-target"
-      id="gameTarget"
-      onclick="gameClick()">
-
-      🌧️
+      <p>
+        Take a break and play something.
+      </p>
 
     </div>
 
-    <br>
-
-    <button
-      class="secondary"
-      onclick="closeGame()">
-
-      Close Game
-
-    </button>
-
   </div>
 
-</div>
+
+  <div class="grid">
+
+
+    <div class="card">
+
+      <div class="icon">
+        🌧️
+      </div>
+
+      <h3>
+        Rainy Rush
+      </h3>
+
+      <p>
+        Run through the rainy city and
+        collect as many stars as possible.
+      </p>
+
+      <button
+        class="primary"
+        onclick="playGame('Rainy Rush')">
+
+        Play
+
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🐾
+      </div>
+
+      <h3>
+        Pet Panic
+      </h3>
+
+      <p>
+        Look after adorable pets while
+        trying not to cause total chaos.
+      </p>
+
+      <button
+        class="primary"
+        onclick="playGame('Pet Panic')">
+
+        Play
+
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🏝️
+      </div>
+
+      <h3>
+        Rainy Island
+      </h3>
+
+      <p>
+        Explore a cosy island full of
+        secrets, treasures and surprises.
+      </p>
+
+      <button
+        class="primary"
+        onclick="playGame('Rainy Island')">
+
+        Play
+
+      </button>
+
+    </div>
+
+
+  </div>
 
 </section>
+
 
 <!-- DISCOVER -->
 
-<section class="section" id="discover">
+<section
+  class="section"
+  id="discover">
 
-<div class="section-title">
+  <div class="section-title">
 
-  <div>
-    <h2>✨ Discover</h2>
-    <p>There's always something new to try.</p>
-  </div>
+    <div>
 
-</div>
+      <h2>
+        ✨ Discover
+      </h2>
 
-<div class="grid">
+      <p>
+        There's always something new to try.
+      </p>
 
-  <div class="card">
-
-    <div class="icon">🧁</div>
-
-    <h3>Baking</h3>
-
-    <p>
-      Find delicious recipes and discover your next baking project.
-    </p>
-
-    <button class="secondary" onclick="discover('baking')">
-      Explore
-    </button>
+    </div>
 
   </div>
 
-  <div class="card">
 
-    <div class="icon">🎨</div>
+  <div class="grid">
 
-    <h3>DIY</h3>
 
-    <p>
-      Creative projects, crafts and random things to make.
-    </p>
+    <div class="card">
 
-    <button class="secondary" onclick="discover('diy')">
-      Explore
-    </button>
+      <div class="icon">
+        🧁
+      </div>
+
+      <h3>
+        Baking
+      </h3>
+
+      <p>
+        Find delicious recipes and discover
+        your next baking project.
+      </p>
+
+      <button
+        class="secondary"
+        onclick="discover('Baking')">
+
+        Explore
+
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🎨
+      </div>
+
+      <h3>
+        DIY
+      </h3>
+
+      <p>
+        Creative projects, crafts and random
+        things to make.
+      </p>
+
+      <button
+        class="secondary"
+        onclick="discover('DIY')">
+
+        Explore
+
+      </button>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🐶
+      </div>
+
+      <h3>
+        Pets
+      </h3>
+
+      <p>
+        Discover cute pets, pet ideas and
+        future RainyVerse creatures.
+      </p>
+
+      <button
+        class="secondary"
+        onclick="discover('Pets')">
+
+        Explore
+
+      </button>
+
+    </div>
+
 
   </div>
-
-  <div class="card">
-
-    <div class="icon">🐶</div>
-
-    <h3>Pets</h3>
-
-    <p>
-      Discover cute pets, pet ideas and RainyVerse creatures.
-    </p>
-
-    <button class="secondary" onclick="discover('pets')">
-      Explore
-    </button>
-
-  </div>
-
-</div>
-
-<div class="discover-panel" id="discoverPanel"></div>
 
 </section>
 
+
 <!-- PROFILE -->
 
-<section class="section" id="profile">
+<section
+  class="section"
+  id="profile">
 
-<div class="card">
+  <div class="card">
 
-  <div class="profile">
+    <div class="profile">
 
-    <div class="avatar">🌧️</div>
+      <div class="avatar">
+        🌧️
+      </div>
 
-    <div style="flex:1">
+      <div style="flex:1">
 
-      <h2>RainyVerse Explorer</h2>
+        <h2>
+          RainyVerse Explorer
+        </h2>
 
-      <p style="color:var(--muted)">
-        Level <span id="profileLevel">1</span> explorer
-      </p>
+        <p style="color:var(--muted)">
+          Level
+          <span id="profileLevel">
+            1
+          </span>
+          explorer
+        </p>
 
-      <div class="progress">
-        <div id="progress"></div>
+        <div class="progress">
+
+          <div id="progress"></div>
+
+        </div>
+
       </div>
 
     </div>
 
-  </div>
 
-  <div style="margin-top:25px">
+    <div style="margin-top:25px">
 
-    <button
-      class="primary"
-      id="rewardButton"
-      onclick="claimReward()">
+      <button
+        class="primary"
+        onclick="claimReward()">
 
-      🎁 Claim Daily Reward
+        🎁 Claim Daily Reward
 
-    </button>
+      </button>
 
-    <button
-      class="secondary"
-      onclick="resetProgress()"
-      style="margin-left:8px">
-
-      Reset Progress
-
-    </button>
+    </div>
 
   </div>
-
-</div>
 
 </section>
 
 </main>
 
+
+<!-- FOOTER -->
+
 <footer>
 
-<strong>🌧️ RainyVerse</strong>
+  <strong>
+    🌧️ RainyVerse
+  </strong>
 
-<p style="margin-top:8px">
-Made with ☁️, creativity and a little bit of chaos.
-</p>
+  <p style="margin-top:8px">
+    Made with ☁️, creativity and a little bit of chaos.
+  </p>
 
-<p style="margin-top:15px">
-© 2026 RainyVerse
-</p>
+  <p style="margin-top:15px">
+    © 2026 RainyVerse
+  </p>
 
 </footer>
 
-<div class="toast" id="toast"></div>
 
-<div class="modal" id="modal">
+<!-- TOAST -->
 
-  <div class="modal-box">
-
-    <h2 id="modalTitle"></h2>
-
-    <p id="modalText"></p>
-
-    <button
-      class="primary modal-close"
-      onclick="closeModal()">
-
-      Awesome! ✨
-
-    </button>
-
-  </div>
-
+<div
+  class="toast"
+  id="toast">
 </div>
+
 
 <script>
 
 /* =========================
-   SAVED DATA
+   DATA
 ========================= */
 
 let points =
-  Number(localStorage.getItem("rainPoints")) || 0;
+  Number(
+    localStorage.getItem("rainPoints")
+  ) || 0;
 
 let streak =
-  Number(localStorage.getItem("rainStreak")) || 0;
+  Number(
+    localStorage.getItem("rainStreak")
+  ) || 0;
 
 let challengeDone =
-  localStorage.getItem("challengeDone") === "true";
+  localStorage.getItem(
+    "challengeDone"
+  ) === "true";
 
 let rewardClaimed =
-  localStorage.getItem("rewardClaimed") === "true";
+  localStorage.getItem(
+    "rewardClaimed"
+  ) === "true";
 
 
 /* =========================
    STATS
 ========================= */
 
-function updateStats(){
+function updateStats() {
 
-  document.getElementById("points").textContent = points;
+  document.getElementById(
+    "points"
+  ).textContent = points;
 
-  const level =
+  let level =
     Math.floor(points / 500) + 1;
 
-  document.getElementById("level").textContent = level;
+  document.getElementById(
+    "level"
+  ).textContent = level;
 
-  document.getElementById("profileLevel").textContent = level;
+  document.getElementById(
+    "profileLevel"
+  ).textContent = level;
 
-  document.getElementById("streak").textContent = streak;
+  document.getElementById(
+    "streak"
+  ).textContent = streak;
 
-  const progress =
-    ((points % 500) / 500) * 100;
+  let progress =
+    (points % 500) / 5;
 
-  document.getElementById("progress").style.width =
-    Math.max(3,progress) + "%";
+  document.getElementById(
+    "progress"
+  ).style.width =
+    Math.max(3, progress) + "%";
 
-  localStorage.setItem("rainPoints",points);
+  localStorage.setItem(
+    "rainPoints",
+    points
+  );
 
-  localStorage.setItem("rainStreak",streak);
-
-  if(challengeDone){
-
-    document.getElementById("challengeButton").textContent =
-      "✅ Challenge Complete";
-
-  }
-
-  if(rewardClaimed){
-
-    document.getElementById("rewardButton").textContent =
-      "✅ Reward Claimed";
-
-  }
+  localStorage.setItem(
+    "rainStreak",
+    streak
+  );
 
 }
 
@@ -968,13 +1163,17 @@ function updateStats(){
    POINTS
 ========================= */
 
-function addPoints(amount){
+function addPoints(amount) {
 
   points += amount;
 
   updateStats();
 
-  showToast("+" + amount + " RainPoints! 🌧️");
+  showToast(
+    "+" +
+    amount +
+    " RainPoints! 🌧️"
+  );
 
 }
 
@@ -983,43 +1182,77 @@ function addPoints(amount){
    DAILY CHALLENGE
 ========================= */
 
-function completeChallenge(){
+function completeChallenge() {
 
-  if(challengeDone){
+  if(challengeDone) {
 
-    showToast("You've already completed today's challenge! 🔥");
+    showToast(
+      "You've already completed today's challenge! 🔥"
+    );
 
     return;
-
   }
 
   challengeDone = true;
 
-  streak++;
-
-  localStorage.setItem("challengeDone","true");
+  localStorage.setItem(
+    "challengeDone",
+    "true"
+  );
 
   addPoints(100);
 
-  document.getElementById("challengeButton").textContent =
-    "✅ Challenge Complete";
+  showToast(
+    "Daily challenge complete! 🎉"
+  );
 
-  showToast("Daily challenge complete! 🎉");
+}
+
+
+function dailyChallenge() {
+
+  document
+    .getElementById("games")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+  showToast(
+    "Your mission: play a Rainy game! 🎮"
+  );
 
 }
 
 
 /* =========================
-   DAILY CHALLENGE BUTTON
+   GAMES
 ========================= */
 
-function dailyChallenge(){
+function playGame(name) {
 
-  document.getElementById("games").scrollIntoView({
-    behavior:"smooth"
-  });
+  addPoints(25);
 
-  showToast("Your mission: play a Rainy Game! 🎮");
+  showToast(
+    "You played " +
+    name +
+    "! 🎮 +25"
+  );
+
+}
+
+
+/* =========================
+   DISCOVER
+========================= */
+
+function discover(type) {
+
+  addPoints(10);
+
+  showToast(
+    type +
+    " section explored! ✨ +10"
+  );
 
 }
 
@@ -1028,7 +1261,7 @@ function dailyChallenge(){
    VIBE
 ========================= */
 
-function showVibe(){
+function showVibe() {
 
   const vibes = [
 
@@ -1042,332 +1275,22 @@ function showVibe(){
 
     "🎮 Gaming Mode",
 
-    "🎨 Creative Chaos",
-
-    "🌈 Rainbow After Rain",
-
-    "🐾 Pet Lover Energy"
+    "🎨 Creative Chaos"
 
   ];
 
   const vibe =
-    vibes[Math.floor(Math.random()*vibes.length)];
-
-  document.getElementById("vibeText").textContent =
-    "Today's vibe: " + vibe;
-
-  addPoints(5);
-
-}
-
-
-/* =========================
-   GAMES
-========================= */
-
-let currentGame = "";
-
-let gameScore = 0;
-
-let gameTimer = null;
-
-function openGame(game){
-
-  currentGame = game;
-
-  gameScore = 0;
-
-  clearInterval(gameTimer);
-
-  const area =
-    document.getElementById("gameArea");
-
-  const title =
-    document.getElementById("gameTitle");
-
-  const instructions =
-    document.getElementById("gameInstructions");
-
-  const target =
-    document.getElementById("gameTarget");
-
-  if(game === "rush"){
-
-    title.textContent = "🌧️ Rainy Rush";
-
-    instructions.textContent =
-      "Tap the rain cloud as many times as possible!";
-
-    target.textContent = "🌧️";
-
-  }
-
-  if(game === "pet"){
-
-    title.textContent = "🐾 Pet Panic";
-
-    instructions.textContent =
-      "Catch the pet! It moves every time you click it.";
-
-    target.textContent = "🐶";
-
-  }
-
-  if(game === "island"){
-
-    title.textContent = "🏝️ Rainy Island";
-
-    instructions.textContent =
-      "Search the island for hidden treasures.";
-
-    target.textContent = "🏝️";
-
-  }
-
-  document.getElementById("gameScore").textContent =
-    gameScore;
-
-  area.classList.add("active");
-
-  area.scrollIntoView({
-    behavior:"smooth"
-  });
-
-  if(game === "island"){
-
-    gameTimer = setInterval(() => {
-
-      const treasures = ["💎","💰","🪙","🐚","🌟","🧭"];
-
-      target.textContent =
-        treasures[
-          Math.floor(Math.random()*treasures.length)
-        ];
-
-    },1200);
-
-  }
-
-}
-
-
-/* GAME CLICK */
-
-function gameClick(){
-
-  gameScore++;
-
-  document.getElementById("gameScore").textContent =
-    gameScore;
-
-  const target =
-    document.getElementById("gameTarget");
-
-  if(currentGame === "rush"){
-
-    target.textContent =
-      ["🌧️","☔","💧","⛈️"][
-        Math.floor(Math.random()*4)
-      ];
-
-  }
-
-  if(currentGame === "pet"){
-
-    const pets =
-      ["🐶","🐱","🐰","🐹","🦊","🐼"];
-
-    target.textContent =
-      pets[
-        Math.floor(Math.random()*pets.length)
-      ];
-
-  }
-
-  if(currentGame === "island"){
-
-    if(["💎","💰","🪙","🌟"].includes(target.textContent)){
-
-      addPoints(10);
-
-      showToast("TREASURE FOUND! 💎 +10");
-
-    }
-
-  }
-
-  if(gameScore >= 10){
-
-    addPoints(25);
-
-    showToast("Game complete! 🎉 +25");
-
-    gameScore = 0;
-
-    document.getElementById("gameScore").textContent = 0;
-
-  }
-
-}
-
-
-function closeGame(){
-
-  clearInterval(gameTimer);
-
-  document.getElementById("gameArea")
-    .classList.remove("active");
-
-}
-
-
-/* =========================
-   DISCOVER
-========================= */
-
-function discover(type){
-
-  const panel =
-    document.getElementById("discoverPanel");
-
-  panel.classList.add("active");
-
-  if(type === "baking"){
-
-    panel.innerHTML = `
-
-      <div class="recipe">
-
-        <h3>🧁 Quick Chocolate Cookies</h3>
-
-        <p>
-          Butter + brown sugar + egg + flour +
-          chocolate = instant happiness. 🍪
-        </p>
-
-        <button
-          class="primary"
-          onclick="showModal(
-            '🍪 Cookie Time!',
-            'Try making chocolate chunk cookies today!'
-          )">
-
-          Get Idea
-
-        </button>
-
-      </div>
-
-      <div class="recipe">
-
-        <h3>🥞 Pancake Stack</h3>
-
-        <p>
-          Make fluffy pancakes and decorate them
-          however you want.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-  if(type === "diy"){
-
-    panel.innerHTML = `
-
-      <div class="recipe">
-
-        <h3>🎨 Paint Pour Art</h3>
-
-        <p>
-          Choose three colours and create your
-          own abstract masterpiece.
-        </p>
-
-      </div>
-
-      <div class="recipe">
-
-        <h3>✨ Room Decoration</h3>
-
-        <p>
-          Make a cosy corner using lights,
-          plants and your favourite decorations.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-  if(type === "pets"){
-
-    panel.innerHTML = `
-
-      <div class="recipe">
-
-        <h3>🐶 Pet Name Generator</h3>
-
-        <p id="petName">
-          Click below to generate a random pet name.
-        </p>
-
-        <button
-          class="primary"
-          onclick="generatePetName()">
-
-          Generate Name
-
-        </button>
-
-      </div>
-
-      <div class="recipe">
-
-        <h3>🐱 Random Pet Fact</h3>
-
-        <p>
-          Cats can sleep for around 12–16 hours
-          a day. 😴
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-  panel.scrollIntoView({
-    behavior:"smooth"
-  });
-
-}
-
-
-function generatePetName(){
-
-  const names = [
-
-    "Mochi 🐾",
-    "Biscuit 🍪",
-    "Stormy 🌧️",
-    "Pixel 🎮",
-    "Noodle 🍜",
-    "Cloud ☁️",
-    "Waffle 🧇",
-    "Milo 🐶",
-    "Luna 🌙",
-    "Pepper 🌶️"
-
-  ];
-
-  document.getElementById("petName").textContent =
-    names[Math.floor(Math.random()*names.length)];
-
-  addPoints(5);
+    vibes[
+      Math.floor(
+        Math.random() *
+        vibes.length
+      )
+    ];
+
+  showToast(
+    "Today's vibe: " +
+    vibe
+  );
 
 }
 
@@ -1376,11 +1299,13 @@ function generatePetName(){
    REWARD
 ========================= */
 
-function claimReward(){
+function claimReward() {
 
-  if(rewardClaimed){
+  if(rewardClaimed) {
 
-    showToast("You've already claimed today's reward! 🎁");
+    showToast(
+      "You've already claimed today's reward! 🎁"
+    );
 
     return;
 
@@ -1388,12 +1313,16 @@ function claimReward(){
 
   rewardClaimed = true;
 
-  localStorage.setItem("rewardClaimed","true");
+  localStorage.setItem(
+    "rewardClaimed",
+    "true"
+  );
 
   addPoints(50);
 
-  document.getElementById("rewardButton").textContent =
-    "✅ Reward Claimed";
+  showToast(
+    "Daily reward claimed! 🎁 +50"
+  );
 
 }
 
@@ -1402,20 +1331,29 @@ function claimReward(){
    THEME
 ========================= */
 
-function toggleTheme(){
+function toggleTheme() {
 
-  document.body.classList.toggle("light");
+  document.body
+    .classList.toggle("light");
 
   const light =
-    document.body.classList.contains("light");
+    document.body
+      .classList
+      .contains("light");
 
   localStorage.setItem(
     "rainTheme",
-    light ? "light" : "dark"
+    light
+      ? "light"
+      : "dark"
   );
 
-  document.getElementById("themeButton").textContent =
-    light ? "☀️" : "🌙";
+  document.querySelector(
+    ".theme"
+  ).textContent =
+    light
+      ? "☀️"
+      : "🌙";
 
 }
 
@@ -1424,18 +1362,25 @@ function toggleTheme(){
    NAVIGATION
 ========================= */
 
-function scrollToSection(id){
+function scrollToSection(id) {
 
-  const section =
+  const element =
     document.getElementById(id);
 
-  if(section){
+  if(!element) {
 
-    section.scrollIntoView({
-      behavior:"smooth"
-    });
+    showToast(
+      "Section coming soon! 🌧️"
+    );
+
+    return;
 
   }
+
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 
 }
 
@@ -1444,99 +1389,52 @@ function scrollToSection(id){
    TOAST
 ========================= */
 
-function showToast(message){
+let toastTimer;
+
+function showToast(message) {
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
-  toast.textContent = message;
+  clearTimeout(toastTimer);
 
-  toast.classList.add("show");
+  toast.textContent =
+    message;
 
-  setTimeout(() => {
+  toast.classList.add(
+    "show"
+  );
 
-    toast.classList.remove("show");
+  toastTimer =
+    setTimeout(() => {
 
-  },2500);
+      toast.classList.remove(
+        "show"
+      );
 
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-function showModal(title,text){
-
-  document.getElementById("modalTitle").textContent =
-    title;
-
-  document.getElementById("modalText").textContent =
-    text;
-
-  document.getElementById("modal").classList.add("show");
-
-}
-
-function closeModal(){
-
-  document.getElementById("modal")
-    .classList.remove("show");
+    }, 2500);
 
 }
 
 
 /* =========================
-   RESET
-========================= */
-
-function resetProgress(){
-
-  if(!confirm(
-    "Reset all your RainyVerse progress?"
-  )) return;
-
-  points = 0;
-
-  streak = 0;
-
-  challengeDone = false;
-
-  rewardClaimed = false;
-
-  localStorage.removeItem("rainPoints");
-
-  localStorage.removeItem("rainStreak");
-
-  localStorage.removeItem("challengeDone");
-
-  localStorage.removeItem("rewardClaimed");
-
-  document.getElementById("challengeButton").textContent =
-    "Complete Challenge";
-
-  document.getElementById("rewardButton").textContent =
-    "🎁 Claim Daily Reward";
-
-  updateStats();
-
-  showToast("Progress reset! 🌧️");
-
-}
-
-
-/* =========================
-   LOAD SAVED THEME
+   LOAD THEME
 ========================= */
 
 if(
-  localStorage.getItem("rainTheme") === "light"
-){
+  localStorage.getItem(
+    "rainTheme"
+  ) === "light"
+) {
 
-  document.body.classList.add("light");
+  document.body
+    .classList.add("light");
 
-  document.getElementById("themeButton").textContent =
-    "☀️";
+  document.querySelector(
+    ".theme"
+  ).textContent = "☀️";
 
 }
 
