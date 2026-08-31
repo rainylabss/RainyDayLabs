@@ -2,575 +2,1372 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      viewport-fit=cover">
+
+<meta name="theme-color" content="#07111f">
+
 <title>RainyVerse 🌧️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 
-body{
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-background:
-radial-gradient(circle at 10% 10%,#245b86,transparent 32%),
-radial-gradient(circle at 90% 15%,#60477f,transparent 30%),
-linear-gradient(135deg,#06101d,#132b49);
-color:white;
-min-height:100vh;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-header{
-position:sticky;
-top:0;
-z-index:20;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-padding:15px 5%;
-background:rgba(4,13,25,.82);
-backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(255,255,255,.12);
+html {
+  scroll-behavior: smooth;
 }
 
-.logo{
-font-size:25px;
-font-weight:900;
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(99,179,255,.22),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(167,139,250,.20),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #07111f,
+      #102746
+    );
+
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.logo span{
-background:linear-gradient(90deg,#63b3ff,#a78bfa,#f0abfc);
--webkit-background-clip:text;
-color:transparent;
+button,
+a {
+  font-family: inherit;
 }
 
-nav{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+button {
+  cursor: pointer;
 }
 
-button{
-font:inherit;
-font-weight:800;
-cursor:pointer;
-border:0;
-border-radius:14px;
-transition:.2s;
+/* =========================
+   RAIN
+========================= */
+
+.rain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .18;
+
+  background-image:
+    linear-gradient(
+      105deg,
+      transparent 45%,
+      rgba(255,255,255,.7) 46%,
+      transparent 48%
+    );
+
+  background-size: 35px 55px;
+
+  animation:
+    rainMove 1s linear infinite;
 }
 
-nav button{
-padding:10px 14px;
-background:rgba(255,255,255,.08);
-color:white;
-border:1px solid rgba(255,255,255,.12);
+@keyframes rainMove {
+
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 35px 55px;
+  }
+
 }
 
-button:hover{
-transform:translateY(-3px);
+/* =========================
+   NAVIGATION
+========================= */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background:
+    rgba(5,15,28,.78);
+
+  backdrop-filter: blur(20px);
+
+  border-bottom:
+    1px solid rgba(255,255,255,.12);
 }
 
-.hero{
-text-align:center;
-padding:90px 20px 75px;
+.nav {
+  width: min(1400px, 100%);
+  margin: auto;
+
+  padding:
+    14px
+    clamp(15px, 4vw, 45px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
 }
 
-.cloud{
-font-size:65px;
+.logo {
+  font-size:
+    clamp(20px, 3vw, 30px);
+
+  font-weight: 950;
+  letter-spacing: -1px;
 }
 
-.hero h1{
-font-size:clamp(55px,11vw,105px);
-line-height:.9;
-letter-spacing:-5px;
-margin:15px 0 25px;
+.logo span {
+  background:
+    linear-gradient(
+      90deg,
+      #63b3ff,
+      #a78bfa,
+      #f0abfc
+    );
+
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.gradient{
-background:linear-gradient(90deg,#63b3ff,#a78bfa,#f0abfc);
--webkit-background-clip:text;
-color:transparent;
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.hero p{
-max-width:650px;
-margin:auto;
-color:#b9c8da;
-font-size:19px;
-line-height:1.6;
+.nav-button {
+  border: 0;
+  border-radius: 14px;
+
+  padding:
+    11px
+    clamp(11px, 2vw, 17px);
+
+  background: rgba(255,255,255,.08);
+  color: white;
+
+  font-weight: 800;
+  font-size: 14px;
+
+  transition: .2s;
 }
 
-.hero-buttons{
-margin-top:30px;
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
+.nav-button:hover {
+  background: rgba(255,255,255,.16);
+  transform: translateY(-2px);
 }
 
-.primary{
-padding:15px 23px;
-color:white;
-background:linear-gradient(90deg,#4faeff,#9278f5);
-box-shadow:0 10px 30px rgba(80,160,255,.2);
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+  z-index: 1;
+
+  min-height:
+    min(760px, 90vh);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding:
+    clamp(60px, 10vw, 120px)
+    20px;
 }
 
-.secondary{
-padding:15px 23px;
-color:white;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.15);
+.hero-content {
+  width: min(950px, 100%);
 }
 
-main{
-max-width:1150px;
-margin:auto;
-padding:20px 20px 80px;
+.badge {
+  display: inline-block;
+
+  padding: 10px 17px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.09);
+
+  border:
+    1px solid rgba(255,255,255,.14);
+
+  color: #c9d8ea;
+
+  font-weight: 700;
+
+  margin-bottom: 25px;
 }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
+.hero h1 {
+  font-size:
+    clamp(3.3rem, 12vw, 9rem);
+
+  line-height: .88;
+
+  letter-spacing:
+    clamp(-7px, -1vw, -3px);
+
+  margin-bottom: 28px;
 }
 
-.stat{
-text-align:center;
-padding:24px;
-border-radius:22px;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.12);
+.gradient {
+  background:
+    linear-gradient(
+      90deg,
+      #63b3ff,
+      #a78bfa,
+      #f0abfc
+    );
+
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.stat strong{
-display:block;
-font-size:32px;
-margin-bottom:5px;
+.hero p {
+  max-width: 680px;
+  margin: auto;
+
+  color: #aebdd0;
+
+  font-size:
+    clamp(16px, 2vw, 21px);
+
+  line-height: 1.6;
 }
 
-.section{
-margin-top:60px;
+.hero-buttons {
+  margin-top: 35px;
+
+  display: flex;
+  justify-content: center;
+
+  gap: 13px;
+
+  flex-wrap: wrap;
 }
 
-.section-title{
-margin-bottom:20px;
+.primary,
+.secondary {
+  border-radius: 16px;
+
+  padding:
+    15px
+    clamp(18px, 3vw, 26px);
+
+  font-size:
+    clamp(15px, 2vw, 18px);
+
+  font-weight: 900;
+
+  transition: .2s;
 }
 
-.section-title h2{
-font-size:32px;
+.primary {
+  border: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #63b3ff,
+      #8f7df5
+    );
+
+  color: white;
+
+  box-shadow:
+    0 10px 35px
+    rgba(99,179,255,.25);
 }
 
-.section-title p{
-margin-top:5px;
-color:#aebdd0;
+.secondary {
+  background:
+    rgba(255,255,255,.08);
+
+  color: white;
+
+  border:
+    1px solid rgba(255,255,255,.15);
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
-.card{
-padding:25px;
-border-radius:25px;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.12);
-backdrop-filter:blur(15px);
-transition:.25s;
+/* =========================
+   MAIN
+========================= */
+
+main {
+  position: relative;
+  z-index: 2;
+
+  width: min(1400px, 100%);
+
+  margin: auto;
+
+  padding:
+    20px
+    clamp(15px, 4vw, 45px)
+    90px;
 }
 
-.card:hover{
-transform:translateY(-7px);
-background:rgba(255,255,255,.12);
+.section {
+  margin-top:
+    clamp(55px, 8vw, 90px);
 }
 
-.icon{
-font-size:55px;
-margin-bottom:12px;
+.section-title {
+  margin-bottom: 22px;
 }
 
-.card h3{
-font-size:23px;
-margin-bottom:8px;
+.section-title h2 {
+  font-size:
+    clamp(28px, 4vw, 40px);
 }
 
-.card p{
-color:#b9c7d9;
-line-height:1.55;
-margin-bottom:20px;
+.section-title p {
+  margin-top: 5px;
+  color: #aebdd0;
 }
 
-.card button{
-width:100%;
+/* =========================
+   STATS
+========================= */
+
+.stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 15px;
 }
 
-.game-rush{
-background:
-radial-gradient(circle at 90% 10%,rgba(99,179,255,.25),transparent 40%),
-rgba(255,255,255,.08);
+.stat {
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius: 22px;
+
+  padding: 24px;
+
+  text-align: center;
+
+  backdrop-filter: blur(15px);
 }
 
-.game-pet{
-background:
-radial-gradient(circle at 90% 10%,rgba(240,171,252,.25),transparent 40%),
-rgba(255,255,255,.08);
+.stat strong {
+  display: block;
+
+  font-size:
+    clamp(28px, 5vw, 42px);
+
+  margin-bottom: 4px;
 }
 
-.game-island{
-background:
-radial-gradient(circle at 90% 10%,rgba(80,220,160,.25),transparent 40%),
-rgba(255,255,255,.08);
+/* =========================
+   GAME CARDS
+========================= */
+
+.game-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
 }
 
-.website-box{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
+.game-card {
+  position: relative;
+
+  min-height: 360px;
+
+  padding: 28px;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  backdrop-filter: blur(15px);
+
+  transition:
+    transform .25s,
+    background .25s;
 }
 
-.website-links{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
+.game-card:hover {
+  transform:
+    translateY(-8px);
+
+  background:
+    rgba(255,255,255,.13);
 }
 
-.website-links a{
-text-decoration:none;
-color:white;
-font-weight:800;
-padding:13px 17px;
-border-radius:13px;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.12);
+.game-icon {
+  font-size:
+    clamp(55px, 7vw, 85px);
+
+  margin-bottom: 20px;
 }
 
-footer{
-text-align:center;
-padding:50px 20px;
-color:#aebdd0;
-border-top:1px solid rgba(255,255,255,.1);
+.game-card h3 {
+  font-size:
+    clamp(24px, 3vw, 32px);
+
+  margin-bottom: 10px;
 }
 
-footer strong{
-color:white;
-font-size:20px;
+.game-card p {
+  color: #aebdd0;
+
+  line-height: 1.55;
+
+  min-height: 75px;
 }
 
-@media(max-width:800px){
-header{
-flex-direction:column;
+.game-button {
+  margin-top: 22px;
+
+  width: 100%;
+
+  padding: 15px;
+
+  border: 0;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #63b3ff,
+      #8f7df5
+    );
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: 900;
 }
 
-.grid{
-grid-template-columns:1fr;
+/* =========================
+   DISCOVER
+========================= */
+
+.discover-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
 }
 
-.stats{
-grid-template-columns:1fr;
+.discover-card {
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  border-radius: 24px;
+
+  padding: 25px;
+
+  backdrop-filter: blur(15px);
 }
 
-.website-box{
-flex-direction:column;
-align-items:flex-start;
+.discover-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
 }
 
-.hero h1{
-letter-spacing:-3px;
+.discover-card h3 {
+  font-size: 23px;
+  margin-bottom: 8px;
 }
+
+.discover-card p {
+  color: #aebdd0;
+  line-height: 1.5;
 }
+
+/* =========================
+   WEBSITES
+========================= */
+
+.website-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 20px;
+}
+
+.website {
+  padding: 28px;
+
+  border-radius: 25px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.website h3 {
+  font-size: 25px;
+}
+
+.website p {
+  color: #aebdd0;
+  margin-top: 5px;
+}
+
+.website a {
+  flex-shrink: 0;
+
+  text-decoration: none;
+
+  background:
+    rgba(255,255,255,.12);
+
+  color: white;
+
+  padding: 13px 18px;
+
+  border-radius: 14px;
+
+  font-weight: 900;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+  padding: 30px;
+
+  border-radius: 28px;
+
+  background:
+    rgba(255,255,255,.08);
+
+  border:
+    1px solid rgba(255,255,255,.12);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+
+  flex-shrink: 0;
+
+  border-radius: 24px;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 40px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #63b3ff,
+      #a78bfa
+    );
+}
+
+.profile h2 {
+  font-size:
+    clamp(23px, 4vw, 32px);
+}
+
+.profile p {
+  color: #aebdd0;
+  margin-top: 4px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  position: relative;
+  z-index: 2;
+
+  padding:
+    50px 20px;
+
+  text-align: center;
+
+  border-top:
+    1px solid rgba(255,255,255,.12);
+
+  color: #aebdd0;
+}
+
+footer h2 {
+  color: white;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+  position: fixed;
+
+  bottom: 25px;
+  left: 50%;
+
+  transform:
+    translate(-50%, 120px);
+
+  background:
+    rgba(10,25,42,.95);
+
+  color: white;
+
+  padding: 14px 20px;
+
+  border-radius: 16px;
+
+  z-index: 100;
+
+  transition: .3s;
+
+  border:
+    1px solid rgba(255,255,255,.15);
+
+  max-width: 90%;
+
+  text-align: center;
+
+  font-weight: 700;
+}
+
+.toast.show {
+  transform:
+    translate(-50%, 0);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width: 900px) {
+
+  .game-grid,
+  .discover-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+/* =========================
+   PHONE
+========================= */
+
+@media(max-width: 650px) {
+
+  .nav {
+    flex-direction: column;
+  }
+
+  .nav-buttons {
+    width: 100%;
+  }
+
+  .nav-button {
+    flex: 1;
+  }
+
+  .stats,
+  .game-grid,
+  .discover-grid,
+  .website-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: 650px;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+
+  .profile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .website {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .website a {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+/* =========================
+   TV / LARGE SCREENS
+========================= */
+
+@media(min-width: 1600px) {
+
+  body {
+    font-size: 19px;
+  }
+
+  .nav,
+  main {
+    max-width: 1700px;
+  }
+
+  .game-card {
+    min-height: 430px;
+    padding: 40px;
+  }
+
+  .game-icon {
+    font-size: 100px;
+  }
+
+  .primary,
+  .secondary,
+  .game-button {
+    padding: 19px 30px;
+    font-size: 20px;
+  }
+
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion: reduce) {
+
+  * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="rain"></div>
+
 <header>
 
-<div class="logo">
-🌧️ <span>RainyVerse</span>
-</div>
+  <div class="nav">
 
-<nav>
-<button onclick="scrollToSection('games')">🎮 Games</button>
-<button onclick="scrollToSection('discover')">✨ Discover</button>
-<button onclick="scrollToSection('websites')">🌐 Websites</button>
-</nav>
+    <div class="logo">
+      🌧️ <span>RainyVerse</span>
+    </div>
+
+    <div class="nav-buttons">
+
+      <button
+        class="nav-button"
+        onclick="scrollToSection('games')">
+        🎮 Games
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="scrollToSection('discover')">
+        ✨ Discover
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="scrollToSection('websites')">
+        🌐 Websites
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="scrollToSection('profile')">
+        👤 Profile
+      </button>
+
+    </div>
+
+  </div>
 
 </header>
 
-
 <section class="hero">
 
-<div class="cloud">☁️🌧️</div>
+  <div class="hero-content">
 
-<h1>
-Welcome to<br>
-<span class="gradient">RainyVerse.</span>
-</h1>
+    <div class="badge">
+      ☁️ Your little corner of the internet
+    </div>
 
-<p>
-Play games, explore, discover and have fun.
-Welcome to your own little rainy corner of the internet.
-</p>
+    <h1>
+      Welcome to<br>
+      <span class="gradient">RainyVerse.</span>
+    </h1>
 
-<div class="hero-buttons">
+    <p>
+      Play games, explore new ideas, discover
+      cool projects and create your own little
+      universe.
+    </p>
 
-<button class="primary" onclick="scrollToSection('games')">
-🎮 EXPLORE GAMES
-</button>
+    <div class="hero-buttons">
 
-<button class="secondary" onclick="randomGame()">
-🎲 RANDOM GAME
-</button>
+      <button
+        class="primary"
+        onclick="scrollToSection('games')">
+        🎮 Play RainyVerse
+      </button>
 
-</div>
+      <button
+        class="secondary"
+        onclick="dailyChallenge()">
+        ✨ Daily Challenge
+      </button>
+
+    </div>
+
+  </div>
 
 </section>
-
 
 <main>
 
-<section class="stats">
+  <!-- STATS -->
 
-<div class="stat">
-<strong id="points">0</strong>
-RainPoints 🌧️
-</div>
+  <section class="stats">
 
-<div class="stat">
-<strong id="best">0</strong>
-Best Score 🏆
-</div>
+    <div class="stat">
+      <strong id="points">0</strong>
+      RainPoints
+    </div>
 
-<div class="stat">
-<strong id="played">0</strong>
-Games Played 🎮
-</div>
+    <div class="stat">
+      <strong id="level">1</strong>
+      Level
+    </div>
 
-</section>
+    <div class="stat">
+      <strong id="streak">0</strong>
+      Day Streak 🔥
+    </div>
 
+  </section>
 
-<section class="section" id="games">
+  <!-- GAMES -->
 
-<div class="section-title">
-<h2>🎮 Rainy Games</h2>
-<p>Choose an adventure.</p>
-</div>
+  <section
+    class="section"
+    id="games">
 
-<div class="grid">
+    <div class="section-title">
 
+      <h2>🎮 RainyVerse Games</h2>
 
-<div class="card game-rush">
+      <p>
+        Actual playable games — not emoji screens. 😭
+      </p>
 
-<div class="icon">🌧️</div>
+    </div>
 
-<h3>Rainy Rush</h3>
+    <div class="game-grid">
 
-<p>
-A Crossy Road-style arcade game.
-Cross roads, dodge cars and collect stars.
-</p>
+      <!-- RAINY RUSH -->
 
-<button
-class="primary"
-onclick="openGame('rainy-rush.html')"
->
-PLAY RAINY RUSH →
-</button>
+      <div class="game-card">
 
-</div>
+        <div class="game-icon">
+          🌧️
+        </div>
 
+        <h3>
+          Rainy Rush
+        </h3>
 
-<div class="card game-pet">
+        <p>
+          Cross roads, dodge traffic,
+          collect coins and see how far
+          you can survive.
+        </p>
 
-<div class="icon">🐾</div>
+        <button
+          class="game-button"
+          onclick="openGame('rainy-rush.html')">
+          🎮 Play Rainy Rush
+        </button>
 
-<h3>Pet Panic</h3>
+      </div>
 
-<p>
-Take care of your pet.
-Feed it, play with it, clean it and keep it happy.
-</p>
+      <!-- PET PANIC -->
 
-<button
-class="primary"
-onclick="openGame('pet-panic.html')"
->
-PLAY PET PANIC →
-</button>
+      <div class="game-card">
 
-</div>
+        <div class="game-icon">
+          🐾
+        </div>
 
+        <h3>
+          Pet Panic
+        </h3>
 
-<div class="card game-island">
+        <p>
+          Look after your pet, feed them,
+          play with them and keep their
+          happiness levels up.
+        </p>
 
-<div class="icon">🏝️</div>
+        <button
+          class="game-button"
+          onclick="openGame('pet-panic.html')">
+          🐾 Play Pet Panic
+        </button>
 
-<h3>Rainy Island</h3>
+      </div>
 
-<p>
-Explore a cosy island, find treasures and discover secrets.
-</p>
+      <!-- RAINY ISLAND -->
 
-<button
-class="primary"
-onclick="openGame('rainy-island.html')"
->
-PLAY RAINY ISLAND →
-</button>
+      <div class="game-card">
 
-</div>
+        <div class="game-icon">
+          🏝️
+        </div>
 
+        <h3>
+          Rainy Island
+        </h3>
 
-</div>
-</section>
+        <p>
+          Explore a huge island,
+          discover different areas and
+          hunt for hidden treasure.
+        </p>
 
+        <button
+          class="game-button"
+          onclick="openGame('rainy-island.html')">
+          🏝️ Explore Island
+        </button>
 
-<section class="section" id="discover">
+      </div>
 
-<div class="section-title">
-<h2>✨ Discover</h2>
-<p>More things to explore in RainyVerse.</p>
-</div>
+    </div>
 
-<div class="grid">
+  </section>
 
-<div class="card">
-<div class="icon">🧁</div>
-<h3>Baking</h3>
-<p>Recipes and delicious baking ideas.</p>
-<button class="secondary" onclick="message('🧁 Baking')">Explore</button>
-</div>
+  <!-- DISCOVER -->
 
-<div class="card">
-<div class="icon">🎨</div>
-<h3>DIY</h3>
-<p>Creative projects and things to make.</p>
-<button class="secondary" onclick="message('🎨 DIY')">Explore</button>
-</div>
+  <section
+    class="section"
+    id="discover">
 
-<div class="card">
-<div class="icon">🐶</div>
-<h3>Pets</h3>
-<p>Cute pets and future RainyVerse creatures.</p>
-<button class="secondary" onclick="message('🐶 Pets')">Explore</button>
-</div>
+    <div class="section-title">
 
-</div>
-</section>
+      <h2>✨ Discover</h2>
 
+      <p>
+        Things to explore around RainyVerse.
+      </p>
 
-<section class="section" id="websites">
+    </div>
 
-<div class="card website-box">
+    <div class="discover-grid">
 
-<div>
-<h2>🌐 The Rainy Universe</h2>
-<p>Visit the other Rainy websites.</p>
-</div>
+      <div class="discover-card">
 
-<div class="website-links">
+        <div class="discover-icon">
+          🧁
+        </div>
 
-<a
-href="https://rainylabss.github.io/RainyEmps/"
-target="_blank"
->
-🎮 RainyEmps
-</a>
+        <h3>
+          Baking
+        </h3>
 
-<a
-href="https://rainylabss.github.io/RainyNews/"
-target="_blank"
->
-📰 RainyNews
-</a>
+        <p>
+          Recipes, cookies, cakes and
+          completely random baking ideas.
+        </p>
 
-</div>
+      </div>
 
-</div>
+      <div class="discover-card">
 
-</section>
+        <div class="discover-icon">
+          🎨
+        </div>
+
+        <h3>
+          DIY
+        </h3>
+
+        <p>
+          Crafts, creative projects and
+          things you can make yourself.
+        </p>
+
+      </div>
+
+      <div class="discover-card">
+
+        <div class="discover-icon">
+          🌿
+        </div>
+
+        <h3>
+          Nature
+        </h3>
+
+        <p>
+          Explore the outdoors and discover
+          interesting places and creatures.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- OTHER WEBSITES -->
+
+  <section
+    class="section"
+    id="websites">
+
+    <div class="section-title">
+
+      <h2>🌐 More Rainy Websites</h2>
+
+      <p>
+        Jump between your Rainy projects.
+      </p>
+
+    </div>
+
+    <div class="website-grid">
+
+      <div class="website">
+
+        <div>
+
+          <h3>
+            💼 RainyEmps
+          </h3>
+
+          <p>
+            Your RainyVerse gaming project.
+          </p>
+
+        </div>
+
+        <a
+          href="https://rainylabss.github.io/RainyEmps/"
+          target="_blank"
+          rel="noopener">
+          Open →
+        </a>
+
+      </div>
+
+      <div class="website">
+
+        <div>
+
+          <h3>
+            📰 RainyNews
+          </h3>
+
+          <p>
+            Stories, trends and interesting news.
+          </p>
+
+        </div>
+
+        <a
+          href="https://rainylabss.github.io/RainyNews/"
+          target="_blank"
+          rel="noopener">
+          Open →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROFILE -->
+
+  <section
+    class="section"
+    id="profile">
+
+    <div class="section-title">
+
+      <h2>👤 Your Profile</h2>
+
+    </div>
+
+    <div class="profile">
+
+      <div class="avatar">
+        🌧️
+      </div>
+
+      <div>
+
+        <h2>
+          RainyVerse Explorer
+        </h2>
+
+        <p>
+          Level
+          <span id="profileLevel">
+            1
+          </span>
+          explorer
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
 
 </main>
 
-
 <footer>
 
-<strong>🌧️ RainyVerse</strong>
+  <h2>
+    🌧️ RainyVerse
+  </h2>
 
-<p style="margin-top:8px">
-Your little corner of the internet.
-</p>
+  <p>
+    Games • Creativity • Discovery • Fun
+  </p>
 
-<p style="margin-top:15px">
-© 2026 RainyVerse
-</p>
+  <p style="margin-top:15px">
+    © 2026 RainyVerse
+  </p>
 
 </footer>
 
+<div
+  class="toast"
+  id="toast">
+</div>
 
 <script>
 
-function scrollToSection(id){
+/* =========================
+   SAVED DATA
+========================= */
 
-const section=document.getElementById(id);
+let points =
+  Number(
+    localStorage.getItem(
+      "rainPoints"
+    )
+  ) || 0;
 
-if(section){
-section.scrollIntoView({
-behavior:"smooth"
-});
-}
-
-}
-
-
-function openGame(page){
-
-window.location.href=page;
-
-}
-
-
-function randomGame(){
-
-const games=[
-"rainy-rush.html",
-"pet-panic.html",
-"rainy-island.html"
-];
-
-const random=
-games[Math.floor(Math.random()*games.length)];
-
-window.location.href=random;
-
-}
+let streak =
+  Number(
+    localStorage.getItem(
+      "rainStreak"
+    )
+  ) || 0;
 
 
-function message(name){
+/* =========================
+   STATS
+========================= */
 
-alert(
-name+
-" is coming to RainyVerse! ✨"
-);
+function updateStats() {
 
-}
+  document.getElementById(
+    "points"
+  ).textContent = points;
 
+  const level =
+    Math.floor(points / 500) + 1;
 
-function loadStats(){
+  document.getElementById(
+    "level"
+  ).textContent = level;
 
-document.getElementById("points").textContent=
-localStorage.getItem("rainPoints") || 0;
+  document.getElementById(
+    "profileLevel"
+  ).textContent = level;
 
-document.getElementById("best").textContent=
-localStorage.getItem("rainHigh") || 0;
-
-document.getElementById("played").textContent=
-localStorage.getItem("rainGames") || 0;
+  document.getElementById(
+    "streak"
+  ).textContent = streak;
 
 }
 
-loadStats();
+
+/* =========================
+   SCROLL
+========================= */
+
+function scrollToSection(id) {
+
+  const section =
+    document.getElementById(id);
+
+  if(!section) return;
+
+  section.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+}
+
+
+/* =========================
+   OPEN GAME
+========================= */
+
+function openGame(page) {
+
+  points += 10;
+
+  localStorage.setItem(
+    "rainPoints",
+    points
+  );
+
+  updateStats();
+
+  window.location.href = page;
+
+}
+
+
+/* =========================
+   DAILY CHALLENGE
+========================= */
+
+function dailyChallenge() {
+
+  scrollToSection("games");
+
+  showToast(
+    "🎮 Your mission: play a RainyVerse game!"
+  );
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  setTimeout(
+    () => {
+      toast.classList.remove(
+        "show"
+      );
+    },
+    2500
+  );
+
+}
+
+
+/* =========================
+   LOAD
+========================= */
+
+updateStats();
 
 </script>
 
