@@ -1,404 +1,887 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rainy Island 🏝️</title>
 
 <style>
-
-*{
-box-sizing:border-box;
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#10263a;
-color:white;
-text-align:center;
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #10243a;
+  color: white;
+  touch-action: none;
 }
 
-.top{
-height:70px;
-padding:0 18px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+#topbar {
+  height: 64px;
+  background: rgba(10,25,42,.94);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  position: relative;
+  z-index: 20;
 }
 
-button{
-border:0;
-border-radius:13px;
-padding:11px 15px;
-background:#ffffff18;
-border:1px solid #ffffff20;
-color:white;
-font-weight:800;
-cursor:pointer;
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #2c7198;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-.world{
-position:relative;
-width:min(94vw,650px);
-height:min(70vh,650px);
-margin:auto;
-overflow:hidden;
-border-radius:30px;
-border:4px solid #ffffff22;
-background:#56b9d1;
+button:active {
+  transform: scale(.94);
 }
 
-.water{
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle,#ffffff35 2px,transparent 3px);
-background-size:28px 28px;
+#stats {
+  display: flex;
+  gap: 14px;
+  font-weight: 800;
 }
 
-.island{
-position:absolute;
-left:8%;
-top:8%;
-width:84%;
-height:84%;
-border-radius:40%;
-background:#83c86d;
-box-shadow:
-inset 0 0 50px #397a45;
+#game {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  background: #65b95f;
 }
 
-.player{
-position:absolute;
-font-size:35px;
-z-index:10;
-transition:.1s;
+#world {
+  position: absolute;
+  width: 1800px;
+  height: 1800px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
-.tree{
-position:absolute;
-font-size:40px;
-z-index:3;
+#island {
+  position: absolute;
+  width: 1600px;
+  height: 1600px;
+  left: 100px;
+  top: 100px;
+  border-radius: 45%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.08), transparent 25%),
+    radial-gradient(circle at 70% 70%, rgba(0,0,0,.08), transparent 30%),
+    #75c96b;
+  box-shadow: 0 0 0 30px #3c9e61;
 }
 
-.treasure{
-position:absolute;
-font-size:30px;
-z-index:5;
-cursor:pointer;
-transition:.2s;
+.water {
+  position: absolute;
+  background:
+    linear-gradient(45deg, transparent 45%, rgba(255,255,255,.2) 46%, transparent 48%);
+  background-size: 35px 35px;
+  background-color: #3e9ed0;
 }
 
-.treasure:hover{
-transform:scale(1.3);
+#water1 {
+  width: 450px;
+  height: 350px;
+  right: 0;
+  top: 500px;
+  border-radius: 50%;
 }
 
-.info{
-padding:15px;
+#water2 {
+  width: 400px;
+  height: 300px;
+  left: 0;
+  bottom: 200px;
+  border-radius: 50%;
 }
 
-.controls{
-display:flex;
-justify-content:center;
-gap:8px;
-padding-bottom:20px;
+#water3 {
+  width: 450px;
+  height: 250px;
+  left: 450px;
+  bottom: -20px;
+  border-radius: 50%;
 }
 
-.controls button{
-width:60px;
-height:50px;
-font-size:22px;
+.path {
+  position: absolute;
+  background: #d8b77a;
+  border-radius: 30px;
+  opacity: .9;
 }
 
-.message{
-min-height:25px;
+#path1 {
+  width: 1000px;
+  height: 85px;
+  left: 300px;
+  top: 760px;
+  transform: rotate(15deg);
 }
 
+#path2 {
+  width: 80px;
+  height: 850px;
+  left: 760px;
+  top: 300px;
+  transform: rotate(-8deg);
+}
+
+.tree {
+  position: absolute;
+  font-size: 55px;
+  user-select: none;
+}
+
+.rock {
+  position: absolute;
+  font-size: 35px;
+  user-select: none;
+}
+
+.house {
+  position: absolute;
+  width: 130px;
+  height: 100px;
+  background: #d78b62;
+  border-radius: 8px;
+  border: 6px solid #75452e;
+}
+
+.house::before {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 75px;
+  background: #c95757;
+  transform: rotate(45deg);
+  left: -14px;
+  top: -50px;
+  border-radius: 10px;
+  border: 6px solid #75452e;
+}
+
+.door {
+  position: absolute;
+  width: 28px;
+  height: 45px;
+  background: #593a2c;
+  bottom: 0;
+  left: 51px;
+}
+
+.sign {
+  position: absolute;
+  padding: 8px 12px;
+  background: #75452e;
+  color: white;
+  border-radius: 8px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.treasure {
+  position: absolute;
+  font-size: 42px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 5;
+  animation: bob 1s infinite alternate;
+}
+
+@keyframes bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-7px); }
+}
+
+#player {
+  position: absolute;
+  width: 46px;
+  height: 55px;
+  z-index: 10;
+  transform: translate(-50%,-50%);
+}
+
+.pHead {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  background: #f1b48d;
+  border-radius: 50%;
+  top: 0;
+  left: 12px;
+}
+
+.pHair {
+  position: absolute;
+  width: 24px;
+  height: 11px;
+  background: #593725;
+  border-radius: 15px 15px 4px 4px;
+  left: 10px;
+  top: 0;
+}
+
+.pBody {
+  position: absolute;
+  width: 30px;
+  height: 27px;
+  background: #4e91ed;
+  border-radius: 10px;
+  top: 19px;
+  left: 8px;
+}
+
+.pLeg {
+  position: absolute;
+  width: 9px;
+  height: 14px;
+  background: #28384c;
+  top: 41px;
+  border-radius: 4px;
+}
+
+.pLeg.left {
+  left: 11px;
+}
+
+.pLeg.right {
+  right: 11px;
+}
+
+#areaName {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background: rgba(10,25,42,.8);
+  padding: 10px 18px;
+  border-radius: 20px;
+  z-index: 15;
+  font-weight: 900;
+  opacity: 0;
+  transition: .3s;
+}
+
+#areaName.show {
+  opacity: 1;
+}
+
+#message {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10,25,42,.85);
+  padding: 10px 18px;
+  border-radius: 18px;
+  z-index: 15;
+  text-align: center;
+  max-width: 85%;
+}
+
+#controls {
+  height: 86px;
+  background: #10243a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.control {
+  width: 58px;
+  height: 55px;
+  font-size: 23px;
+  padding: 0;
+}
+
+#complete {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,15,25,.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+#complete.show {
+  display: flex;
+}
+
+.panel {
+  width: min(370px,100%);
+  background: white;
+  color: #183047;
+  border-radius: 28px;
+  padding: 30px;
+  text-align: center;
+}
+
+.panel h1 {
+  margin-top: 0;
+}
+
+@media(max-width:600px) {
+  #stats {
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  #world {
+    width: 1500px;
+    height: 1500px;
+  }
+}
 </style>
-
 </head>
 
 <body>
 
+<div id="topbar">
 
-<div class="top">
+  <button onclick="goHome()">🏠 Home</button>
 
-<button onclick="location.href='index.html'">
-🏠 RainyVerse
-</button>
+  <strong>🏝️ RAINY ISLAND</strong>
 
-<b>🏝️ Rainy Island</b>
-
-<span>
-💎 <span id="found">0</span>/8
-</span>
+  <div id="stats">
+    ⭐ <span id="score">0</span>
+    🪙 <span id="coins">0</span>
+  </div>
 
 </div>
 
+<div id="game">
 
-<div class="world" id="world">
+  <div id="world">
 
-<div class="water"></div>
+    <div id="island">
 
-<div class="island"></div>
+      <div class="water" id="water1"></div>
+      <div class="water" id="water2"></div>
+      <div class="water" id="water3"></div>
 
-<div class="player" id="player">
-🧑
+      <div class="path" id="path1"></div>
+      <div class="path" id="path2"></div>
+
+      <div class="house" style="left:680px;top:580px;">
+        <div class="door"></div>
+      </div>
+
+      <div class="sign" style="left:690px;top:705px;">
+        🏠 Rainy House
+      </div>
+
+      <div class="house" style="left:1050px;top:930px;">
+        <div class="door"></div>
+      </div>
+
+      <div class="sign" style="left:1045px;top:1050px;">
+        🏪 Island Shop
+      </div>
+
+      <div class="sign" style="left:330px;top:350px;">
+        🌲 Forest
+      </div>
+
+      <div class="sign" style="left:1170px;top:380px;">
+        🏖️ Beach
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="player">
+    <div class="pHair"></div>
+    <div class="pHead"></div>
+    <div class="pBody"></div>
+    <div class="pLeg left"></div>
+    <div class="pLeg right"></div>
+  </div>
+
+  <div id="areaName">🏝️ Rainy Island</div>
+
+  <div id="message">
+    Explore the island and find the treasures! 🗺️
+  </div>
+
+  <div id="complete">
+    <div class="panel">
+      <h1>🏝️ Island Explorer!</h1>
+
+      <p>
+        You found every treasure currently hidden on the island!
+      </p>
+
+      <h2>⭐ <span id="finalScore">0</span></h2>
+
+      <p>
+        🪙 <span id="finalCoins">0</span> coins
+      </p>
+
+      <br>
+
+      <button onclick="restart()">🔄 Explore Again</button>
+      <button onclick="goHome()">🏠 RainyVerse</button>
+    </div>
+  </div>
+
 </div>
 
-</div>
+<div id="controls">
 
-
-<div class="info">
-
-<h3>
-🏝️ Explore Rainy Island
-</h3>
-
-<p>
-Find all 8 hidden treasures!
-</p>
-
-<div class="message" id="message"></div>
+  <button class="control" onclick="move(0,-1)">⬆️</button>
+  <button class="control" onclick="move(-1,0)">⬅️</button>
+  <button class="control" onclick="move(1,0)">➡️</button>
+  <button class="control" onclick="move(0,1)">⬇️</button>
 
 </div>
-
-
-<div class="controls">
-
-<button onclick="move(0,-1)">⬆️</button>
-<button onclick="move(-1,0)">⬅️</button>
-<button onclick="move(1,0)">➡️</button>
-<button onclick="move(0,1)">⬇️</button>
-
-</div>
-
 
 <script>
 
-const world=
-document.getElementById("world");
+const game = document.getElementById("game");
+const world = document.getElementById("world");
+const player = document.getElementById("player");
 
-const player=
-document.getElementById("player");
+let x = 800;
+let y = 800;
 
-const message=
-document.getElementById("message");
+let score = 0;
+let coins = 0;
 
-const foundText=
-document.getElementById("found");
+let collected = [];
 
-
-let x=50;
-let y=50;
-let found=0;
-
-
-const treasurePositions=[
-
-[25,25],
-[45,20],
-[70,28],
-[75,55],
-[55,72],
-[30,65],
-[20,45],
-[60,45]
-
+const treasures = [
+  {x:430,y:470,type:"💎",name:"Blue Gem"},
+  {x:1180,y:470,type:"💰",name:"Golden Treasure"},
+  {x:530,y:1030,type:"🪙",name:"Old Coin"},
+  {x:1230,y:1100,type:"💎",name:"Island Crystal"},
+  {x:830,y:330,type:"🎁",name:"Mystery Box"},
+  {x:900,y:1250,type:"💰",name:"Pirate Treasure"},
+  {x:350,y:820,type:"⭐",name:"Golden Star"},
+  {x:1320,y:780,type:"💎",name:"Rainbow Gem"}
 ];
 
+function createObjects() {
 
-const treePositions=[
+  const island =
+    document.getElementById("island");
 
-[14,15],
-[72,15],
-[16,70],
-[75,68],
-[43,12],
-[43,75]
+  document.querySelectorAll(".tree,.rock,.treasure")
+    .forEach(e => e.remove());
 
-];
+  for(let i=0;i<25;i++) {
 
+    const tree =
+      document.createElement("div");
 
-treePositions.forEach(
+    tree.className = "tree";
+    tree.textContent =
+      Math.random() > .5 ? "🌳" : "🌲";
 
-position=>{
+    tree.style.left =
+      (100 + Math.random()*1350) + "px";
 
-const tree=
-document.createElement("div");
+    tree.style.top =
+      (100 + Math.random()*1350) + "px";
 
-tree.className="tree";
+    island.appendChild(tree);
 
-tree.textContent="🌴";
+  }
 
-tree.style.left=
-position[0]+"%";
+  for(let i=0;i<15;i++) {
 
-tree.style.top=
-position[1]+"%";
+    const rock =
+      document.createElement("div");
 
-world.appendChild(tree);
+    rock.className = "rock";
+    rock.textContent = "🪨";
 
-}
+    rock.style.left =
+      (100 + Math.random()*1350) + "px";
 
-);
+    rock.style.top =
+      (100 + Math.random()*1350) + "px";
 
+    island.appendChild(rock);
 
-treasurePositions.forEach(
+  }
 
-(position,index)=>{
+  treasures.forEach((item,index) => {
 
-const treasure=
-document.createElement("div");
+    if(collected.includes(index)) return;
 
-treasure.className="treasure";
+    const treasure =
+      document.createElement("div");
 
-treasure.textContent="💎";
+    treasure.className = "treasure";
 
-treasure.dataset.id=index;
+    treasure.textContent =
+      item.type;
 
-treasure.style.left=
-position[0]+"%";
+    treasure.style.left =
+      item.x + "px";
 
-treasure.style.top=
-position[1]+"%";
+    treasure.style.top =
+      item.y + "px";
 
-treasure.onclick=
-function(){
+    treasure.onclick =
+      function() {
 
-collectTreasure(treasure);
+        collectTreasure(index);
 
-};
+      };
 
-world.appendChild(treasure);
+    island.appendChild(treasure);
 
-}
-
-);
-
-
-function render(){
-
-player.style.left=
-x+"%";
-
-player.style.top=
-y+"%";
+  });
 
 }
 
+function updateCamera() {
 
-function move(dx,dy){
+  const screenW =
+    game.clientWidth;
 
-x+=dx*4;
-y+=dy*4;
+  const screenH =
+    game.clientHeight;
 
-x=Math.max(
-12,
-Math.min(82,x)
-);
+  let cameraX =
+    screenW/2 - x;
 
-y=Math.max(
-12,
-Math.min(82,y)
-);
+  let cameraY =
+    screenH/2 - y;
 
-render();
+  const minX =
+    screenW - 1700;
 
-checkNearby();
+  const maxX = 0;
 
-}
+  const minY =
+    screenH - 1700;
 
+  const maxY = 0;
 
-function checkNearby(){
+  cameraX =
+    Math.max(
+      minX,
+      Math.min(maxX,cameraX)
+    );
 
-document
-.querySelectorAll(".treasure")
-.forEach(treasure=>{
+  cameraY =
+    Math.max(
+      minY,
+      Math.min(maxY,cameraY)
+    );
 
-if(treasure.style.display==="none"){
-return;
-}
+  world.style.left =
+    cameraX + "px";
 
-const tx=
-parseFloat(treasure.style.left);
-
-const ty=
-parseFloat(treasure.style.top);
-
-if(
-Math.abs(tx-x)<5 &&
-Math.abs(ty-y)<5
-){
-
-collectTreasure(treasure);
+  world.style.top =
+    cameraY + "px";
 
 }
 
-});
+function updatePlayer() {
+
+  player.style.left =
+    (game.clientWidth/2) + "px";
+
+  player.style.top =
+    (game.clientHeight/2) + "px";
 
 }
 
+function move(dx,dy) {
 
-function collectTreasure(treasure){
+  const speed = 38;
 
-if(treasure.dataset.collected){
-return;
+  const newX =
+    x + dx * speed;
+
+  const newY =
+    y + dy * speed;
+
+  x =
+    Math.max(
+      180,
+      Math.min(
+        1620,
+        newX
+      )
+    );
+
+  y =
+    Math.max(
+      180,
+      Math.min(
+        1620,
+        newY
+      )
+    );
+
+  score += 1;
+
+  updateCamera();
+
+  checkArea();
+
+  checkTreasures();
+
+  document.getElementById("score")
+    .textContent = score;
+
 }
 
-treasure.dataset.collected="true";
+function checkTreasures() {
 
-treasure.style.display="none";
+  treasures.forEach((item,index) => {
 
-found++;
+    if(collected.includes(index)) return;
 
-foundText.textContent=found;
+    const distance =
+      Math.hypot(
+        x-item.x,
+        y-item.y
+      );
 
-const points=
-Number(localStorage.getItem("rainPoints"))||0;
+    if(distance < 55) {
 
-localStorage.setItem(
-"rainPoints",
-points+25
-);
+      collectTreasure(index);
 
-message.textContent=
-"💎 Treasure found! +25 RainPoints";
+    }
 
-if(found===8){
-
-message.textContent=
-"🎉 YOU FOUND ALL 8 TREASURES! 🏆";
+  });
 
 }
 
+function collectTreasure(index) {
+
+  if(collected.includes(index)) return;
+
+  collected.push(index);
+
+  const item =
+    treasures[index];
+
+  score += 100;
+  coins += 10;
+
+  document.getElementById("score")
+    .textContent = score;
+
+  document.getElementById("coins")
+    .textContent = coins;
+
+  document.getElementById("message")
+    .textContent =
+      "🎉 You found " +
+      item.name +
+      "! +100 ⭐ +10 🪙";
+
+  createObjects();
+
+  if(collected.length === treasures.length) {
+
+    setTimeout(showComplete,500);
+
+  }
+
 }
 
+function checkArea() {
+
+  let name = "🏝️ Rainy Island";
+
+  if(x < 600 && y < 650) {
+
+    name = "🌲 Rainy Forest";
+
+  }
+
+  else if(x > 1050 && y < 650) {
+
+    name = "🏖️ Sunny Beach";
+
+  }
+
+  else if(x > 950 && y > 850) {
+
+    name = "🏪 Village";
+
+  }
+
+  else if(y > 1100) {
+
+    name = "🌊 Southern Shore";
+
+  }
+
+  showArea(name);
+
+}
+
+let areaTimeout;
+
+function showArea(name) {
+
+  const area =
+    document.getElementById("areaName");
+
+  area.textContent = name;
+
+  area.classList.add("show");
+
+  clearTimeout(areaTimeout);
+
+  areaTimeout =
+    setTimeout(
+      () => area.classList.remove("show"),
+      1200
+    );
+
+}
+
+function showComplete() {
+
+  document.getElementById(
+    "finalScore"
+  ).textContent = score;
+
+  document.getElementById(
+    "finalCoins"
+  ).textContent = coins;
+
+  document.getElementById(
+    "complete"
+  ).classList.add("show");
+
+  const old =
+    Number(
+      localStorage.getItem(
+        "rainyIslandHighScore"
+      )
+    ) || 0;
+
+  if(score > old) {
+
+    localStorage.setItem(
+      "rainyIslandHighScore",
+      score
+    );
+
+  }
+
+  const rainPoints =
+    Number(
+      localStorage.getItem(
+        "rainPoints"
+      )
+    ) || 0;
+
+  localStorage.setItem(
+    "rainPoints",
+    rainPoints + score
+  );
+
+}
+
+function restart() {
+
+  x = 800;
+  y = 800;
+
+  score = 0;
+  coins = 0;
+
+  collected = [];
+
+  document.getElementById(
+    "complete"
+  ).classList.remove("show");
+
+  document.getElementById(
+    "score"
+  ).textContent = "0";
+
+  document.getElementById(
+    "coins"
+  ).textContent = "0";
+
+  document.getElementById(
+    "message"
+  ).textContent =
+    "Explore the island and find the treasures! 🗺️";
+
+  createObjects();
+
+  updateCamera();
+
+}
+
+function goHome() {
+
+  window.location.href =
+    "index.html";
+
+}
 
 document.addEventListener(
-"keydown",
-function(e){
+  "keydown",
+  function(event) {
 
-if(e.key==="ArrowUp")
-move(0,-1);
+    if(
+      event.key === "ArrowUp" ||
+      event.key.toLowerCase() === "w"
+    ) {
+      move(0,-1);
+    }
 
-if(e.key==="ArrowDown")
-move(0,1);
+    if(
+      event.key === "ArrowDown" ||
+      event.key.toLowerCase() === "s"
+    ) {
+      move(0,1);
+    }
 
-if(e.key==="ArrowLeft")
-move(-1,0);
+    if(
+      event.key === "ArrowLeft" ||
+      event.key.toLowerCase() === "a"
+    ) {
+      move(-1,0);
+    }
 
-if(e.key==="ArrowRight")
-move(1,0);
+    if(
+      event.key === "ArrowRight" ||
+      event.key.toLowerCase() === "d"
+    ) {
+      move(1,0);
+    }
 
-}
+  }
 );
 
+window.addEventListener(
+  "resize",
+  updateCamera
+);
 
-render();
+createObjects();
+updatePlayer();
+updateCamera();
 
 </script>
 
