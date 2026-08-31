@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pet Panic 🐾</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#16233e,#4b2854);
+color:white;
+min-height:100vh;
+text-align:center;
+}
+
+.top{
+padding:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+button{
+border:0;
+border-radius:14px;
+padding:12px 16px;
+background:#ffffff18;
+border:1px solid #ffffff22;
+color:white;
+font-weight:800;
+cursor:pointer;
+transition:.2s;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+.container{
+max-width:700px;
+margin:auto;
+padding:15px;
+}
+
+.pet-card{
+background:#ffffff12;
+border:1px solid #ffffff20;
+border-radius:28px;
+padding:28px;
+}
+
+.pet{
+font-size:120px;
+margin:15px;
+}
+
+.bar{
+height:18px;
+background:#ffffff15;
+border-radius:20px;
+overflow:hidden;
+margin:8px 0 20px;
+}
+
+.fill{
+height:100%;
+width:70%;
+background:#7dd3fc;
+border-radius:20px;
+transition:.3s;
+}
+
+.actions{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:25px;
+}
+
+.actions button{
+padding:18px 8px;
+font-size:16px;
+}
+
+.message{
+min-height:30px;
+margin-top:20px;
+color:#d7e1ef;
+}
+
+@media(max-width:500px){
+
+.actions{
+grid-template-columns:1fr 1fr;
+}
+
+.pet{
+font-size:90px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top">
+
+<button onclick="location.href='index.html'">
+🏠 RainyVerse
+</button>
+
+<b>🐾 Pet Panic</b>
+
+<span>
+🪙 <span id="coins">0</span>
+</span>
+
+</div>
+
+
+<div class="container">
+
+<h1>🐾 Pet Panic</h1>
+
+<p>
+Keep your pet happy, clean and energetic!
+</p>
+
+
+<div class="pet-card">
+
+<div class="pet" id="pet">
+🐶
+</div>
+
+<h2 id="petName">
+Buddy
+</h2>
+
+
+<p>🍖 Hunger</p>
+
+<div class="bar">
+<div class="fill" id="hunger"></div>
+</div>
+
+
+<p>❤️ Happiness</p>
+
+<div class="bar">
+<div class="fill" id="happiness"></div>
+</div>
+
+
+<p>⚡ Energy</p>
+
+<div class="bar">
+<div class="fill" id="energy"></div>
+</div>
+
+
+<div class="actions">
+
+<button onclick="feed()">
+🍖 Feed
+</button>
+
+<button onclick="play()">
+🎾 Play
+</button>
+
+<button onclick="clean()">
+🛁 Clean
+</button>
+
+<button onclick="sleepPet()">
+😴 Sleep
+</button>
+
+<button onclick="changePet()">
+🔄 Change Pet
+</button>
+
+<button onclick="reward()">
+🎁 Reward
+</button>
+
+</div>
+
+
+<div class="message" id="message">
+Buddy is waiting for you! 🐾
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let state=
+JSON.parse(
+localStorage.getItem("petState")
+) || {
+
+hunger:70,
+happiness:70,
+energy:70,
+coins:0,
+pet:0
+
+};
+
+
+const pets=[
+["🐶","Buddy"],
+["🐱","Mochi"],
+["🐰","Bun"],
+["🐹","Nibbles"]
+];
+
+
+function save(){
+
+localStorage.setItem(
+"petState",
+JSON.stringify(state)
+);
+
+render();
+
+}
+
+
+function render(){
+
+document.getElementById("pet")
+.textContent=pets[state.pet][0];
+
+document.getElementById("petName")
+.textContent=pets[state.pet][1];
+
+document.getElementById("hunger")
+.style.width=state.hunger+"%";
+
+document.getElementById("happiness")
+.style.width=state.happiness+"%";
+
+document.getElementById("energy")
+.style.width=state.energy+"%";
+
+document.getElementById("coins")
+.textContent=state.coins;
+
+}
+
+
+function feed(){
+
+state.hunger=
+Math.min(100,state.hunger+25);
+
+state.happiness=
+Math.min(100,state.happiness+5);
+
+message.textContent=
+"YUM! Your pet loved the food! 🍖";
+
+save();
+
+}
+
+
+function play(){
+
+if(state.energy<20){
+
+message.textContent=
+"Your pet is too tired! 😴";
+
+return;
+
+}
+
+state.energy-=20;
+
+state.happiness=
+Math.min(100,state.happiness+25);
+
+state.hunger=
+Math.max(0,state.hunger-10);
+
+state.coins+=10;
+
+message.textContent=
+"SO MUCH FUN! 🎾 +10 coins";
+
+save();
+
+}
+
+
+function clean(){
+
+state.happiness=
+Math.min(100,state.happiness+15);
+
+message.textContent=
+"Sparkly clean! ✨";
+
+save();
+
+}
+
+
+function sleepPet(){
+
+state.energy=
+Math.min(100,state.energy+35);
+
+state.hunger=
+Math.max(0,state.hunger-8);
+
+message.textContent=
+"Zzzzz... your pet is sleeping. 😴";
+
+save();
+
+}
+
+
+function changePet(){
+
+state.pet=
+(state.pet+1)%pets.length;
+
+message.textContent=
+"You got a new RainyVerse pet! 🐾";
+
+save();
+
+}
+
+
+function reward(){
+
+state.coins+=25;
+
+state.happiness=
+Math.min(100,state.happiness+10);
+
+message.textContent=
+"🎁 Daily reward! +25 coins";
+
+save();
+
+}
+
+
+setInterval(
+
+function(){
+
+state.hunger=
+Math.max(0,state.hunger-2);
+
+state.energy=
+Math.max(0,state.energy-1);
+
+state.happiness=
+Math.max(0,state.happiness-1);
+
+save();
+
+},
+
+10000
+
+);
+
+
+render();
+
+</script>
+
+</body>
+</html>
