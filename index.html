@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#101b31">
+<meta name="theme-color" content="#080b18">
 <title>RainyVerse</title>
 
 <style>
@@ -11,31 +11,31 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
 :root{
-  --bg:#08111f;
-  --panel:#101d31;
-  --panel2:#17263d;
-  --text:#ffffff;
-  --muted:#9eb0c6;
-  --blue:#62d9ff;
-  --blue2:#448dff;
-  --green:#65d58a;
-  --yellow:#ffd34e;
-  --danger:#ff6175;
-  --radius:22px;
+  --bg:#070a14;
+  --panel:#101526;
+  --panel2:#171d31;
+  --text:#f5f7ff;
+  --muted:#9da6bd;
+  --blue:#5d8cff;
+  --purple:#9b6cff;
+  --green:#45d483;
+  --danger:#ff5f70;
+  --border:rgba(255,255,255,.09);
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 20% 0%,#18375b 0,transparent 35%),
-    radial-gradient(circle at 90% 20%,#12304a 0,transparent 30%),
+    radial-gradient(circle at 15% 0%,rgba(93,140,255,.18),transparent 30%),
+    radial-gradient(circle at 90% 15%,rgba(155,108,255,.13),transparent 30%),
     var(--bg);
   color:var(--text);
-  min-height:100vh;
-  padding-bottom:82px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding-bottom:90px;
 }
 
 button,input{
@@ -47,169 +47,166 @@ button{
   cursor:pointer;
 }
 
-button:active{
-  transform:scale(.97);
+.app{
+  width:min(1100px,100%);
+  margin:auto;
+  padding:18px;
 }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  padding:14px 18px;
-  background:rgba(8,17,31,.88);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+/* TOP */
+.topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
 }
 
 .logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logoRain{
+  font-size:32px;
+}
+
+.logo h1{
   font-size:24px;
-  font-weight:1000;
 }
 
 .logo span{
-  color:var(--blue);
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:2px;
 }
 
-.coinTop{
-  background:#172b45;
-  padding:8px 12px;
-  border-radius:13px;
-  font-weight:bold;
+.coins{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:9px 14px;
+  font-weight:800;
 }
 
+/* PAGES */
 .page{
   display:none;
-  width:min(1100px,94%);
-  margin:auto;
-  padding:28px 0;
+  animation:fade .2s ease;
 }
 
 .page.active{
   display:block;
 }
 
+@keyframes fade{
+  from{opacity:0;transform:translateY(5px)}
+  to{opacity:1;transform:none}
+}
+
 .hero{
-  text-align:center;
-  padding:30px 10px 25px;
+  padding:28px 4px 22px;
 }
 
-.hero h1{
-  font-size:clamp(45px,10vw,80px);
-  line-height:.95;
-  letter-spacing:-4px;
-}
-
-.hero h1 span{
-  color:var(--blue);
-}
-
-.hero p{
-  max-width:650px;
-  margin:15px auto;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.heroButtons{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:20px;
-}
-
-.primary{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#06111c;
-  font-weight:900;
-  padding:13px 20px;
-  border-radius:14px;
-}
-
-.secondary{
-  background:var(--panel2);
-  color:white;
-  padding:13px 20px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.08);
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:15px 0 25px;
-}
-
-.stat{
-  background:var(--panel);
-  border:1px solid rgba(255,255,255,.08);
-  padding:18px;
-  border-radius:18px;
-  text-align:center;
-}
-
-.stat b{
-  display:block;
-  font-size:25px;
-  margin-bottom:5px;
-}
-
-.sectionTitle{
-  margin:25px 0 14px;
-  font-size:26px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:15px;
-}
-
-.card{
-  background:linear-gradient(145deg,var(--panel),#0d1829);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:var(--radius);
-  padding:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.15);
-}
-
-.cardIcon{
-  font-size:43px;
+.hero h2{
+  font-size:clamp(30px,7vw,52px);
+  line-height:1;
   margin-bottom:12px;
 }
 
-.card h2{
+.hero p{
+  color:var(--muted);
+  max-width:650px;
+  line-height:1.6;
+}
+
+.sectionTitle{
+  font-size:20px;
+  margin:24px 0 12px;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+
+.card{
+  background:linear-gradient(145deg,var(--panel),rgba(16,21,38,.72));
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.cardIcon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  background:var(--panel2);
+  border-radius:15px;
+  font-size:25px;
+  margin-bottom:13px;
+}
+
+.card h3{
   margin-bottom:7px;
 }
 
 .card p{
   color:var(--muted);
-  line-height:1.45;
-  margin-bottom:16px;
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:15px;
 }
 
-.card button{
+.primary,
+.secondary,
+.danger{
   width:100%;
+  padding:11px 14px;
+  border-radius:12px;
+  color:white;
+  font-weight:800;
+  transition:.15s;
 }
 
+.primary{
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+}
+
+.secondary{
+  background:var(--panel2);
+  border:1px solid var(--border);
+}
+
+.danger{
+  background:var(--danger);
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+/* SEARCH */
 .searchBox{
   display:flex;
-  gap:8px;
-  margin:15px 0;
+  gap:9px;
+  margin:10px 0 20px;
 }
 
 .searchBox input{
   flex:1;
   min-width:0;
-  background:var(--panel);
+  padding:14px 16px;
   color:white;
-  border:1px solid #2a3e58;
-  padding:13px 15px;
-  border-radius:14px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
   outline:none;
 }
 
@@ -217,505 +214,499 @@ header{
   border-color:var(--blue);
 }
 
-.bottomNav{
-  position:fixed;
-  z-index:60;
-  bottom:0;
-  left:0;
-  right:0;
-  height:70px;
-  background:rgba(8,17,31,.94);
-  backdrop-filter:blur(18px);
-  border-top:1px solid rgba(255,255,255,.1);
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  padding-bottom:env(safe-area-inset-bottom);
+/* FEATURE */
+.feature{
+  background:linear-gradient(135deg,#172446,#19172f);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:22px;
+  margin:12px 0;
 }
 
-.bottomNav button{
-  background:transparent;
-  color:#8294a9;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.bottomNav button.active{
-  color:var(--blue);
-}
-
-.bottomNav span{
-  display:block;
-  font-size:23px;
-  margin-bottom:3px;
-}
-
-.bigButton{
-  width:100%;
-  padding:15px;
-  border-radius:14px;
-  font-weight:900;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#07111d;
-}
-
-.list{
-  display:grid;
-  gap:10px;
-}
-
-.listItem{
-  background:var(--panel);
-  border-radius:16px;
-  padding:15px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.listItem .emoji{
-  font-size:30px;
-}
-
-.listItem p{
-  color:var(--muted);
-  margin-top:3px;
-}
-
-
-/* GAME */
-
-#gameScreen{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:#07101b;
-  display:none;
-  flex-direction:column;
-}
-
-.gameHeader{
-  height:58px;
-  flex-shrink:0;
-  background:#0d1b2d;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:8px 12px;
-}
-
-.gameHeader h2{
-  font-size:18px;
-}
-
-.gameStats{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.gameBadge{
-  background:#1a304a;
-  padding:7px 9px;
-  border-radius:10px;
-  font-size:13px;
-}
-
-.closeGame{
-  background:var(--danger);
-  color:white;
-  padding:8px 11px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.canvasArea{
-  flex:1;
-  min-height:0;
-  position:relative;
-  overflow:hidden;
-}
-
-#gameCanvas{
-  width:100%;
-  height:100%;
-  display:block;
-  touch-action:none;
-}
-
-.gameControls{
-  height:145px;
-  flex-shrink:0;
-  background:#0a1726;
-  display:grid;
-  grid-template-columns:65px 65px 65px;
-  grid-template-rows:60px 60px;
-  justify-content:center;
-  align-content:center;
-  gap:5px;
-}
-
-.gameControls button{
-  background:#19334b;
-  color:white;
-  border-radius:15px;
+.feature h3{
   font-size:25px;
+  margin-bottom:8px;
 }
 
-.up{
-  grid-column:2;
+.feature p{
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:15px;
 }
 
-.left{
-  grid-column:1;
-  grid-row:2;
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:14px;
 }
 
-.down{
-  grid-column:2;
-  grid-row:2;
-}
-
-.right{
-  grid-column:3;
-  grid-row:2;
-}
-
-.gameMenu{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  background:rgba(3,10,18,.76);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.menuCard{
-  width:min(420px,94%);
-  background:#102238;
-  border:1px solid #34506a;
-  border-radius:25px;
-  padding:25px;
+.stat{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:16px;
   text-align:center;
 }
 
-.menuCard h2{
-  font-size:30px;
-  margin-bottom:10px;
+.stat strong{
+  display:block;
+  font-size:23px;
+  margin-bottom:4px;
 }
 
-.menuCard p{
-  color:#b1c2d2;
-  line-height:1.5;
-  margin-bottom:18px;
+.stat span{
+  color:var(--muted);
+  font-size:12px;
 }
 
-.menuButtons{
-  display:grid;
-  gap:9px;
+/* GAME */
+.gameWrap{
+  background:#05070d;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:10px;
+  overflow:hidden;
 }
 
-.menuButtons button{
-  padding:13px;
-  border-radius:13px;
-  font-weight:bold;
+#roadCanvas{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:15px;
+  background:#111;
+  touch-action:none;
 }
 
-.shopPanel{
-  position:absolute;
-  inset:0;
-  z-index:10;
-  background:#081522;
-  padding:18px;
-  overflow:auto;
-  display:none;
-}
-
-.shopHeader{
+.gameInfo{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+  margin:12px 2px;
+  color:var(--muted);
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:repeat(3,65px);
+  justify-content:center;
+  gap:8px;
+  margin-top:15px;
+}
+
+.controls button{
+  height:55px;
+  border-radius:15px;
+  background:var(--panel2);
+  color:white;
+  font-size:22px;
+  border:1px solid var(--border);
+}
+
+.controls .empty{
+  visibility:hidden;
+}
+
+/* ISLAND */
+#islandCanvas{
+  width:100%;
+  display:block;
+  background:#6bc4ef;
+  border-radius:18px;
+  touch-action:none;
 }
 
 .shopGrid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:12px;
 }
 
 .shopItem{
-  background:#132a40;
-  border:1px solid #29455e;
-  border-radius:18px;
-  padding:15px;
+  background:var(--panel2);
+  color:white;
+  border:1px solid var(--border);
+  padding:12px;
+  border-radius:14px;
+  text-align:left;
+}
+
+.shopItem small{
+  color:var(--muted);
+}
+
+/* QUIZ */
+.quizQuestion{
+  font-size:22px;
+  font-weight:800;
+  line-height:1.3;
+  margin-bottom:15px;
+}
+
+.quizAnswers{
+  display:grid;
+  gap:9px;
+}
+
+.quizAnswers button{
+  padding:14px;
+  border-radius:13px;
+  text-align:left;
+  background:var(--panel2);
+  color:white;
+  border:1px solid var(--border);
+}
+
+/* PROFILE */
+.profileBox{
+  text-align:center;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:25px;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  margin:auto auto 12px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  font-size:38px;
+}
+
+.achievement{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:13px;
+  margin-top:9px;
+}
+
+.achievement span{
+  font-size:25px;
+}
+
+/* BOTTOM NAV */
+.nav{
+  position:fixed;
+  z-index:50;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  width:min(650px,calc(100% - 20px));
+  background:rgba(14,18,32,.94);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:8px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  box-shadow:0 15px 50px rgba(0,0,0,.35);
+}
+
+.nav button{
+  background:transparent;
+  color:var(--muted);
+  padding:8px 3px;
+  border-radius:15px;
+  font-size:11px;
+}
+
+.nav button span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.nav button.active{
+  color:white;
+  background:var(--panel2);
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  z-index:100;
+  top:18px;
+  left:50%;
+  transform:translate(-50%,-120px);
+  background:#171d31;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:12px 17px;
+  transition:.25s;
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+  max-width:90%;
   text-align:center;
 }
 
-.shopAvatar{
-  font-size:52px;
-  margin:7px;
+.toast.show{
+  transform:translate(-50%,0);
 }
-
-.shopItem p{
-  color:#9fb2c4;
-  font-size:13px;
-  margin:5px 0 11px;
-}
-
-.shopItem button{
-  width:100%;
-  background:var(--blue);
-  padding:9px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.shopItem button.owned{
-  background:#2b4257;
-  color:white;
-}
-
-
-/* ISLAND */
-
-.islandTools{
-  position:absolute;
-  left:8px;
-  right:8px;
-  bottom:8px;
-  display:flex;
-  gap:6px;
-  overflow-x:auto;
-}
-
-.islandTools button{
-  flex-shrink:0;
-  background:rgba(8,25,39,.94);
-  color:white;
-  border:1px solid #49657a;
-  padding:9px 11px;
-  border-radius:11px;
-  font-size:13px;
-}
-
-
-/* MODAL */
 
 .modal{
   position:fixed;
   inset:0;
-  z-index:200;
-  background:rgba(0,0,0,.72);
+  z-index:80;
   display:none;
-  align-items:center;
-  justify-content:center;
+  place-items:center;
   padding:20px;
+  background:rgba(0,0,0,.7);
 }
 
-.modalCard{
-  width:min(450px,100%);
-  background:#102238;
-  border:1px solid #34506a;
-  border-radius:24px;
-  padding:23px;
-  max-height:90vh;
-  overflow:auto;
-}
-
-.modalCard h2{
-  margin-bottom:10px;
-}
-
-.modalCard p{
-  color:#b3c3d2;
-  line-height:1.5;
-}
-
-.modalActions{
+.modal.show{
   display:grid;
-  gap:8px;
-  margin-top:18px;
 }
 
-footer{
-  text-align:center;
-  color:#71859a;
-  padding:30px 0;
+.modalBox{
+  width:min(500px,100%);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:22px;
 }
 
+.modalBox h2{
+  margin-bottom:9px;
+}
 
-/* RESPONSIVE */
+.modalBox p{
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:15px;
+}
 
-@media(max-width:650px){
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  header{
-    padding:12px 14px;
-  }
-
-  .hero h1{
-    font-size:48px;
+@media(max-width:600px){
+  .app{
+    padding:14px;
   }
 
   .cards{
     grid-template-columns:1fr;
   }
 
-  .gameHeader{
-    height:55px;
+  .stats{
+    grid-template-columns:1fr;
   }
 
-  .gameControls{
-    height:150px;
+  .stats .stat{
+    padding:12px;
+  }
+
+  .hero{
+    padding-top:18px;
   }
 }
 </style>
 </head>
 
-
 <body>
 
-<header>
-  <div class="logo">🌧️ Rainy<span>Verse</span></div>
-  <div class="coinTop">🪙 <span id="topCoins">0</span></div>
+<div class="toast" id="toast"></div>
+
+<div class="app">
+
+<header class="topbar">
+  <div class="logo">
+    <div class="logoRain">🌧️</div>
+    <div>
+      <h1>RainyVerse</h1>
+      <span>Your little internet universe</span>
+    </div>
+  </div>
+
+  <div class="coins">🪙 <span id="coinCount">100</span></div>
 </header>
 
 
 <!-- HOME -->
-
-<main id="homePage" class="page active">
+<main id="home" class="page active">
 
   <section class="hero">
-    <h1>Rainy<span>Verse</span></h1>
-
+    <h2>Welcome to<br>RainyVerse 🌧️</h2>
     <p>
-      Games, challenges, building, random ideas and
-      everything you need for a good rainy day.
+      Play games, discover things, visit your websites and build
+      your own little RainyVerse.
     </p>
-
-    <div class="heroButtons">
-      <button class="primary" onclick="openRoad()">
-        🚗 Play Rainy Road
-      </button>
-
-      <button class="secondary" onclick="openIsland()">
-        🏝️ Build Island
-      </button>
-    </div>
   </section>
 
-  <div class="stats">
-    <div class="stat">
-      <b id="homeCoins">0</b>
-      🪙 RainCoins
-    </div>
-
-    <div class="stat">
-      <b id="homeScore">0</b>
-      🏆 Road High Score
-    </div>
-
-    <div class="stat">
-      <b id="homeItems">0</b>
-      🏝️ Island Items
-    </div>
+  <div class="feature">
+    <h3>🎮 Play Rainy Road</h3>
+    <p>
+      Cross the roads, avoid traffic, collect coins and try to beat
+      your high score.
+    </p>
+    <button class="primary" onclick="showPage('games');startRoad();">
+      PLAY NOW
+    </button>
   </div>
 
-  <h2 class="sectionTitle">🎮 Play</h2>
+  <h2 class="sectionTitle">⚡ Quick Access</h2>
 
   <section class="cards">
 
     <div class="card">
-      <div class="cardIcon">🚗</div>
-      <h2>Rainy Road</h2>
-      <p>
-        Cross roads full of moving cars and trucks.
-        Collect coins and try to beat your record.
-      </p>
-      <button class="primary" onclick="openRoad()">PLAY</button>
+      <div class="cardIcon">🎮</div>
+      <h3>Games</h3>
+      <p>Play the RainyVerse games.</p>
+      <button class="primary" onclick="showPage('games')">OPEN GAMES</button>
     </div>
 
     <div class="card">
-      <div class="cardIcon">🏝️</div>
-      <h2>Rainy Island</h2>
-      <p>
-        Build your own little island and place
-        houses, trees, flowers, ponds and more.
-      </p>
-      <button class="primary" onclick="openIsland()">BUILD</button>
+      <div class="cardIcon">🔎</div>
+      <h3>Discover</h3>
+      <p>Find recipes, DIYs, challenges and websites.</p>
+      <button class="primary" onclick="showPage('discover')">DISCOVER</button>
     </div>
 
     <div class="card">
-      <div class="cardIcon">❓</div>
-      <h2>Rainy Quiz</h2>
-      <p>
-        Answer questions and earn RainCoins.
-      </p>
-      <button class="primary" onclick="quiz()">QUIZ</button>
+      <div class="cardIcon">🛍️</div>
+      <h3>Shop</h3>
+      <p>Spend your RainCoins on fun things.</p>
+      <button class="primary" onclick="showPage('shop')">OPEN SHOP</button>
     </div>
 
-  </section>
-
-  <h2 class="sectionTitle">✨ Today's Rainy Ideas</h2>
-
-  <section class="card">
-    <div id="dailyIdea">
-      Loading your idea...
-    </div>
-
-    <br>
-
-    <button class="secondary" onclick="newIdea()">
-      🎲 Give Me Another
-    </button>
   </section>
 
 </main>
 
 
-<!-- GAMES PAGE -->
+<!-- GAMES -->
+<main id="games" class="page">
 
-<main id="gamesPage" class="page">
+  <section class="hero">
+    <h2>🎮 Games</h2>
+    <p>Choose something to play.</p>
+  </section>
 
-  <h1>🎮 Games</h1>
-
-  <p style="color:var(--muted);margin:8px 0 22px;">
-    Pick a game and start playing.
-  </p>
-
-  <section class="cards">
+  <div class="cards">
 
     <div class="card">
       <div class="cardIcon">🚗</div>
-      <h2>Rainy Road</h2>
-      <p>How far can you get?</p>
-      <button class="primary" onclick="openRoad()">PLAY</button>
+      <h3>Rainy Road</h3>
+      <p>Cross the road without getting hit.</p>
+      <button class="primary" onclick="openGame('road')">PLAY</button>
     </div>
 
     <div class="card">
       <div class="cardIcon">🏝️</div>
-      <h2>Rainy Island</h2>
-      <p>Build and decorate your island.</p>
-      <button class="primary" onclick="openIsland()">PLAY</button>
+      <h3>Rainy Island</h3>
+      <p>Build your own little island.</p>
+      <button class="primary" onclick="openGame('island')">PLAY</button>
     </div>
 
     <div class="card">
-      <div class="cardIcon">❓</div>
-      <h2>Rainy Quiz</h2>
-      <p>Test your knowledge.</p>
-      <button class="primary" onclick="quiz()">PLAY</button>
+      <div class="cardIcon">🧠</div>
+      <h3>Rainy Quiz</h3>
+      <p>Test yourself and earn RainCoins.</p>
+      <button class="primary" onclick="openGame('quiz')">PLAY</button>
     </div>
 
     <div class="card">
       <div class="cardIcon">🎲</div>
-      <h2>Random Generator</h2>
-      <p>Get something completely random to do.</p>
-      <button class="primary" onclick="newIdea()">GENERATE</button>
+      <h3>Random Generator</h3>
+      <p>Generate something completely random.</p>
+      <button class="primary" onclick="randomGenerator()">GENERATE</button>
+    </div>
+
+  </div>
+
+
+  <!-- ROAD GAME -->
+  <section id="roadGame" style="display:none;margin-top:20px;">
+
+    <div class="feature">
+      <h3>🚗 Rainy Road</h3>
+      <p>Use the buttons or swipe to move. Get as far as possible!</p>
+    </div>
+
+    <div class="gameWrap">
+      <canvas id="roadCanvas" width="420" height="620"></canvas>
+    </div>
+
+    <div class="gameInfo">
+      <span>Score: <b id="roadScore">0</b></span>
+      <span>Best: <b id="roadBest">0</b></span>
+      <span>🪙 <b id="roadCoins">0</b></span>
+    </div>
+
+    <div class="controls">
+      <button class="empty">.</button>
+      <button onclick="moveRoad(0,-1)">⬆️</button>
+      <button class="empty">.</button>
+
+      <button onclick="moveRoad(-1,0)">⬅️</button>
+      <button onclick="restartRoad()">🔄</button>
+      <button onclick="moveRoad(1,0)">➡️</button>
+
+      <button class="empty">.</button>
+      <button onclick="moveRoad(0,1)">⬇️</button>
+      <button class="empty">.</button>
+    </div>
+
+  </section>
+
+
+  <!-- ISLAND GAME -->
+  <section id="islandGame" style="display:none;margin-top:20px;">
+
+    <div class="feature">
+      <h3>🏝️ Rainy Island</h3>
+      <p>Choose an item, then tap the island to place it.</p>
+    </div>
+
+    <canvas id="islandCanvas" width="700" height="430"></canvas>
+
+    <div class="shopGrid">
+      <button class="shopItem" onclick="selectIslandItem('tree')">
+        🌳 <b>Tree</b><br>
+        <small>10 coins</small>
+      </button>
+
+      <button class="shopItem" onclick="selectIslandItem('flower')">
+        🌸 <b>Flower</b><br>
+        <small>5 coins</small>
+      </button>
+
+      <button class="shopItem" onclick="selectIslandItem('house')">
+        🏠 <b>House</b><br>
+        <small>30 coins</small>
+      </button>
+
+      <button class="shopItem" onclick="selectIslandItem('pond')">
+        💧 <b>Pond</b><br>
+        <small>20 coins</small>
+      </button>
+
+      <button class="shopItem" onclick="selectIslandItem('bench')">
+        🪑 <b>Bench</b><br>
+        <small>15 coins</small>
+      </button>
+
+      <button class="shopItem" onclick="clearIsland()">
+        🗑️ <b>Clear Island</b><br>
+        <small>Remove everything</small>
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- QUIZ -->
+  <section id="quizGame" style="display:none;margin-top:20px;">
+
+    <div class="feature">
+      <h3>🧠 Rainy Quiz</h3>
+      <p id="quizProgress">Question 1</p>
+      <div class="quizQuestion" id="quizQuestion"></div>
+      <div class="quizAnswers" id="quizAnswers"></div>
     </div>
 
   </section>
@@ -724,53 +715,66 @@ footer{
 
 
 <!-- DISCOVER -->
+<main id="discover" class="page">
 
-<main id="discoverPage" class="page">
-
-  <h1>✨ Discover</h1>
+  <section class="hero">
+    <h2>🔎 Discover</h2>
+    <p>Explore things from around RainyVerse.</p>
+  </section>
 
   <div class="searchBox">
-    <input
-      id="searchInput"
-      placeholder="Search RainyVerse..."
-      onkeydown="if(event.key==='Enter')searchSite()"
-    >
-
-    <button class="primary" onclick="searchSite()">
-      Search
-    </button>
+    <input id="discoverSearch" type="text"
+      placeholder="Search Discover..."
+      oninput="filterDiscover()">
   </div>
 
-  <div id="searchResults"></div>
+  <section class="cards" id="discoverCards">
 
-  <section class="cards">
-
-    <div class="card">
-      <div class="cardIcon">🍪</div>
-      <h2>Baking</h2>
-      <p>Find something tasty to make.</p>
-      <button class="secondary" onclick="baking()">GET RECIPE IDEA</button>
+    <div class="card discoverCard" data-search="baking recipes cake cookies food">
+      <div class="cardIcon">🍰</div>
+      <h3>Baking</h3>
+      <p>Get a random baking idea.</p>
+      <button class="primary" onclick="bakingGenerator()">GENERATE</button>
     </div>
 
-    <div class="card">
-      <div class="cardIcon">🎨</div>
-      <h2>DIY</h2>
-      <p>Get a random creative project.</p>
-      <button class="secondary" onclick="diy()">GET DIY</button>
+    <div class="card discoverCard" data-search="diy crafts making projects">
+      <div class="cardIcon">🛠️</div>
+      <h3>DIY</h3>
+      <p>Find something fun to make.</p>
+      <button class="primary" onclick="diyGenerator()">GENERATE</button>
     </div>
 
-    <div class="card">
+    <div class="card discoverCard" data-search="pets animals dogs cats">
       <div class="cardIcon">🐾</div>
-      <h2>Pets</h2>
-      <p>Random pet-themed ideas.</p>
-      <button class="secondary" onclick="pet()">GET IDEA</button>
+      <h3>Pets</h3>
+      <p>Get a random pet idea.</p>
+      <button class="primary" onclick="petGenerator()">GENERATE</button>
     </div>
 
-    <div class="card">
+    <div class="card discoverCard" data-search="challenge random fun">
       <div class="cardIcon">🎯</div>
-      <h2>Challenges</h2>
-      <p>Try something different today.</p>
-      <button class="secondary" onclick="challenge()">CHALLENGE ME</button>
+      <h3>Challenges</h3>
+      <p>Give yourself a random challenge.</p>
+      <button class="primary" onclick="challengeGenerator()">GENERATE</button>
+    </div>
+
+    <!-- MY WEBSITES -->
+    <div class="card discoverCard" data-search="my websites rainynews rainyemps websites">
+      <div class="cardIcon">🌐</div>
+      <h3>My Websites</h3>
+      <p>Visit the websites you've made.</p>
+
+      <button class="primary"
+        onclick="openWebsite('https://rainylabss.github.io/RainyNews/')">
+        📰 OPEN RAINYNEWS
+      </button>
+
+      <div style="height:8px"></div>
+
+      <button class="secondary"
+        onclick="openWebsite('https://rainylabss.github.io/RainyEmps/')">
+        🎮 OPEN RAINYEMPS
+      </button>
     </div>
 
   </section>
@@ -778,301 +782,240 @@ footer{
 </main>
 
 
-<!-- SHOP PAGE -->
+<!-- SHOP -->
+<main id="shop" class="page">
 
-<main id="shopPage" class="page">
+  <section class="hero">
+    <h2>🛍️ Shop</h2>
+    <p>Spend your RainCoins on your RainyVerse.</p>
+  </section>
 
-  <h1>🛍️ Shop</h1>
-
-  <p style="color:var(--muted);margin:8px 0 20px;">
-    Spend your RainCoins on characters for Rainy Road.
-  </p>
-
-  <div class="card">
-    <h2>🪙 <span id="shopPageCoins">0</span> RainCoins</h2>
-    <br>
-    <div class="shopGrid" id="mainShop"></div>
+  <div class="feature">
+    <h3>🪙 Your Balance</h3>
+    <p>You currently have <b id="shopCoins">100</b> RainCoins.</p>
   </div>
+
+  <section class="cards">
+
+    <div class="card">
+      <div class="cardIcon">🌧️</div>
+      <h3>Rainy Badge</h3>
+      <p>Add the Rainy badge to your profile.</p>
+      <button class="primary" onclick="buyItem('badge',20)">
+        BUY — 20 🪙
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="cardIcon">🐸</div>
+      <h3>Rainy Frog</h3>
+      <p>Unlock a tiny frog friend.</p>
+      <button class="primary" onclick="buyItem('frog',40)">
+        BUY — 40 🪙
+      </button>
+    </div>
+
+    <div class="card">
+      <div class="cardIcon">⭐</div>
+      <h3>Super Star</h3>
+      <p>Unlock the Super Star achievement.</p>
+      <button class="primary" onclick="buyItem('star',75)">
+        BUY — 75 🪙
+      </button>
+    </div>
+
+  </section>
 
 </main>
 
 
 <!-- PROFILE -->
+<main id="profile" class="page">
 
-<main id="profilePage" class="page">
-
-  <h1>👤 Profile</h1>
-
-  <section class="card" style="margin-top:15px;text-align:center;">
-
-    <div id="profileAvatar" style="font-size:80px;">🌧️</div>
-
-    <h2 id="profileName">Rainy Explorer</h2>
-
-    <p>Welcome to your RainyVerse profile.</p>
-
+  <section class="hero">
+    <h2>👤 Profile</h2>
+    <p>Your RainyVerse progress.</p>
   </section>
 
-  <h2 class="sectionTitle">📊 Stats</h2>
+  <div class="profileBox">
+    <div class="avatar" id="profileAvatar">🌧️</div>
+    <h2>Rainy Player</h2>
+    <p style="color:var(--muted);margin-top:5px">
+      Welcome to your RainyVerse profile.
+    </p>
 
-  <div class="stats">
+    <div class="stats">
+      <div class="stat">
+        <strong id="profileCoins">100</strong>
+        <span>RainCoins</span>
+      </div>
 
-    <div class="stat">
-      <b id="profileCoins">0</b>
-      Coins
+      <div class="stat">
+        <strong id="profileBest">0</strong>
+        <span>Road Best</span>
+      </div>
+
+      <div class="stat">
+        <strong id="profileItems">0</strong>
+        <span>Items</span>
+      </div>
     </div>
-
-    <div class="stat">
-      <b id="profileHigh">0</b>
-      High Score
-    </div>
-
-    <div class="stat">
-      <b id="profileIsland">0</b>
-      Island Items
-    </div>
-
   </div>
 
   <h2 class="sectionTitle">🏆 Achievements</h2>
 
-  <div class="list" id="achievements"></div>
+  <div class="achievement">
+    <span>🌧️</span>
+    <div>
+      <b>Welcome to RainyVerse</b>
+      <p style="color:var(--muted);font-size:13px">Join RainyVerse.</p>
+    </div>
+  </div>
 
-  <br>
+  <div class="achievement">
+    <span>🚗</span>
+    <div>
+      <b>Road Runner</b>
+      <p style="color:var(--muted);font-size:13px">Score 10 on Rainy Road.</p>
+    </div>
+  </div>
 
-  <button class="secondary" onclick="resetSave()" style="width:100%;">
-    Reset RainyVerse Save
-  </button>
+  <div class="achievement">
+    <span>🪙</span>
+    <div>
+      <b>Coin Collector</b>
+      <p style="color:var(--muted);font-size:13px">Collect RainCoins.</p>
+    </div>
+  </div>
+
+  <h2 class="sectionTitle">💾 Game Data</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Save Game</h3>
+      <p>Your progress is automatically saved, but you can save manually too.</p>
+      <button class="primary" onclick="saveGame()">💾 SAVE GAME</button>
+    </div>
+
+    <div class="card">
+      <h3>Reset Game</h3>
+      <p>Delete your RainyVerse progress and start again.</p>
+      <button class="danger" onclick="resetGame()">RESET EVERYTHING</button>
+    </div>
+
+  </div>
 
 </main>
 
+</div>
 
-<!-- BOTTOM NAV -->
 
-<nav class="bottomNav">
+<!-- NAVIGATION -->
+<nav class="nav">
 
-  <button id="navHome" class="active" onclick="showPage('home')">
+  <button class="active" data-page="home" onclick="showPage('home')">
     <span>🏠</span>Home
   </button>
 
-  <button id="navGames" onclick="showPage('games')">
+  <button data-page="games" onclick="showPage('games')">
     <span>🎮</span>Games
   </button>
 
-  <button id="navDiscover" onclick="showPage('discover')">
-    <span>✨</span>Discover
+  <button data-page="discover" onclick="showPage('discover')">
+    <span>🔎</span>Discover
   </button>
 
-  <button id="navShop" onclick="showPage('shop')">
+  <button data-page="shop" onclick="showPage('shop')">
     <span>🛍️</span>Shop
   </button>
 
-  <button id="navProfile" onclick="showPage('profile')">
+  <button data-page="profile" onclick="showPage('profile')">
     <span>👤</span>Profile
   </button>
 
 </nav>
 
 
-<!-- GAME SCREEN -->
-
-<section id="gameScreen">
-
-  <div class="gameHeader">
-
-    <h2 id="gameTitle">🚗 Rainy Road</h2>
-
-    <div class="gameStats">
-
-      <div class="gameBadge">
-        ⭐ <span id="gameScore">0</span>
-      </div>
-
-      <div class="gameBadge">
-        🪙 <span id="gameCoinCount">0</span>
-      </div>
-
-      <button class="closeGame" onclick="closeGame()">
-        ✕
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="canvasArea">
-
-    <canvas id="gameCanvas"></canvas>
-
-    <!-- ROAD MENU -->
-
-    <div id="roadMenu" class="gameMenu">
-
-      <div class="menuCard">
-
-        <h2 id="roadMenuTitle">🚗 Rainy Road</h2>
-
-        <p id="roadMenuText">
-          Cross the roads, avoid the traffic and collect
-          as many coins as possible.
-        </p>
-
-        <div class="menuButtons">
-
-          <button class="primary" onclick="startRoad()">
-            ▶ PLAY
-          </button>
-
-          <button
-            class="secondary"
-            onclick="openGameShop()"
-          >
-            🛍️ SHOP
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- GAME SHOP -->
-
-    <div id="gameShop" class="shopPanel">
-
-      <div class="shopHeader">
-
-        <h2>🛍️ Characters</h2>
-
-        <button
-          class="closeGame"
-          onclick="closeGameShop()"
-        >
-          ✕
-        </button>
-
-      </div>
-
-      <p style="color:var(--muted);margin-bottom:15px;">
-        🪙 <span id="gameShopCoins">0</span> RainCoins
-      </p>
-
-      <div class="shopGrid" id="gameShopItems"></div>
-
-    </div>
-
-
-    <!-- ISLAND TOOLS -->
-
-    <div
-      id="islandTools"
-      class="islandTools"
-      style="display:none;"
-    ></div>
-
-  </div>
-
-
-  <!-- CONTROLS -->
-
-  <div id="roadControls" class="gameControls">
-
-    <button class="up" onclick="roadMove(0,-1)">⬆️</button>
-    <button class="left" onclick="roadMove(-1,0)">⬅️</button>
-    <button class="down" onclick="roadMove(0,1)">⬇️</button>
-    <button class="right" onclick="roadMove(1,0)">➡️</button>
-
-  </div>
-
-</section>
-
-
-<!-- MESSAGE MODAL -->
-
-<div id="modal" class="modal">
-
-  <div class="modalCard">
-
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modalBox">
     <h2 id="modalTitle">RainyVerse</h2>
-
     <p id="modalText"></p>
-
-    <div class="modalActions">
-
-      <button
-        class="primary"
-        onclick="closeModal()"
-      >
-        OK
-      </button>
-
-    </div>
-
+    <button class="primary" onclick="closeModal()">OK</button>
   </div>
-
 </div>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    SAVE DATA
-========================================================= */
+========================= */
 
-const SAVE_KEY = "rainyverse_clean_v1";
+const SAVE_KEY = "rainyverse_v2";
 
-let data = JSON.parse(
-  localStorage.getItem(SAVE_KEY) || "null"
-);
+let data = {
+  coins:100,
+  roadBest:0,
+  items:[],
+  island:[]
+};
 
-if(!data){
-  data = {
-    coins:50,
-    highScore:0,
-    character:"blue",
-    owned:["blue"],
-    island:[]
-  };
-}
+function loadGame(){
 
-data.coins ??= 50;
-data.highScore ??= 0;
-data.character ??= "blue";
-data.owned ??= ["blue"];
-data.island ??= [];
+  const saved = localStorage.getItem(SAVE_KEY);
 
-function save(){
-  localStorage.setItem(
-    SAVE_KEY,
-    JSON.stringify(data)
-  );
+  if(saved){
+    try{
+      data = {...data,...JSON.parse(saved)};
+    }catch(e){}
+  }
 
   updateUI();
 }
 
-function updateUI(){
+function saveGame(){
 
-  document.getElementById("topCoins").textContent=data.coins;
-  document.getElementById("homeCoins").textContent=data.coins;
-  document.getElementById("homeScore").textContent=data.highScore;
-  document.getElementById("homeItems").textContent=data.island.length;
+  localStorage.setItem(SAVE_KEY,JSON.stringify(data));
 
-  document.getElementById("shopPageCoins").textContent=data.coins;
-
-  document.getElementById("profileCoins").textContent=data.coins;
-  document.getElementById("profileHigh").textContent=data.highScore;
-  document.getElementById("profileIsland").textContent=data.island.length;
-
-  document.getElementById("gameCoinCount").textContent=data.coins;
+  showToast("💾 Game saved!");
+  updateUI();
 }
 
-updateUI();
+function resetGame(){
+
+  if(!confirm("Reset all RainyVerse progress?")) return;
+
+  localStorage.removeItem(SAVE_KEY);
+
+  data = {
+    coins:100,
+    roadBest:0,
+    items:[],
+    island:[]
+  };
+
+  updateUI();
+  drawIsland();
+
+  showToast("🔄 RainyVerse has been reset.");
+}
+
+function updateUI(){
+
+  document.querySelectorAll("#coinCount,#shopCoins,#profileCoins")
+    .forEach(el=>el.textContent=data.coins);
+
+  document.getElementById("profileBest").textContent=data.roadBest;
+  document.getElementById("profileItems").textContent=data.items.length;
+  document.getElementById("roadBest").textContent=data.roadBest;
+}
 
 
-/* =========================================================
+/* =========================
    NAVIGATION
-========================================================= */
+========================= */
 
 function showPage(page){
 
@@ -1080,1949 +1023,839 @@ function showPage(page){
     p.classList.remove("active");
   });
 
-  document.getElementById(page+"Page")
-    .classList.add("active");
+  const target=document.getElementById(page);
 
-  document.querySelectorAll(".bottomNav button")
-    .forEach(b=>b.classList.remove("active"));
+  if(target) target.classList.add("active");
 
-  document.getElementById("nav"+capitalize(page))
-    .classList.add("active");
+  document.querySelectorAll(".nav button").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
+  });
 
-  if(page==="shop"){
-    renderMainShop();
+  window.scrollTo({top:0,behavior:"smooth"});
+
+  if(page==="games"){
+    hideAllGames();
   }
 
   if(page==="profile"){
-    renderProfile();
+    updateUI();
+  }
+}
+
+function hideAllGames(){
+
+  document.getElementById("roadGame").style.display="none";
+  document.getElementById("islandGame").style.display="none";
+  document.getElementById("quizGame").style.display="none";
+}
+
+function openGame(game){
+
+  hideAllGames();
+
+  if(game==="road"){
+    document.getElementById("roadGame").style.display="block";
+    startRoad();
   }
 
-  window.scrollTo(0,0);
-}
-
-function capitalize(text){
-  return text.charAt(0).toUpperCase()+text.slice(1);
-}
-
-
-/* =========================================================
-   IDEAS
-========================================================= */
-
-const ideas=[
-  "🍪 Bake some cookies",
-  "🎨 Make a tiny painting",
-  "🎮 Beat your Rainy Road high score",
-  "🏝️ Add a new building to your island",
-  "📱 Design a new app idea",
-  "🧁 Make cupcakes",
-  "🎵 Learn a new dance",
-  "✂️ Make something from cardboard",
-  "🐾 Draw a dream pet",
-  "🌈 Make a colourful room decoration"
-];
-
-function newIdea(){
-
-  const idea=
-    ideas[Math.floor(Math.random()*ideas.length)];
-
-  document.getElementById("dailyIdea").textContent=idea;
-
-  showMessage("✨ Random Idea",idea);
-}
-
-function baking(){
-
-  const list=[
-    "🍪 Make Kinder cookies",
-    "🧁 Make vanilla cupcakes",
-    "🍫 Make chocolate brownies",
-    "🥞 Make fluffy pancakes",
-    "🍓 Make a strawberry dessert"
-  ];
-
-  showMessage(
-    "🍪 Baking idea",
-    list[Math.floor(Math.random()*list.length)]
-  );
-}
-
-function diy(){
-
-  const list=[
-    "🎨 Paint a mini canvas",
-    "📦 Make a cardboard organiser",
-    "🪴 Create a mini plant pot",
-    "✨ Make a bedroom decoration",
-    "🌈 Make a wall hanging"
-  ];
-
-  showMessage(
-    "🎨 DIY idea",
-    list[Math.floor(Math.random()*list.length)]
-  );
-}
-
-function pet(){
-
-  const list=[
-    "🐶 Invent a funny dog name",
-    "🐱 Design a cat bedroom",
-    "🐰 Draw a rabbit playground",
-    "🐹 Design a hamster house",
-    "🐾 Create a pet logo"
-  ];
-
-  showMessage(
-    "🐾 Pet idea",
-    list[Math.floor(Math.random()*list.length)]
-  );
-}
-
-function challenge(){
-
-  const list=[
-    "🎮 Get 10 points in Rainy Road",
-    "🏝️ Buy something for your island",
-    "🎨 Make something without using your favourite colour",
-    "🍪 Bake something new",
-    "💻 Create a new website idea"
-  ];
-
-  showMessage(
-    "🎯 Challenge",
-    list[Math.floor(Math.random()*list.length)]
-  );
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-const searchable=[
-  ["Rainy Road","🚗 Game","games"],
-  ["Rainy Island","🏝️ Game","games"],
-  ["Rainy Quiz","❓ Game","games"],
-  ["Random Generator","🎲 Game","games"],
-  ["Baking","🍪 Discover","discover"],
-  ["DIY","🎨 Discover","discover"],
-  ["Pets","🐾 Discover","discover"],
-  ["Challenges","🎯 Discover","discover"],
-  ["Shop","🛍️ Characters","shop"],
-  ["Profile","👤 Profile","profile"]
-];
-
-function searchSite(){
-
-  const q=
-    document.getElementById("searchInput")
-      .value.trim()
-      .toLowerCase();
-
-  const box=document.getElementById("searchResults");
-
-  if(!q){
-    box.innerHTML="";
-    return;
+  if(game==="island"){
+    document.getElementById("islandGame").style.display="block";
+    drawIsland();
   }
 
-  const results=searchable.filter(item=>
-    item[0].toLowerCase().includes(q)
-  );
-
-  if(results.length===0){
-
-    box.innerHTML=`
-      <div class="card">
-        😭 Nothing found for "<b>${escapeHTML(q)}</b>"
-      </div>
-    `;
-
-    return;
+  if(game==="quiz"){
+    document.getElementById("quizGame").style.display="block";
+    startQuiz();
   }
 
-  box.innerHTML=results.map(item=>`
-    <div class="listItem" style="margin-bottom:8px;">
-      <div class="emoji">${item[1].split(" ")[0]}</div>
-      <div style="flex:1;">
-        <b>${item[0]}</b>
-        <p>${item[1]}</p>
-      </div>
-      <button
-        class="secondary"
-        onclick="showPage('${item[2]}')"
-      >
-        OPEN
-      </button>
-    </div>
-  `).join("");
-}
-
-function escapeHTML(text){
-
-  return text
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  window.scrollTo({top:document.getElementById("games").offsetTop,behavior:"smooth"});
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* =========================
+   TOAST + MODAL
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast=document.getElementById("toast");
+
+  toast.textContent=message;
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    toast.classList.remove("show");
+  },2200);
+}
 
 function showMessage(title,text){
 
   document.getElementById("modalTitle").textContent=title;
   document.getElementById("modalText").textContent=text;
 
-  document.getElementById("modal").style.display="flex";
+  document.getElementById("modal").classList.add("show");
 }
 
 function closeModal(){
-  document.getElementById("modal").style.display="none";
+  document.getElementById("modal").classList.remove("show");
 }
 
 
-/* =========================================================
+/* =========================
+   WEBSITE LINKS
+========================= */
+
+function openWebsite(url){
+
+  window.open(url,"_blank","noopener,noreferrer");
+}
+
+
+/* =========================
+   DISCOVER SEARCH
+========================= */
+
+function filterDiscover(){
+
+  const query=document.getElementById("discoverSearch").value
+    .toLowerCase()
+    .trim();
+
+  document.querySelectorAll(".discoverCard").forEach(card=>{
+
+    const text=card.dataset.search || "";
+
+    card.style.display=
+      !query || text.includes(query)
+      ? ""
+      : "none";
+
+  });
+}
+
+
+/* =========================
+   RANDOM DISCOVER
+========================= */
+
+const bakingIdeas=[
+  "🍪 Make Kinder cookies",
+  "🧁 Make colourful cupcakes",
+  "🍫 Make chocolate brownies",
+  "🥞 Make fluffy pancakes",
+  "🍓 Make strawberry cheesecake cups",
+  "🍌 Make banana bread"
+];
+
+const diyIdeas=[
+  "🎨 Make a painted canvas",
+  "🕯️ Decorate a jar",
+  "🧶 Make a friendship bracelet",
+  "🌈 Make a room decoration",
+  "📦 Make a cardboard organiser",
+  "🖼️ Make a photo collage"
+];
+
+const petIdeas=[
+  "🐶 Create a name for a puppy",
+  "🐱 Design a cat room",
+  "🐹 Make a hamster playground",
+  "🐰 Design a rabbit garden",
+  "🐾 Invent a brand new animal"
+];
+
+const challengeIdeas=[
+  "💃 Dance to a random song",
+  "🎨 Draw something with your eyes closed",
+  "🧠 Name 20 animals in 30 seconds",
+  "🍪 Bake something new",
+  "🎮 Beat your game high score",
+  "📱 Spend 20 minutes without social media"
+];
+
+function pick(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function bakingGenerator(){
+  showMessage("🍰 Baking Idea",pick(bakingIdeas));
+}
+
+function diyGenerator(){
+  showMessage("🛠️ DIY Idea",pick(diyIdeas));
+}
+
+function petGenerator(){
+  showMessage("🐾 Pet Idea",pick(petIdeas));
+}
+
+function challengeGenerator(){
+  showMessage("🎯 Challenge",pick(challengeIdeas));
+}
+
+function randomGenerator(){
+
+  const things=[
+    "🌧️ Watch the rain",
+    "🎮 Play a game",
+    "🍪 Bake cookies",
+    "🎨 Make some art",
+    "🧹 Tidy your room",
+    "🎵 Put on Just Dance",
+    "📖 Read a book",
+    "🛠️ Make something",
+    "🌳 Go outside",
+    "🎬 Watch a movie"
+  ];
+
+  showMessage("🎲 Random Generator",pick(things));
+}
+
+
+/* =========================
    RAINY ROAD
-========================================================= */
+========================= */
 
-const canvas=document.getElementById("gameCanvas");
-const ctx=canvas.getContext("2d");
+const roadCanvas=document.getElementById("roadCanvas");
+const ctx=roadCanvas.getContext("2d");
 
-let gameType=null;
-
-let road={
-  active:false,
-  score:0,
-  player:{
-    x:3,
-    lane:0
-  },
-  lanes:[],
-  coins:[],
-  lastTime:0
+const player={
+  x:2,
+  y:9
 };
 
-const characters={
-  blue:{name:"Rainy",emoji:"🌧️",price:0},
-  yellow:{name:"Sunny",emoji:"🌞",price:30},
-  pink:{name:"Berry",emoji:"🩷",price:75},
-  green:{name:"Frog",emoji:"🐸",price:150},
-  purple:{name:"Magic",emoji:"💜",price:250},
-  orange:{name:"Mango",emoji:"🧡",price:400}
-};
+const roadRows=10;
+const roadCols=7;
 
-function resizeCanvas(){
+let roadScore=0;
+let roadRunning=false;
+let roadCoinsCollected=0;
+let roadCars=[];
 
-  const rect=canvas.getBoundingClientRect();
+function laneType(row){
 
-  canvas.width=Math.max(
-    320,
-    Math.floor(rect.width)
-  );
-
-  canvas.height=Math.max(
-    300,
-    Math.floor(rect.height)
-  );
-
-  if(gameType==="road"){
-    drawRoad();
-  }
-
-  if(gameType==="island"){
-    drawIsland();
-  }
+  if(row===0 || row===1) return "grass";
+  if(row===2 || row===4 || row===6 || row===8) return "road";
+  if(row===3 || row===5 || row===7) return "grass";
+  return "finish";
 }
 
-window.addEventListener("resize",resizeCanvas);
+function createCars(){
 
+  roadCars=[];
 
-function openRoad(){
+  [2,4,6,8].forEach((row,index)=>{
 
-  gameType="road";
+    for(let i=0;i<2;i++){
 
-  document.getElementById("gameScreen").style.display="flex";
-  document.getElementById("gameTitle").textContent="🚗 Rainy Road";
-
-  document.getElementById("roadControls").style.display="grid";
-  document.getElementById("roadMenu").style.display="flex";
-  document.getElementById("gameShop").style.display="none";
-  document.getElementById("islandTools").style.display="none";
-
-  document.getElementById("roadMenuTitle").textContent="🚗 Rainy Road";
-
-  document.getElementById("roadMenuText").textContent=
-    "Cross busy roads, dodge cars and trucks, collect coins and beat your high score.";
-
-  resetRoad();
-
-  setTimeout(resizeCanvas,30);
-}
-
-
-function resetRoad(){
-
-  road.active=false;
-  road.score=0;
-  road.lastTime=0;
-
-  road.player={
-    x:3,
-    lane:0
-  };
-
-  road.lanes=[];
-  road.coins=[];
-
-  /*
-    MANY lanes.
-  */
-
-  for(let i=0;i<100;i++){
-
-    let type;
-
-    if(i<2){
-      type="grass";
-    }else{
-
-      const r=Math.random();
-
-      if(r<.58) type="road";
-      else if(r<.77) type="grass";
-      else type="water";
-    }
-
-    const lane={
-      type,
-      direction:Math.random()<.5 ? 1:-1,
-      speed:.6+Math.random()*1.4,
-      cars:[],
-      logs:[]
-    };
-
-    if(type==="road"){
-
-      const count=2+Math.floor(Math.random()*3);
-
-      for(let j=0;j<count;j++){
-
-        lane.cars.push({
-          x:(canvas.width/count)*j+
-             Math.random()*80,
-          width:45+Math.random()*45,
-          speed:.5+Math.random()*1.2,
-          truck:Math.random()<.2
-        });
-      }
-    }
-
-    if(type==="water"){
-
-      for(let j=0;j<3;j++){
-
-        lane.logs.push({
-          x:(canvas.width/3)*j+
-            Math.random()*70,
-          width:75+Math.random()*60
-        });
-      }
-    }
-
-    road.lanes.push(lane);
-
-    /*
-      Coins in random lanes.
-    */
-
-    if(i>1 && Math.random()<.42){
-
-      road.coins.push({
-        lane:i,
-        x:Math.floor(Math.random()*7),
-        taken:false
+      roadCars.push({
+        row,
+        x:i*4+Math.random()*2,
+        speed:.018+(index*.006)*(Math.random()>.5?1:.7),
+        dir:index%2===0?1:-1,
+        width:.9
       });
+
     }
-  }
 
-  updateGameStats();
+  });
 }
-
 
 function startRoad(){
 
-  resetRoad();
+  roadRunning=true;
+  roadScore=0;
+  roadCoinsCollected=0;
 
-  road.active=true;
+  player.x=3;
+  player.y=9;
 
-  document.getElementById("roadMenu").style.display="none";
+  createCars();
+
+  document.getElementById("roadScore").textContent=0;
+  document.getElementById("roadCoins").textContent=0;
 
   requestAnimationFrame(roadLoop);
 }
 
+function restartRoad(){
+  startRoad();
+}
 
-function roadLoop(time){
+function moveRoad(dx,dy){
 
-  if(!road.active) return;
+  if(!roadRunning) return;
 
-  if(!road.lastTime){
-    road.lastTime=time;
+  player.x=Math.max(0,Math.min(roadCols-1,player.x+dx));
+  player.y=Math.max(0,Math.min(roadRows-1,player.y+dy));
+
+  if(player.y===0){
+
+    roadScore++;
+
+    data.coins+=5;
+
+    player.y=9;
+
+    roadCoinsCollected+=5;
+
+    document.getElementById("roadScore").textContent=roadScore;
+    document.getElementById("roadCoins").textContent=roadCoinsCollected;
+
+    if(roadScore>data.roadBest){
+      data.roadBest=roadScore;
+    }
+
+    saveGame();
   }
 
-  const delta=Math.min(
-    2,
-    (time-road.lastTime)/16.67
-  );
+}
 
-  road.lastTime=time;
+function roadLoop(){
 
-  updateRoad(delta);
+  if(!roadRunning) return;
+
+  updateRoad();
   drawRoad();
 
   requestAnimationFrame(roadLoop);
 }
 
+function updateRoad(){
 
-function updateRoad(delta){
+  roadCars.forEach(car=>{
 
-  const lane=road.lanes[road.player.lane];
+    car.x+=car.speed*car.dir;
 
-  if(!lane) return;
+    if(car.dir>0 && car.x>roadCols+1){
+      car.x=-1.2;
+    }
 
-  if(lane.type==="road"){
+    if(car.dir<0 && car.x<-1.2){
+      car.x=roadCols+1;
+    }
 
-    for(const car of lane.cars){
+  });
 
-      car.x +=
-        lane.direction*
-        car.speed*
-        delta;
+  const currentType=laneType(player.y);
 
-      if(
-        lane.direction>0 &&
-        car.x>canvas.width+100
-      ){
-        car.x=-car.width-100;
-      }
+  if(currentType==="road"){
 
-      if(
-        lane.direction<0 &&
-        car.x<-car.width-100
-      ){
-        car.x=canvas.width+100;
-      }
+    for(const car of roadCars){
 
-      if(carCollision(car)){
+      if(car.row!==player.y) continue;
 
-        roadGameOver();
+      const distance=Math.abs(car.x-player.x);
+
+      if(distance<.75){
+
+        roadRunning=false;
+
+        showMessage(
+          "💥 You got hit!",
+          "Your score was "+roadScore+". Try again!"
+        );
+
+        if(roadScore>data.roadBest){
+          data.roadBest=roadScore;
+        }
+
+        saveGame();
         return;
       }
+
     }
+
   }
 
-  if(lane.type==="water"){
-
-    let safe=false;
-
-    for(const log of lane.logs){
-
-      log.x +=
-        lane.direction*
-        lane.speed*
-        delta;
-
-      if(
-        lane.direction>0 &&
-        log.x>canvas.width+150
-      ){
-        log.x=-log.width-150;
-      }
-
-      if(
-        lane.direction<0 &&
-        log.x<-log.width-150
-      ){
-        log.x=canvas.width+150;
-      }
-
-      const px=
-        road.player.x*
-        (canvas.width/7)+
-        canvas.width/14;
-
-      if(
-        px>log.x &&
-        px<log.x+log.width
-      ){
-        safe=true;
-      }
-    }
-
-    if(!safe){
-
-      roadGameOver();
-      return;
-    }
-  }
 }
-
-
-function carCollision(car){
-
-  const cell=canvas.width/7;
-
-  const px=
-    road.player.x*cell+
-    cell/2;
-
-  const playerWidth=cell*.55;
-
-  const carY=canvas.height*.76;
-
-  const playerY=canvas.height*.76;
-
-  return(
-    Math.abs(
-      px-(car.x+car.width/2)
-    )<
-      (playerWidth+car.width)*.43
-    &&
-    Math.abs(playerY-carY)<30
-  );
-}
-
-
-function roadMove(dx,dy){
-
-  if(!road.active) return;
-
-  const oldLane=road.player.lane;
-
-  road.player.x+=dx;
-
-  road.player.x=Math.max(
-    0,
-    Math.min(6,road.player.x)
-  );
-
-  road.player.lane+=dy;
-
-  road.player.lane=Math.max(
-    0,
-    Math.min(
-      road.lanes.length-1,
-      road.player.lane
-    )
-  );
-
-  /*
-    Score when moving forwards.
-  */
-
-  if(
-    dy<0 &&
-    road.player.lane>oldLane
-  ){
-
-    road.score++;
-
-    if(road.score>data.highScore){
-      data.highScore=road.score;
-    }
-
-    if(road.score%5===0){
-
-      data.coins++;
-
-      showToast("🪙 +1 RainCoin!");
-    }
-  }
-
-  /*
-    Coin pickup.
-  */
-
-  for(const coin of road.coins){
-
-    if(
-      !coin.taken &&
-      coin.lane===road.player.lane &&
-      coin.x===road.player.x
-    ){
-
-      coin.taken=true;
-
-      data.coins+=5;
-
-      showToast("🪙 +5 RainCoins!");
-    }
-  }
-
-  save();
-  updateGameStats();
-}
-
-
-function roadGameOver(){
-
-  if(!road.active) return;
-
-  road.active=false;
-
-  save();
-
-  document.getElementById("roadMenu").style.display="flex";
-
-  document.getElementById("roadMenuTitle").textContent=
-    "💥 Game Over";
-
-  document.getElementById("roadMenuText").innerHTML=
-    `You reached <b>${road.score}</b> lanes!<br><br>
-     High Score: <b>${data.highScore}</b>`;
-
-  updateGameStats();
-}
-
-
-/* =========================================================
-   ROAD DRAW
-========================================================= */
 
 function drawRoad(){
 
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
+  const w=roadCanvas.width;
+  const h=roadCanvas.height;
 
-  const laneHeight=
-    canvas.height/7;
+  const cellW=w/roadCols;
+  const cellH=h/roadRows;
 
-  /*
-    Draw visible lanes.
-  */
+  ctx.clearRect(0,0,w,h);
 
-  for(let row=0;row<8;row++){
+  for(let row=0;row<roadRows;row++){
 
-    const laneIndex=
-      road.player.lane-4+row;
+    const type=laneType(row);
 
-    if(laneIndex<0){
-      drawGrass(
-        0,
-        row*laneHeight,
-        laneHeight
-      );
-      continue;
-    }
+    ctx.fillStyle=
+      type==="road" ? "#343944" :
+      type==="grass" ? "#34734e" :
+      "#5ca8d6";
 
-    const lane=
-      road.lanes[laneIndex];
+    ctx.fillRect(0,row*cellH,w,cellH);
 
-    if(!lane) continue;
+    if(type==="road"){
 
-    const y=row*laneHeight;
-
-    if(lane.type==="grass"){
-      drawGrass(0,y,laneHeight);
-    }
-
-    if(lane.type==="road"){
-      drawRoadLane(0,y,laneHeight,lane);
-    }
-
-    if(lane.type==="water"){
-      drawWater(0,y,laneHeight,lane);
-    }
-
-    /*
-      Coins.
-    */
-
-    for(const coin of road.coins){
-
-      if(
-        coin.taken ||
-        coin.lane!==laneIndex
-      ) continue;
-
-      const x=
-        coin.x*
-        (canvas.width/7)+
-        canvas.width/14;
-
-      drawCoin(
-        x,
-        y+laneHeight/2
-      );
-    }
-  }
-
-  drawPlayer(
-    road.player.x*
-      (canvas.width/7)+
-      canvas.width/14,
-    canvas.height*.76
-  );
-
-  /*
-    Score badge.
-  */
-
-  ctx.fillStyle="rgba(0,0,0,.45)";
-
-  roundRect(
-    ctx,
-    12,
-    12,
-    120,
-    40,
-    11
-  );
-
-  ctx.fillStyle="white";
-  ctx.font="bold 17px Arial";
-
-  ctx.fillText(
-    "⭐ "+road.score,
-    25,
-    38
-  );
-}
-
-
-function drawGrass(x,y,h){
-
-  ctx.fillStyle="#247d42";
-  ctx.fillRect(
-    0,
-    y,
-    canvas.width,
-    h
-  );
-
-  /*
-    Grass dots/details.
-  */
-
-  for(let i=0;i<25;i++){
-
-    const gx=(i*71)%canvas.width;
-    const gy=y+8+(i*23)%Math.max(10,h-12);
-
-    ctx.fillStyle="#3c9c53";
-    ctx.fillRect(gx,gy,3,7);
-  }
-}
-
-
-function drawRoadLane(x,y,h,lane){
-
-  ctx.fillStyle="#343b42";
-
-  ctx.fillRect(
-    0,
-    y,
-    canvas.width,
-    h
-  );
-
-  /*
-    Road edges.
-  */
-
-  ctx.fillStyle="#eeeeee";
-
-  ctx.fillRect(
-    0,
-    y+3,
-    canvas.width,
-    3
-  );
-
-  ctx.fillRect(
-    0,
-    y+h-6,
-    canvas.width,
-    3
-  );
-
-  /*
-    Centre marking.
-  */
-
-  ctx.strokeStyle="#e8cf58";
-  ctx.lineWidth=3;
-  ctx.setLineDash([22,22]);
-
-  ctx.beginPath();
-
-  ctx.moveTo(
-    0,
-    y+h/2
-  );
-
-  ctx.lineTo(
-    canvas.width,
-    y+h/2
-  );
-
-  ctx.stroke();
-
-  ctx.setLineDash([]);
-
-  /*
-    Cars.
-  */
-
-  for(const car of lane.cars){
-
-    drawCar(
-      car.x,
-      y+h/2,
-      car.width,
-      car.truck
-    );
-  }
-}
-
-
-function drawCar(x,y,w,truck){
-
-  const h=truck?34:28;
-
-  ctx.save();
-
-  ctx.translate(
-    x+w/2,
-    y
-  );
-
-  /*
-    Shadow.
-  */
-
-  ctx.fillStyle="rgba(0,0,0,.25)";
-
-  roundRect(
-    ctx,
-    -w/2+3,
-    -h/2+4,
-    w,
-    h,
-    7
-  );
-
-  const colours=[
-    "#ed5353",
-    "#4e94ed",
-    "#f0c747",
-    "#66d37c",
-    "#b66de5",
-    "#f078a8"
-  ];
-
-  ctx.fillStyle=
-    colours[
-      Math.floor(Math.abs(x)/60)%colours.length
-    ];
-
-  roundRect(
-    ctx,
-    -w/2,
-    -h/2,
-    w,
-    h,
-    7
-  );
-
-  /*
-    Windows.
-  */
-
-  ctx.fillStyle="#bde7f0";
-
-  roundRect(
-    ctx,
-    -w*.15,
-    -h*.35,
-    w*.42,
-    h*.4,
-    3
-  );
-
-  /*
-    Wheels.
-  */
-
-  ctx.fillStyle="#10151a";
-
-  ctx.beginPath();
-  ctx.arc(
-    -w*.29,
-    h*.47,
-    6,
-    0,
-    Math.PI*2
-  );
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(
-    w*.29,
-    h*.47,
-    6,
-    0,
-    Math.PI*2
-  );
-  ctx.fill();
-
-  /*
-    Lights.
-  */
-
-  ctx.fillStyle="#fff0a0";
-
-  ctx.fillRect(
-    w*.38,
-    -h*.28,
-    5,
-    7
-  );
-
-  ctx.restore();
-}
-
-
-function drawWater(x,y,h,lane){
-
-  ctx.fillStyle="#2181a5";
-
-  ctx.fillRect(
-    0,
-    y,
-    canvas.width,
-    h
-  );
-
-  /*
-    Waves.
-  */
-
-  ctx.strokeStyle="rgba(210,245,255,.3)";
-  ctx.lineWidth=2;
-
-  for(let i=0;i<10;i++){
-
-    const wx=(i*85)%canvas.width;
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      wx,
-      y+h*.28
-    );
-
-    ctx.quadraticCurveTo(
-      wx+12,
-      y+h*.1,
-      wx+25,
-      y+h*.28
-    );
-
-    ctx.stroke();
-  }
-
-  /*
-    Logs.
-  */
-
-  for(const log of lane.logs){
-
-    ctx.fillStyle="#80502e";
-
-    roundRect(
-      ctx,
-      log.x,
-      y+h/2-13,
-      log.width,
-      26,
-      12
-    );
-
-    ctx.strokeStyle="#5f371f";
-    ctx.lineWidth=2;
-
-    for(
-      let i=20;
-      i<log.width;
-      i+=25
-    ){
+      ctx.strokeStyle="rgba(255,255,255,.12)";
+      ctx.setLineDash([12,10]);
 
       ctx.beginPath();
-
-      ctx.arc(
-        log.x+i,
-        y+h/2,
-        6,
-        0,
-        Math.PI*2
-      );
-
+      ctx.moveTo(0,row*cellH+cellH/2);
+      ctx.lineTo(w,row*cellH+cellH/2);
       ctx.stroke();
+
+      ctx.setLineDash([]);
+
     }
+
+    if(type==="grass"){
+
+      for(let x=0;x<roadCols;x++){
+
+        if((x+row)%3===0){
+
+          ctx.fillStyle="rgba(255,255,255,.13)";
+          ctx.beginPath();
+          ctx.arc(
+            x*cellW+cellW*.3,
+            row*cellH+cellH*.5,
+            3,
+            0,
+            Math.PI*2
+          );
+          ctx.fill();
+
+        }
+
+      }
+
+    }
+
   }
-}
 
+  /* cars */
 
-function drawCoin(x,y){
+  roadCars.forEach(car=>{
 
-  ctx.fillStyle="#ffd34e";
+    const x=car.x*cellW;
+    const y=car.row*cellH+cellH*.18;
 
-  ctx.beginPath();
+    ctx.fillStyle=car.dir>0 ? "#ff5964":"#ffb13b";
 
-  ctx.arc(
-    x,
-    y,
-    11,
-    0,
-    Math.PI*2
-  );
+    ctx.roundRect(
+      x,
+      y,
+      cellW*1.05,
+      cellH*.62,
+      8
+    );
 
-  ctx.fill();
+    ctx.fill();
 
-  ctx.fillStyle="#fff2a4";
-  ctx.font="bold 13px Arial";
-  ctx.textAlign="center";
+    ctx.fillStyle="#dff3ff";
 
-  ctx.fillText(
-    "£",
-    x,
-    y+5
-  );
+    ctx.fillRect(
+      x+cellW*.18,
+      y+cellH*.1,
+      cellW*.28,
+      cellH*.18
+    );
 
-  ctx.textAlign="left";
-}
+    ctx.fillRect(
+      x+cellW*.6,
+      y+cellH*.1,
+      cellW*.25,
+      cellH*.18
+    );
 
+  });
 
-function drawPlayer(x,y){
+  /* player */
 
-  const char=
-    characters[data.character]||
-    characters.blue;
+  const px=player.x*cellW+cellW/2;
+  const py=player.y*cellH+cellH/2;
 
+  ctx.font=Math.min(cellW,cellH)*.65+"px Arial";
   ctx.textAlign="center";
   ctx.textBaseline="middle";
+  ctx.fillText("🧑‍🚀",px,py);
 
-  /*
-    Draw an original circular character.
-  */
+}
 
-  ctx.fillStyle="rgba(0,0,0,.3)";
+document.addEventListener("keydown",e=>{
 
-  ctx.beginPath();
+  if(e.key==="ArrowUp") moveRoad(0,-1);
+  if(e.key==="ArrowDown") moveRoad(0,1);
+  if(e.key==="ArrowLeft") moveRoad(-1,0);
+  if(e.key==="ArrowRight") moveRoad(1,0);
 
-  ctx.ellipse(
-    x,
-    y+22,
-    23,
-    7,
+});
+
+
+/* =========================
+   ROAD SWIPE
+========================= */
+
+let touchStartX=0;
+let touchStartY=0;
+
+roadCanvas.addEventListener("touchstart",e=>{
+
+  const t=e.changedTouches[0];
+
+  touchStartX=t.clientX;
+  touchStartY=t.clientY;
+
+},{passive:true});
+
+roadCanvas.addEventListener("touchend",e=>{
+
+  const t=e.changedTouches[0];
+
+  const dx=t.clientX-touchStartX;
+  const dy=t.clientY-touchStartY;
+
+  if(Math.max(Math.abs(dx),Math.abs(dy))<20) return;
+
+  if(Math.abs(dx)>Math.abs(dy)){
+    moveRoad(dx>0?1:-1,0);
+  }else{
+    moveRoad(0,dy>0?1:-1);
+  }
+
+},{passive:true});
+
+
+/* =========================
+   ISLAND
+========================= */
+
+const islandCanvas=document.getElementById("islandCanvas");
+const islandCtx=islandCanvas.getContext("2d");
+
+let selectedIslandItem=null;
+
+const islandPrices={
+  tree:10,
+  flower:5,
+  house:30,
+  pond:20,
+  bench:15
+};
+
+function selectIslandItem(item){
+
+  selectedIslandItem=item;
+
+  showToast(
+    "Selected "+item+" — tap the island!"
+  );
+}
+
+function drawIsland(){
+
+  const w=islandCanvas.width;
+  const h=islandCanvas.height;
+
+  islandCtx.clearRect(0,0,w,h);
+
+  /* water */
+
+  islandCtx.fillStyle="#67bfe9";
+  islandCtx.fillRect(0,0,w,h);
+
+  /* waves */
+
+  islandCtx.strokeStyle="rgba(255,255,255,.35)";
+  islandCtx.lineWidth=2;
+
+  for(let y=30;y<h;y+=35){
+
+    islandCtx.beginPath();
+
+    for(let x=0;x<w;x+=25){
+      islandCtx.moveTo(x,y);
+      islandCtx.quadraticCurveTo(x+12,y-5,x+25,y);
+    }
+
+    islandCtx.stroke();
+  }
+
+  /* island */
+
+  islandCtx.fillStyle="#71bd62";
+  islandCtx.beginPath();
+
+  islandCtx.ellipse(
+    w/2,
+    h/2,
+    w*.37,
+    h*.34,
     0,
     0,
     Math.PI*2
   );
 
-  ctx.fill();
+  islandCtx.fill();
 
-  ctx.font="42px Arial";
+  /* sand */
 
-  ctx.fillText(
-    char.emoji,
-    x,
-    y
+  islandCtx.fillStyle="#d7c276";
+  islandCtx.beginPath();
+
+  islandCtx.ellipse(
+    w/2,
+    h/2,
+    w*.32,
+    h*.28,
+    0,
+    0,
+    Math.PI*2
   );
 
-  ctx.textAlign="left";
-  ctx.textBaseline="alphabetic";
+  islandCtx.fill();
+
+  /* objects */
+
+  data.island.forEach(item=>{
+    drawIslandObject(item.type,item.x,item.y);
+  });
+
 }
 
+function drawIslandObject(type,x,y){
 
-/* =========================================================
-   ROAD SHOP
-========================================================= */
+  islandCtx.textAlign="center";
+  islandCtx.textBaseline="middle";
 
-function openGameShop(){
+  const icons={
+    tree:"🌳",
+    flower:"🌸",
+    house:"🏠",
+    pond:"💧",
+    bench:"🪑"
+  };
 
-  document.getElementById("roadMenu").style.display="none";
-  document.getElementById("gameShop").style.display="block";
-
-  renderGameShop();
+  islandCtx.font="34px Arial";
+  islandCtx.fillText(icons[type]||"❓",x,y);
 }
 
+islandCanvas.addEventListener("click",e=>{
 
-function closeGameShop(){
+  if(!selectedIslandItem) return;
 
-  document.getElementById("gameShop").style.display="none";
-  document.getElementById("roadMenu").style.display="flex";
-}
+  const rect=islandCanvas.getBoundingClientRect();
 
+  const x=(e.clientX-rect.left)*(islandCanvas.width/rect.width);
+  const y=(e.clientY-rect.top)*(islandCanvas.height/rect.height);
 
-function renderGameShop(){
+  const price=islandPrices[selectedIslandItem];
 
-  document.getElementById("gameShopCoins").textContent=data.coins;
+  if(data.coins<price){
 
-  const box=document.getElementById("gameShopItems");
-
-  box.innerHTML="";
-
-  for(const id in characters){
-
-    const c=characters[id];
-
-    const owned=data.owned.includes(id);
-    const selected=data.character===id;
-
-    box.innerHTML+=`
-      <div class="shopItem">
-
-        <div class="shopAvatar">
-          ${c.emoji}
-        </div>
-
-        <h3>${c.name}</h3>
-
-        <p>
-          ${owned ? "Owned" : "🪙 "+c.price}
-        </p>
-
-        <button
-          class="${selected ? "owned":""}"
-          onclick="buyCharacter('${id}')"
-        >
-          ${
-            selected
-              ? "✓ SELECTED"
-              : owned
-                ? "SELECT"
-                : "BUY"
-          }
-        </button>
-
-      </div>
-    `;
+    showToast("❌ Not enough RainCoins!");
+    return;
   }
-}
 
+  data.coins-=price;
 
-function renderMainShop(){
+  data.island.push({
+    type:selectedIslandItem,
+    x,
+    y
+  });
 
-  const box=document.getElementById("mainShop");
+  selectedIslandItem=null;
 
-  box.innerHTML="";
+  saveGame();
+  drawIsland();
 
-  for(const id in characters){
+  showToast("🏝️ Item added!");
+});
 
-    const c=characters[id];
+function clearIsland(){
 
-    const owned=data.owned.includes(id);
-    const selected=data.character===id;
-
-    box.innerHTML+=`
-      <div class="shopItem">
-
-        <div class="shopAvatar">${c.emoji}</div>
-
-        <h3>${c.name}</h3>
-
-        <p>
-          ${owned ? "Owned" : "🪙 "+c.price}
-        </p>
-
-        <button
-          class="${selected ? "owned":""}"
-          onclick="buyCharacter('${id}')"
-        >
-          ${
-            selected
-            ? "✓ SELECTED"
-            : owned
-            ? "SELECT"
-            : "BUY"
-          }
-        </button>
-
-      </div>
-    `;
+  if(!data.island.length){
+    showToast("Your island is already empty!");
+    return;
   }
+
+  data.island=[];
+  saveGame();
+  drawIsland();
+
+  showToast("🗑️ Island cleared!");
 }
 
 
-function buyCharacter(id){
+/* =========================
+   QUIZ
+========================= */
 
-  const c=characters[id];
+const quizQuestions=[
 
-  if(data.owned.includes(id)){
+  {
+    q:"Which planet do we live on?",
+    a:["Mars","Earth","Jupiter","Venus"],
+    correct:1
+  },
 
-    data.character=id;
+  {
+    q:"How many days are in a week?",
+    a:["5","6","7","8"],
+    correct:2
+  },
 
-    save();
+  {
+    q:"What is 5 × 5?",
+    a:["20","25","30","15"],
+    correct:1
+  },
 
-    renderGameShop();
-    renderMainShop();
-    renderProfile();
+  {
+    q:"Which animal says 'meow'?",
+    a:["Dog","Horse","Cat","Cow"],
+    correct:2
+  },
 
-    showToast("🎭 Character selected!");
+  {
+    q:"What colour do you get by mixing blue and yellow?",
+    a:["Purple","Green","Orange","Pink"],
+    correct:1
+  }
+
+];
+
+let quizIndex=0;
+let quizScore=0;
+
+function startQuiz(){
+
+  quizIndex=0;
+  quizScore=0;
+
+  showQuizQuestion();
+}
+
+function showQuizQuestion(){
+
+  const question=quizQuestions[quizIndex];
+
+  document.getElementById("quizProgress").textContent=
+    "Question "+(quizIndex+1)+" of "+quizQuestions.length;
+
+  document.getElementById("quizQuestion").textContent=question.q;
+
+  const answers=document.getElementById("quizAnswers");
+
+  answers.innerHTML="";
+
+  question.a.forEach((answer,index)=>{
+
+    const button=document.createElement("button");
+
+    button.textContent=answer;
+
+    button.onclick=()=>answerQuiz(index);
+
+    answers.appendChild(button);
+
+  });
+
+}
+
+function answerQuiz(index){
+
+  const question=quizQuestions[quizIndex];
+
+  if(index===question.correct){
+
+    quizScore++;
+    data.coins+=10;
+
+    showToast("✅ Correct! +10 🪙");
+
+  }else{
+
+    showToast("❌ Not quite!");
+
+  }
+
+  quizIndex++;
+
+  if(quizIndex>=quizQuestions.length){
+
+    saveGame();
+
+    setTimeout(()=>{
+
+      showMessage(
+        "🧠 Quiz Complete!",
+        "You scored "+quizScore+" / "+quizQuestions.length+"!"
+      );
+
+    },350);
 
     return;
   }
 
-  if(data.coins<c.price){
+  setTimeout(showQuizQuestion,350);
+}
+
+
+/* =========================
+   SHOP
+========================= */
+
+function buyItem(item,price){
+
+  if(data.items.includes(item)){
+
+    showToast("You already own this!");
+
+    return;
+  }
+
+  if(data.coins<price){
 
     showToast("❌ Not enough RainCoins!");
 
     return;
   }
 
-  data.coins-=c.price;
+  data.coins-=price;
+  data.items.push(item);
 
-  data.owned.push(id);
-  data.character=id;
-
-  save();
-
-  renderGameShop();
-  renderMainShop();
-  renderProfile();
-
-  showToast("🎉 Character unlocked!");
-}
-
-
-/* =========================================================
-   ISLAND
-========================================================= */
-
-const islandItems={
-  tree:{name:"🌳 Tree",price:10},
-  flower:{name:"🌸 Flower",price:5},
-  house:{name:"🏠 House",price:50},
-  pond:{name:"💧 Pond",price:40},
-  fountain:{name:"⛲ Fountain",price:75},
-  rock:{name:"🪨 Rock",price:8},
-  bench:{name:"🪑 Bench",price:20}
-};
-
-let selectedIslandItem=null;
-
-
-function openIsland(){
-
-  gameType="island";
-
-  document.getElementById("gameScreen").style.display="flex";
-
-  document.getElementById("gameTitle").textContent=
-    "🏝️ Rainy Island";
-
-  document.getElementById("roadControls").style.display="none";
-  document.getElementById("roadMenu").style.display="none";
-  document.getElementById("gameShop").style.display="none";
-
-  document.getElementById("islandTools").style.display="flex";
-
-  renderIslandTools();
-
-  setTimeout(resizeCanvas,30);
-}
-
-
-function renderIslandTools(){
-
-  const box=document.getElementById("islandTools");
-
-  box.innerHTML="";
-
-  for(const id in islandItems){
-
-    const item=islandItems[id];
-
-    const button=document.createElement("button");
-
-    button.textContent=
-      item.name+" • "+item.price;
-
-    button.onclick=()=>{
-
-      selectedIslandItem=id;
-
-      showToast(
-        "📍 Tap the island to place "+item.name
-      );
-    };
-
-    box.appendChild(button);
+  if(item==="frog"){
+    document.getElementById("profileAvatar").textContent="🐸";
   }
 
-  const cancel=document.createElement("button");
-
-  cancel.textContent="✕ Cancel";
-
-  cancel.onclick=()=>{
-    selectedIslandItem=null;
-  };
-
-  box.appendChild(cancel);
-}
-
-
-function drawIsland(){
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  /*
-    Ocean.
-  */
-
-  ctx.fillStyle="#38a9c9";
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  /*
-    Ocean waves.
-  */
-
-  ctx.strokeStyle="rgba(255,255,255,.22)";
-  ctx.lineWidth=2;
-
-  for(let y=20;y<canvas.height;y+=35){
-
-    for(let x=20;x<canvas.width;x+=75){
-
-      ctx.beginPath();
-
-      ctx.moveTo(x,y);
-
-      ctx.quadraticCurveTo(
-        x+10,
-        y-7,
-        x+20,
-        y
-      );
-
-      ctx.stroke();
-    }
+  if(item==="star"){
+    document.getElementById("profileAvatar").textContent="⭐";
   }
 
-  /*
-    Island shape.
-  */
+  saveGame();
 
-  const cx=canvas.width/2;
-  const cy=canvas.height/2;
-
-  ctx.fillStyle="#77c85c";
-
-  ctx.beginPath();
-
-  ctx.moveTo(cx-230,cy-110);
-
-  ctx.quadraticCurveTo(
-    cx-290,
-    cy-20,
-    cx-205,
-    cy+100
-  );
-
-  ctx.quadraticCurveTo(
-    cx-100,
-    cy+170,
-    cx,
-    cy+125
-  );
-
-  ctx.quadraticCurveTo(
-    cx+120,
-    cy+170,
-    cx+225,
-    cy+70
-  );
-
-  ctx.quadraticCurveTo(
-    cx+280,
-    cy-30,
-    cx+195,
-    cy-125
-  );
-
-  ctx.quadraticCurveTo(
-    cx+70,
-    cy-180,
-    cx-40,
-    cy-140
-  );
-
-  ctx.quadraticCurveTo(
-    cx-160,
-    cy-170,
-    cx-230,
-    cy-110
-  );
-
-  ctx.fill();
-
-  /*
-    Paths.
-  */
-
-  ctx.strokeStyle="#d8bd73";
-  ctx.lineWidth=18;
-
-  ctx.beginPath();
-
-  ctx.moveTo(cx-170,cy-90);
-
-  ctx.quadraticCurveTo(
-    cx-50,
-    cy,
-    cx+140,
-    cy+70
-  );
-
-  ctx.stroke();
-
-  /*
-    Objects.
-  */
-
-  for(const item of data.island){
-
-    const emoji=
-      islandItems[item.type]?.name
-        .split(" ")[0] || "❓";
-
-    ctx.textAlign="center";
-    ctx.textBaseline="middle";
-    ctx.font="40px Arial";
-
-    ctx.fillText(
-      emoji,
-      item.x,
-      item.y
-    );
-  }
-
-  ctx.textAlign="left";
-  ctx.textBaseline="alphabetic";
-
-  /*
-    Info box.
-  */
-
-  ctx.fillStyle="rgba(5,20,30,.72)";
-
-  roundRect(
-    ctx,
-    12,
-    12,
-    220,
-    58,
-    12
-  );
-
-  ctx.fillStyle="white";
-  ctx.font="bold 14px Arial";
-
-  ctx.fillText(
-    selectedIslandItem
-      ? "📍 Tap the island to place"
-      : "🛠️ Choose something below",
-    25,
-    36
-  );
-
-  ctx.font="13px Arial";
-
-  ctx.fillText(
-    "🪙 "+data.coins+" RainCoins",
-    25,
-    57
-  );
+  showToast("🎉 Item unlocked!");
 }
 
 
-canvas.addEventListener(
-  "pointerdown",
-  function(e){
+/* =========================
+   LOAD
+========================= */
 
-    if(gameType!=="island") return;
+loadGame();
 
-    if(!selectedIslandItem) return;
-
-    const rect=canvas.getBoundingClientRect();
-
-    const x=
-      (e.clientX-rect.left)*
-      canvas.width/
-      rect.width;
-
-    const y=
-      (e.clientY-rect.top)*
-      canvas.height/
-      rect.height;
-
-    const item=
-      islandItems[selectedIslandItem];
-
-    /*
-      Rough island boundary check.
-    */
-
-    const cx=canvas.width/2;
-    const cy=canvas.height/2;
-
-    const distance=Math.sqrt(
-      Math.pow(x-cx,2)+
-      Math.pow(y-cy,2)
-    );
-
-    if(distance>245){
-
-      showToast("🌊 You can't build in the water!");
-
-      return;
-    }
-
-    if(data.coins<item.price){
-
-      showToast("❌ Not enough RainCoins!");
-
-      return;
-    }
-
-    data.coins-=item.price;
-
-    data.island.push({
-      type:selectedIslandItem,
-      x,
-      y
-    });
-
-    save();
-
-    selectedIslandItem=null;
-
-    drawIsland();
-
-    showToast("🏝️ Item placed!");
-
-  }
-);
-
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
-const questions=[
-  {
-    q:"Which planet do we live on?",
-    answers:["Mars","Earth","Venus"],
-    correct:1
-  },
-  {
-    q:"How many days are in a week?",
-    answers:["5","7","10"],
-    correct:1
-  },
-  {
-    q:"Which animal says meow?",
-    answers:["Dog","Cat","Horse"],
-    correct:1
-  },
-  {
-    q:"What colour do blue and yellow make?",
-    answers:["Green","Pink","Purple"],
-    correct:0
-  },
-  {
-    q:"How many legs does a spider have?",
-    answers:["6","8","10"],
-    correct:1
-  },
-  {
-    q:"What is H2O?",
-    answers:["Water","Oxygen","Salt"],
-    correct:0
-  }
-];
-
-
-function quiz(){
-
-  const q=
-    questions[
-      Math.floor(
-        Math.random()*questions.length
-      )
-    ];
-
-  const answer=prompt(
-    q.q+
-    "\n\n1. "+q.answers[0]+
-    "\n2. "+q.answers[1]+
-    "\n3. "+q.answers[2]+
-    "\n\nType 1, 2 or 3:"
-  );
-
-  if(answer===null) return;
-
-  if(
-    Number(answer)-1===
-    q.correct
-  ){
-
-    data.coins+=10;
-
-    save();
-
-    showMessage(
-      "🎉 Correct!",
-      "+10 RainCoins!"
-    );
-
-  }else{
-
-    showMessage(
-      "❌ Not quite!",
-      "The answer was "+q.answers[q.correct]+"."
-    );
-  }
+if(data.items.includes("frog")){
+  document.getElementById("profileAvatar").textContent="🐸";
 }
 
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-function renderProfile(){
-
-  const char=
-    characters[data.character]||
-    characters.blue;
-
-  document.getElementById("profileAvatar")
-    .textContent=char.emoji;
-
-  document.getElementById("achievements").innerHTML=`
-
-    <div class="listItem">
-      <div class="emoji">🌧️</div>
-      <div>
-        <b>Rainy Explorer</b>
-        <p>Joined RainyVerse</p>
-      </div>
-    </div>
-
-    <div class="listItem">
-      <div class="emoji">
-        ${data.highScore>=10 ? "🏆":"🔒"}
-      </div>
-      <div>
-        <b>Road Runner</b>
-        <p>
-          Reach 10 lanes in Rainy Road
-        </p>
-      </div>
-    </div>
-
-    <div class="listItem">
-      <div class="emoji">
-        ${data.coins>=100 ? "🪙":"🔒"}
-      </div>
-      <div>
-        <b>Coin Collector</b>
-        <p>Collect 100 RainCoins</p>
-      </div>
-    </div>
-
-    <div class="listItem">
-      <div class="emoji">
-        ${data.island.length>=5 ? "🏝️":"🔒"}
-      </div>
-      <div>
-        <b>Island Builder</b>
-        <p>Place 5 island items</p>
-      </div>
-    </div>
-  `;
+if(data.items.includes("star")){
+  document.getElementById("profileAvatar").textContent="⭐";
 }
 
-
-/* =========================================================
-   CLOSE GAME
-========================================================= */
-
-function closeGame(){
-
-  road.active=false;
-
-  gameType=null;
-  selectedIslandItem=null;
-
-  document.getElementById("gameScreen").style.display="none";
-  document.getElementById("gameShop").style.display="none";
-  document.getElementById("roadMenu").style.display="none";
-  document.getElementById("islandTools").style.display="none";
-}
-
-
-/* =========================================================
-   KEYBOARD
-========================================================= */
-
-window.addEventListener(
-  "keydown",
-  function(e){
-
-    if(gameType!=="road") return;
-
-    if(
-      [
-        "ArrowUp",
-        "ArrowDown",
-        "ArrowLeft",
-        "ArrowRight",
-        "w",
-        "a",
-        "s",
-        "d"
-      ].includes(e.key)
-    ){
-      e.preventDefault();
-    }
-
-    if(e.key==="ArrowUp"||e.key==="w"){
-      roadMove(0,-1);
-    }
-
-    if(e.key==="ArrowDown"||e.key==="s"){
-      roadMove(0,1);
-    }
-
-    if(e.key==="ArrowLeft"||e.key==="a"){
-      roadMove(-1,0);
-    }
-
-    if(e.key==="ArrowRight"||e.key==="d"){
-      roadMove(1,0);
-    }
-  }
-);
-
-
-/* =========================================================
-   SWIPE
-========================================================= */
-
-let swipeX=0;
-let swipeY=0;
-
-canvas.addEventListener(
-  "touchstart",
-  function(e){
-
-    if(gameType!=="road") return;
-
-    swipeX=e.changedTouches[0].clientX;
-    swipeY=e.changedTouches[0].clientY;
-
-  },
-  {passive:true}
-);
-
-canvas.addEventListener(
-  "touchend",
-  function(e){
-
-    if(gameType!=="road") return;
-
-    const dx=
-      e.changedTouches[0].clientX-swipeX;
-
-    const dy=
-      e.changedTouches[0].clientY-swipeY;
-
-    if(
-      Math.max(
-        Math.abs(dx),
-        Math.abs(dy)
-      )<25
-    ) return;
-
-    if(Math.abs(dx)>Math.abs(dy)){
-
-      roadMove(
-        dx>0 ? 1:-1,
-        0
-      );
-
-    }else{
-
-      roadMove(
-        0,
-        dy>0 ? 1:-1
-      );
-    }
-
-  },
-  {passive:true}
-);
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer;
-
-function showToast(message){
-
-  clearTimeout(toastTimer);
-
-  let old=document.getElementById("toast");
-
-  if(old) old.remove();
-
-  const t=document.createElement("div");
-
-  t.id="toast";
-
-  t.textContent=message;
-
-  t.style.cssText=`
-    position:fixed;
-    z-index:500;
-    left:50%;
-    bottom:90px;
-    transform:translateX(-50%);
-    background:#effaff;
-    color:#06121e;
-    padding:12px 17px;
-    border-radius:14px;
-    font-weight:bold;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
-  `;
-
-  document.body.appendChild(t);
-
-  toastTimer=setTimeout(()=>{
-    t.remove();
-  },2000);
-}
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function roundRect(ctx,x,y,w,h,r){
-
-  ctx.beginPath();
-
-  ctx.moveTo(x+r,y);
-
-  ctx.arcTo(
-    x+w,
-    y,
-    x+w,
-    y+h,
-    r
-  );
-
-  ctx.arcTo(
-    x+w,
-    y+h,
-    x,
-    y+h,
-    r
-  );
-
-  ctx.arcTo(
-    x,
-    y+h,
-    x,
-    y,
-    r
-  );
-
-  ctx.arcTo(
-    x,
-    y,
-    x+w,
-    y,
-    r
-  );
-
-  ctx.closePath();
-
-  ctx.fill();
-}
-
-
-function updateGameStats(){
-
-  document.getElementById("gameScore")
-    .textContent=road.score;
-
-  document.getElementById("gameCoinCount")
-    .textContent=data.coins;
-}
-
-
-function resetSave(){
-
-  if(!confirm(
-    "Are you sure you want to erase your RainyVerse progress?"
-  )){
-    return;
-  }
-
-  localStorage.removeItem(SAVE_KEY);
-
-  location.reload();
-}
-
-
-/* =========================================================
-   STARTUP
-========================================================= */
-
-document.getElementById("dailyIdea").textContent=
-  ideas[
-    Math.floor(Math.random()*ideas.length)
-  ];
-
-renderProfile();
-renderMainShop();
+drawIsland();
 
 </script>
 
