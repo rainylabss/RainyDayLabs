@@ -2,1372 +2,2314 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      viewport-fit=cover">
-
-<meta name="theme-color" content="#07111f">
-
-<title>RainyVerse 🌧️</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>RainyVerse</title>
 
 <style>
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html {
-  scroll-behavior: smooth;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#07111f,#102a43,#183b56);
+  color:white;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-body {
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(99,179,255,.22),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 20%,
-      rgba(167,139,250,.20),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #07111f,
-      #102746
-    );
-
-  color: white;
-  min-height: 100vh;
-  overflow-x: hidden;
+button{
+  border:0;
+  cursor:pointer;
+  font:inherit;
 }
 
-button,
-a {
-  font-family: inherit;
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:14px 18px;
+  background:rgba(5,12,25,.9);
+  backdrop-filter:blur(14px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-button {
-  cursor: pointer;
+.logo{
+  font-size:25px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
-/* =========================
-   RAIN
-========================= */
-
-.rain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .18;
-
-  background-image:
-    linear-gradient(
-      105deg,
-      transparent 45%,
-      rgba(255,255,255,.7) 46%,
-      transparent 48%
-    );
-
-  background-size: 35px 55px;
-
-  animation:
-    rainMove 1s linear infinite;
+.logo span{
+  color:#65d9ff;
 }
 
-@keyframes rainMove {
+.nav{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+}
 
-  from {
-    background-position: 0 0;
+.nav button{
+  background:#17283b;
+  color:white;
+  padding:9px 13px;
+  border-radius:12px;
+}
+
+.nav button:hover{
+  background:#23415c;
+}
+
+.hero{
+  padding:45px 20px 30px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:clamp(42px,9vw,75px);
+  font-weight:1000;
+  letter-spacing:-3px;
+}
+
+.hero h1 span{
+  color:#63dcff;
+}
+
+.hero p{
+  color:#b9cad9;
+  margin:10px auto 22px;
+  max-width:600px;
+  font-size:17px;
+}
+
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.stat{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  padding:10px 16px;
+  border-radius:15px;
+}
+
+.grid{
+  width:min(1100px,94%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
+  padding-bottom:50px;
+}
+
+.card{
+  background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.045));
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 15px 45px rgba(0,0,0,.18);
+}
+
+.card .icon{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.card h2{
+  margin-bottom:7px;
+}
+
+.card p{
+  color:#aebfd0;
+  line-height:1.5;
+  margin-bottom:17px;
+}
+
+.play{
+  background:linear-gradient(135deg,#55dfff,#398bff);
+  color:#06111d;
+  padding:12px 18px;
+  border-radius:13px;
+  font-weight:900;
+  width:100%;
+}
+
+.secondary{
+  background:#21384d;
+  color:white;
+  padding:11px 16px;
+  border-radius:12px;
+}
+
+#gameOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(1,5,12,.93);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+}
+
+.gameBox{
+  width:min(900px,100%);
+  height:min(850px,96vh);
+  background:#091522;
+  border:1px solid #29455d;
+  border-radius:24px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.gameTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 13px;
+  background:#0e2030;
+  gap:8px;
+}
+
+.gameTitle{
+  font-weight:900;
+}
+
+.gameStats{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.badge{
+  background:#19344a;
+  padding:7px 10px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+.close{
+  background:#c83d52;
+  color:white;
+  padding:8px 11px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.canvasWrap{
+  position:relative;
+  flex:1;
+  min-height:0;
+  background:#1b512d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  touch-action:none;
+}
+
+.controls{
+  padding:12px;
+  background:#0b1926;
+  display:grid;
+  grid-template-columns:repeat(3,65px);
+  justify-content:center;
+  gap:7px;
+}
+
+.controls button{
+  height:55px;
+  border-radius:15px;
+  background:#1b344a;
+  color:white;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.controls button:active{
+  transform:scale(.94);
+  background:#2a526f;
+}
+
+.up{
+  grid-column:2;
+}
+
+.left{
+  grid-column:1;
+  grid-row:2;
+}
+
+.down{
+  grid-column:2;
+  grid-row:2;
+}
+
+.right{
+  grid-column:3;
+  grid-row:2;
+}
+
+.gameMenu{
+  position:absolute;
+  inset:0;
+  background:rgba(2,9,16,.72);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.menuCard{
+  width:min(420px,95%);
+  background:#102437;
+  border:1px solid #34546c;
+  border-radius:25px;
+  padding:25px;
+  text-align:center;
+}
+
+.menuCard h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.menuCard p{
+  color:#b8cbd9;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+
+.menuButtons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.menuButtons button{
+  flex:1;
+  min-width:130px;
+  padding:13px;
+  border-radius:13px;
+}
+
+.primary{
+  background:#58dcff;
+  color:#06111d;
+  font-weight:900;
+}
+
+.shop{
+  background:#e9b83f;
+  color:#231b05;
+  font-weight:900;
+}
+
+#shopPanel{
+  position:absolute;
+  inset:0;
+  background:rgba(3,9,15,.96);
+  display:none;
+  padding:20px;
+  overflow:auto;
+}
+
+.shopHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.shopItems{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+}
+
+.shopItem{
+  background:#142b3e;
+  border:1px solid #29465b;
+  border-radius:18px;
+  padding:15px;
+  text-align:center;
+}
+
+.skinPreview{
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+}
+
+.shopItem h3{
+  margin-bottom:5px;
+}
+
+.shopItem p{
+  color:#9fb3c4;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.shopItem button{
+  width:100%;
+  padding:9px;
+  border-radius:10px;
+  background:#53d9ff;
+  font-weight:bold;
+}
+
+.shopItem button.owned{
+  background:#29445a;
+  color:white;
+}
+
+.islandTools{
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+}
+
+.islandTools button{
+  flex:0 0 auto;
+  background:#102c3e;
+  color:white;
+  border:1px solid #34556c;
+  padding:9px 12px;
+  border-radius:12px;
+}
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:#ecf8ff;
+  color:#071522;
+  padding:12px 18px;
+  border-radius:14px;
+  font-weight:bold;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:300;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.sectionTitle{
+  width:min(1100px,94%);
+  margin:0 auto 16px;
+  font-size:25px;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#7f96aa;
+}
+
+@media(max-width:600px){
+  header{
+    align-items:flex-start;
+    flex-direction:column;
   }
 
-  to {
-    background-position: 35px 55px;
+  .hero{
+    padding-top:30px;
   }
 
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-
-  background:
-    rgba(5,15,28,.78);
-
-  backdrop-filter: blur(20px);
-
-  border-bottom:
-    1px solid rgba(255,255,255,.12);
-}
-
-.nav {
-  width: min(1400px, 100%);
-  margin: auto;
-
-  padding:
-    14px
-    clamp(15px, 4vw, 45px);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 15px;
-}
-
-.logo {
-  font-size:
-    clamp(20px, 3vw, 30px);
-
-  font-weight: 950;
-  letter-spacing: -1px;
-}
-
-.logo span {
-  background:
-    linear-gradient(
-      90deg,
-      #63b3ff,
-      #a78bfa,
-      #f0abfc
-    );
-
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-button {
-  border: 0;
-  border-radius: 14px;
-
-  padding:
-    11px
-    clamp(11px, 2vw, 17px);
-
-  background: rgba(255,255,255,.08);
-  color: white;
-
-  font-weight: 800;
-  font-size: 14px;
-
-  transition: .2s;
-}
-
-.nav-button:hover {
-  background: rgba(255,255,255,.16);
-  transform: translateY(-2px);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  position: relative;
-  z-index: 1;
-
-  min-height:
-    min(760px, 90vh);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  padding:
-    clamp(60px, 10vw, 120px)
-    20px;
-}
-
-.hero-content {
-  width: min(950px, 100%);
-}
-
-.badge {
-  display: inline-block;
-
-  padding: 10px 17px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255,255,255,.09);
-
-  border:
-    1px solid rgba(255,255,255,.14);
-
-  color: #c9d8ea;
-
-  font-weight: 700;
-
-  margin-bottom: 25px;
-}
-
-.hero h1 {
-  font-size:
-    clamp(3.3rem, 12vw, 9rem);
-
-  line-height: .88;
-
-  letter-spacing:
-    clamp(-7px, -1vw, -3px);
-
-  margin-bottom: 28px;
-}
-
-.gradient {
-  background:
-    linear-gradient(
-      90deg,
-      #63b3ff,
-      #a78bfa,
-      #f0abfc
-    );
-
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-.hero p {
-  max-width: 680px;
-  margin: auto;
-
-  color: #aebdd0;
-
-  font-size:
-    clamp(16px, 2vw, 21px);
-
-  line-height: 1.6;
-}
-
-.hero-buttons {
-  margin-top: 35px;
-
-  display: flex;
-  justify-content: center;
-
-  gap: 13px;
-
-  flex-wrap: wrap;
-}
-
-.primary,
-.secondary {
-  border-radius: 16px;
-
-  padding:
-    15px
-    clamp(18px, 3vw, 26px);
-
-  font-size:
-    clamp(15px, 2vw, 18px);
-
-  font-weight: 900;
-
-  transition: .2s;
-}
-
-.primary {
-  border: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      #63b3ff,
-      #8f7df5
-    );
-
-  color: white;
-
-  box-shadow:
-    0 10px 35px
-    rgba(99,179,255,.25);
-}
-
-.secondary {
-  background:
-    rgba(255,255,255,.08);
-
-  color: white;
-
-  border:
-    1px solid rgba(255,255,255,.15);
-}
-
-.primary:hover,
-.secondary:hover {
-  transform: translateY(-3px) scale(1.02);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-main {
-  position: relative;
-  z-index: 2;
-
-  width: min(1400px, 100%);
-
-  margin: auto;
-
-  padding:
-    20px
-    clamp(15px, 4vw, 45px)
-    90px;
-}
-
-.section {
-  margin-top:
-    clamp(55px, 8vw, 90px);
-}
-
-.section-title {
-  margin-bottom: 22px;
-}
-
-.section-title h2 {
-  font-size:
-    clamp(28px, 4vw, 40px);
-}
-
-.section-title p {
-  margin-top: 5px;
-  color: #aebdd0;
-}
-
-/* =========================
-   STATS
-========================= */
-
-.stats {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 15px;
-}
-
-.stat {
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  border-radius: 22px;
-
-  padding: 24px;
-
-  text-align: center;
-
-  backdrop-filter: blur(15px);
-}
-
-.stat strong {
-  display: block;
-
-  font-size:
-    clamp(28px, 5vw, 42px);
-
-  margin-bottom: 4px;
-}
-
-/* =========================
-   GAME CARDS
-========================= */
-
-.game-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 20px;
-}
-
-.game-card {
-  position: relative;
-
-  min-height: 360px;
-
-  padding: 28px;
-
-  border-radius: 28px;
-
-  overflow: hidden;
-
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  backdrop-filter: blur(15px);
-
-  transition:
-    transform .25s,
-    background .25s;
-}
-
-.game-card:hover {
-  transform:
-    translateY(-8px);
-
-  background:
-    rgba(255,255,255,.13);
-}
-
-.game-icon {
-  font-size:
-    clamp(55px, 7vw, 85px);
-
-  margin-bottom: 20px;
-}
-
-.game-card h3 {
-  font-size:
-    clamp(24px, 3vw, 32px);
-
-  margin-bottom: 10px;
-}
-
-.game-card p {
-  color: #aebdd0;
-
-  line-height: 1.55;
-
-  min-height: 75px;
-}
-
-.game-button {
-  margin-top: 22px;
-
-  width: 100%;
-
-  padding: 15px;
-
-  border: 0;
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #63b3ff,
-      #8f7df5
-    );
-
-  color: white;
-
-  font-size: 17px;
-
-  font-weight: 900;
-}
-
-/* =========================
-   DISCOVER
-========================= */
-
-.discover-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 18px;
-}
-
-.discover-card {
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  border-radius: 24px;
-
-  padding: 25px;
-
-  backdrop-filter: blur(15px);
-}
-
-.discover-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
-}
-
-.discover-card h3 {
-  font-size: 23px;
-  margin-bottom: 8px;
-}
-
-.discover-card p {
-  color: #aebdd0;
-  line-height: 1.5;
-}
-
-/* =========================
-   WEBSITES
-========================= */
-
-.website-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 20px;
-}
-
-.website {
-  padding: 28px;
-
-  border-radius: 25px;
-
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-}
-
-.website h3 {
-  font-size: 25px;
-}
-
-.website p {
-  color: #aebdd0;
-  margin-top: 5px;
-}
-
-.website a {
-  flex-shrink: 0;
-
-  text-decoration: none;
-
-  background:
-    rgba(255,255,255,.12);
-
-  color: white;
-
-  padding: 13px 18px;
-
-  border-radius: 14px;
-
-  font-weight: 900;
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile {
-  padding: 30px;
-
-  border-radius: 28px;
-
-  background:
-    rgba(255,255,255,.08);
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 20px;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-
-  flex-shrink: 0;
-
-  border-radius: 24px;
-
-  display: grid;
-  place-items: center;
-
-  font-size: 40px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #63b3ff,
-      #a78bfa
-    );
-}
-
-.profile h2 {
-  font-size:
-    clamp(23px, 4vw, 32px);
-}
-
-.profile p {
-  color: #aebdd0;
-  margin-top: 4px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  position: relative;
-  z-index: 2;
-
-  padding:
-    50px 20px;
-
-  text-align: center;
-
-  border-top:
-    1px solid rgba(255,255,255,.12);
-
-  color: #aebdd0;
-}
-
-footer h2 {
-  color: white;
-}
-
-/* =========================
-   TOAST
-========================= */
-
-.toast {
-  position: fixed;
-
-  bottom: 25px;
-  left: 50%;
-
-  transform:
-    translate(-50%, 120px);
-
-  background:
-    rgba(10,25,42,.95);
-
-  color: white;
-
-  padding: 14px 20px;
-
-  border-radius: 16px;
-
-  z-index: 100;
-
-  transition: .3s;
-
-  border:
-    1px solid rgba(255,255,255,.15);
-
-  max-width: 90%;
-
-  text-align: center;
-
-  font-weight: 700;
-}
-
-.toast.show {
-  transform:
-    translate(-50%, 0);
-}
-
-/* =========================
-   TABLET
-========================= */
-
-@media(max-width: 900px) {
-
-  .game-grid,
-  .discover-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+  .gameBox{
+    height:100vh;
+    border-radius:0;
   }
 
+  #gameOverlay{
+    padding:0;
+  }
+
+  .controls{
+    grid-template-columns:repeat(3,70px);
+  }
 }
-
-/* =========================
-   PHONE
-========================= */
-
-@media(max-width: 650px) {
-
-  .nav {
-    flex-direction: column;
-  }
-
-  .nav-buttons {
-    width: 100%;
-  }
-
-  .nav-button {
-    flex: 1;
-  }
-
-  .stats,
-  .game-grid,
-  .discover-grid,
-  .website-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: 650px;
-  }
-
-  .hero h1 {
-    letter-spacing: -4px;
-  }
-
-  .profile {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .website {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .website a {
-    width: 100%;
-    text-align: center;
-  }
-
-}
-
-/* =========================
-   TV / LARGE SCREENS
-========================= */
-
-@media(min-width: 1600px) {
-
-  body {
-    font-size: 19px;
-  }
-
-  .nav,
-  main {
-    max-width: 1700px;
-  }
-
-  .game-card {
-    min-height: 430px;
-    padding: 40px;
-  }
-
-  .game-icon {
-    font-size: 100px;
-  }
-
-  .primary,
-  .secondary,
-  .game-button {
-    padding: 19px 30px;
-    font-size: 20px;
-  }
-
-}
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media(prefers-reduced-motion: reduce) {
-
-  * {
-    scroll-behavior: auto !important;
-    animation: none !important;
-    transition: none !important;
-  }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="rain"></div>
-
 <header>
+  <div class="logo">🌧️ Rainy<span>Verse</span></div>
 
-  <div class="nav">
-
-    <div class="logo">
-      🌧️ <span>RainyVerse</span>
-    </div>
-
-    <div class="nav-buttons">
-
-      <button
-        class="nav-button"
-        onclick="scrollToSection('games')">
-        🎮 Games
-      </button>
-
-      <button
-        class="nav-button"
-        onclick="scrollToSection('discover')">
-        ✨ Discover
-      </button>
-
-      <button
-        class="nav-button"
-        onclick="scrollToSection('websites')">
-        🌐 Websites
-      </button>
-
-      <button
-        class="nav-button"
-        onclick="scrollToSection('profile')">
-        👤 Profile
-      </button>
-
-    </div>
-
-  </div>
-
+  <nav class="nav">
+    <button onclick="scrollToSection('games')">🎮 Games</button>
+    <button onclick="scrollToSection('discover')">✨ Discover</button>
+    <button onclick="scrollToSection('projects')">🛠️ Projects</button>
+  </nav>
 </header>
 
 <section class="hero">
+  <h1>Welcome to <span>RainyVerse</span></h1>
+  <p>
+    Your little corner of the internet for games, challenges,
+    creating, exploring and random rainy-day fun.
+  </p>
 
-  <div class="hero-content">
+  <div class="stats">
+    <div class="stat">🪙 <b id="coinDisplay">0</b> RainCoins</div>
+    <div class="stat">🏆 <b id="roadHighDisplay">0</b> Road High Score</div>
+    <div class="stat">🏝️ Island Builder</div>
+  </div>
+</section>
 
-    <div class="badge">
-      ☁️ Your little corner of the internet
-    </div>
+<h2 class="sectionTitle" id="games">🎮 Games</h2>
 
-    <h1>
-      Welcome to<br>
-      <span class="gradient">RainyVerse.</span>
-    </h1>
+<section class="grid">
 
+  <div class="card">
+    <div class="icon">🚗</div>
+    <h2>Rainy Road</h2>
     <p>
-      Play games, explore new ideas, discover
-      cool projects and create your own little
-      universe.
+      Cross busy roads, dodge cars, collect coins and keep going.
+      Every lane has different traffic.
     </p>
+    <button class="play" onclick="openRoad()">PLAY RAINY ROAD</button>
+  </div>
 
-    <div class="hero-buttons">
+  <div class="card">
+    <div class="icon">🏝️</div>
+    <h2>Rainy Island</h2>
+    <p>
+      Build your own island. Buy trees, houses, flowers and
+      decorations and actually place them on your island.
+    </p>
+    <button class="play" onclick="openIsland()">BUILD ISLAND</button>
+  </div>
 
-      <button
-        class="primary"
-        onclick="scrollToSection('games')">
-        🎮 Play RainyVerse
-      </button>
+  <div class="card">
+    <div class="icon">❓</div>
+    <h2>Rainy Quiz</h2>
+    <p>Test yourself with random questions and earn RainCoins.</p>
+    <button class="play" onclick="startQuiz()">START QUIZ</button>
+  </div>
 
-      <button
-        class="secondary"
-        onclick="dailyChallenge()">
-        ✨ Daily Challenge
-      </button>
-
-    </div>
-
+  <div class="card">
+    <div class="icon">🎲</div>
+    <h2>Random Generator</h2>
+    <p>Need something random to do? Let RainyVerse decide.</p>
+    <button class="play" onclick="randomIdea()">RANDOM IDEA</button>
   </div>
 
 </section>
 
-<main>
-
-  <!-- STATS -->
-
-  <section class="stats">
-
-    <div class="stat">
-      <strong id="points">0</strong>
-      RainPoints
-    </div>
-
-    <div class="stat">
-      <strong id="level">1</strong>
-      Level
-    </div>
-
-    <div class="stat">
-      <strong id="streak">0</strong>
-      Day Streak 🔥
-    </div>
-
-  </section>
-
-  <!-- GAMES -->
-
-  <section
-    class="section"
-    id="games">
-
-    <div class="section-title">
-
-      <h2>🎮 RainyVerse Games</h2>
-
-      <p>
-        Actual playable games — not emoji screens. 😭
-      </p>
-
-    </div>
-
-    <div class="game-grid">
-
-      <!-- RAINY RUSH -->
-
-      <div class="game-card">
-
-        <div class="game-icon">
-          🌧️
-        </div>
-
-        <h3>
-          Rainy Rush
-        </h3>
-
-        <p>
-          Cross roads, dodge traffic,
-          collect coins and see how far
-          you can survive.
-        </p>
-
-        <button
-          class="game-button"
-          onclick="openGame('rainy-rush.html')">
-          🎮 Play Rainy Rush
-        </button>
-
-      </div>
-
-      <!-- PET PANIC -->
-
-      <div class="game-card">
-
-        <div class="game-icon">
-          🐾
-        </div>
-
-        <h3>
-          Pet Panic
-        </h3>
-
-        <p>
-          Look after your pet, feed them,
-          play with them and keep their
-          happiness levels up.
-        </p>
-
-        <button
-          class="game-button"
-          onclick="openGame('pet-panic.html')">
-          🐾 Play Pet Panic
-        </button>
-
-      </div>
-
-      <!-- RAINY ISLAND -->
-
-      <div class="game-card">
-
-        <div class="game-icon">
-          🏝️
-        </div>
-
-        <h3>
-          Rainy Island
-        </h3>
-
-        <p>
-          Explore a huge island,
-          discover different areas and
-          hunt for hidden treasure.
-        </p>
-
-        <button
-          class="game-button"
-          onclick="openGame('rainy-island.html')">
-          🏝️ Explore Island
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- DISCOVER -->
-
-  <section
-    class="section"
-    id="discover">
-
-    <div class="section-title">
-
-      <h2>✨ Discover</h2>
-
-      <p>
-        Things to explore around RainyVerse.
-      </p>
-
-    </div>
-
-    <div class="discover-grid">
-
-      <div class="discover-card">
-
-        <div class="discover-icon">
-          🧁
-        </div>
-
-        <h3>
-          Baking
-        </h3>
-
-        <p>
-          Recipes, cookies, cakes and
-          completely random baking ideas.
-        </p>
-
-      </div>
-
-      <div class="discover-card">
-
-        <div class="discover-icon">
-          🎨
-        </div>
-
-        <h3>
-          DIY
-        </h3>
-
-        <p>
-          Crafts, creative projects and
-          things you can make yourself.
-        </p>
-
-      </div>
-
-      <div class="discover-card">
-
-        <div class="discover-icon">
-          🌿
-        </div>
-
-        <h3>
-          Nature
-        </h3>
-
-        <p>
-          Explore the outdoors and discover
-          interesting places and creatures.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- OTHER WEBSITES -->
-
-  <section
-    class="section"
-    id="websites">
-
-    <div class="section-title">
-
-      <h2>🌐 More Rainy Websites</h2>
-
-      <p>
-        Jump between your Rainy projects.
-      </p>
-
-    </div>
-
-    <div class="website-grid">
-
-      <div class="website">
-
-        <div>
-
-          <h3>
-            💼 RainyEmps
-          </h3>
-
-          <p>
-            Your RainyVerse gaming project.
-          </p>
-
-        </div>
-
-        <a
-          href="https://rainylabss.github.io/RainyEmps/"
-          target="_blank"
-          rel="noopener">
-          Open →
-        </a>
-
-      </div>
-
-      <div class="website">
-
-        <div>
-
-          <h3>
-            📰 RainyNews
-          </h3>
-
-          <p>
-            Stories, trends and interesting news.
-          </p>
-
-        </div>
-
-        <a
-          href="https://rainylabss.github.io/RainyNews/"
-          target="_blank"
-          rel="noopener">
-          Open →
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- PROFILE -->
-
-  <section
-    class="section"
-    id="profile">
-
-    <div class="section-title">
-
-      <h2>👤 Your Profile</h2>
-
-    </div>
-
-    <div class="profile">
-
-      <div class="avatar">
-        🌧️
-      </div>
-
-      <div>
-
-        <h2>
-          RainyVerse Explorer
-        </h2>
-
-        <p>
-          Level
-          <span id="profileLevel">
-            1
-          </span>
-          explorer
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
+<h2 class="sectionTitle" id="discover">✨ Discover</h2>
+
+<section class="grid">
+
+  <div class="card">
+    <div class="icon">🍪</div>
+    <h2>Baking</h2>
+    <p>Find something delicious to make when you're bored.</p>
+    <button class="secondary" onclick="bakingIdea()">Give Me A Bake</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🎨</div>
+    <h2>DIY</h2>
+    <p>Random creative projects using things you might already have.</p>
+    <button class="secondary" onclick="diyIdea()">Give Me A DIY</button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🐶</div>
+    <h2>Pet Ideas</h2>
+    <p>Fun pet-themed ideas, names and challenges.</p>
+    <button class="secondary" onclick="petIdea()">Random Pet Idea</button>
+  </div>
+
+</section>
+
+<h2 class="sectionTitle" id="projects">🛠️ Rainy Projects</h2>
+
+<section class="grid">
+
+  <div class="card">
+    <div class="icon">🧪</div>
+    <h2>RainyDayLabs</h2>
+    <p>Your experiments, websites, ideas and creations.</p>
+    <button class="secondary" onclick="projectInfo('RainyDayLabs')">
+      OPEN PROJECT
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="icon">📰</div>
+    <h2>RainyNews</h2>
+    <p>A future home for your own news-style project.</p>
+    <button class="secondary" onclick="projectInfo('RainyNews')">
+      OPEN PROJECT
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="icon">🐾</div>
+    <h2>PetAGram</h2>
+    <p>A pet-focused social-style project.</p>
+    <button class="secondary" onclick="projectInfo('PetAGram')">
+      OPEN PROJECT
+    </button>
+  </div>
+
+</section>
 
 <footer>
-
-  <h2>
-    🌧️ RainyVerse
-  </h2>
-
-  <p>
-    Games • Creativity • Discovery • Fun
-  </p>
-
-  <p style="margin-top:15px">
-    © 2026 RainyVerse
-  </p>
-
+  🌧️ RainyVerse • Play. Create. Explore. Repeat.
 </footer>
 
-<div
-  class="toast"
-  id="toast">
+
+<!-- GAME WINDOW -->
+
+<div id="gameOverlay">
+
+  <div class="gameBox">
+
+    <div class="gameTop">
+      <div class="gameTitle" id="gameTitle">Rainy Road</div>
+
+      <div class="gameStats">
+        <div class="badge">⭐ <span id="score">0</span></div>
+        <div class="badge">🪙 <span id="gameCoins">0</span></div>
+        <button class="close" onclick="closeGame()">✕</button>
+      </div>
+    </div>
+
+    <div class="canvasWrap">
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- START / GAME OVER MENU -->
+
+      <div class="gameMenu" id="roadMenu">
+        <div class="menuCard">
+          <h2 id="roadMenuTitle">🚗 Rainy Road</h2>
+
+          <p id="roadMenuText">
+            Move one space at a time. Dodge the traffic,
+            cross the roads and collect coins.
+          </p>
+
+          <div class="menuButtons">
+            <button class="primary" onclick="startRoad()">
+              PLAY
+            </button>
+
+            <button class="shop" onclick="openRoadShop()">
+              🛍️ SHOP
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOP -->
+
+      <div id="shopPanel">
+        <div class="shopHead">
+          <h2>🛍️ Character Shop</h2>
+          <button class="close" onclick="closeRoadShop()">✕</button>
+        </div>
+
+        <p style="color:#a9bdcd;margin-bottom:18px;">
+          Coins: 🪙 <b id="shopCoins">0</b>
+        </p>
+
+        <div class="shopItems" id="shopItems"></div>
+      </div>
+
+      <!-- ISLAND TOOLS -->
+
+      <div class="islandTools" id="islandTools" style="display:none;"></div>
+    </div>
+
+    <div class="controls" id="roadControls">
+      <button class="up" onclick="movePlayer(0,-1)">⬆️</button>
+      <button class="left" onclick="movePlayer(-1,0)">⬅️</button>
+      <button class="down" onclick="movePlayer(0,1)">⬇️</button>
+      <button class="right" onclick="movePlayer(1,0)">➡️</button>
+    </div>
+
+  </div>
+
 </div>
 
+<div class="toast" id="toast"></div>
+
+
 <script>
+/* =========================================================
+   RAINYVERSE DATA
+========================================================= */
 
-/* =========================
-   SAVED DATA
-========================= */
+const saveKey = "rainyverse_save_v3";
 
-let points =
-  Number(
-    localStorage.getItem(
-      "rainPoints"
-    )
-  ) || 0;
+let save = JSON.parse(localStorage.getItem(saveKey) || "{}");
 
-let streak =
-  Number(
-    localStorage.getItem(
-      "rainStreak"
-    )
-  ) || 0;
+save.coins ??= 0;
+save.roadHigh ??= 0;
+save.skin ??= "blue";
+save.ownedSkins ??= ["blue"];
+save.island ??= [];
+save.islandCoins ??= 0;
 
-
-/* =========================
-   STATS
-========================= */
-
-function updateStats() {
-
-  document.getElementById(
-    "points"
-  ).textContent = points;
-
-  const level =
-    Math.floor(points / 500) + 1;
-
-  document.getElementById(
-    "level"
-  ).textContent = level;
-
-  document.getElementById(
-    "profileLevel"
-  ).textContent = level;
-
-  document.getElementById(
-    "streak"
-  ).textContent = streak;
-
+function saveGame(){
+  localStorage.setItem(saveKey, JSON.stringify(save));
+  updateDisplays();
 }
 
+function updateDisplays(){
+  document.getElementById("coinDisplay").textContent = save.coins;
+  document.getElementById("roadHighDisplay").textContent = save.roadHigh;
+  document.getElementById("gameCoins").textContent = save.coins;
+}
 
-/* =========================
-   SCROLL
-========================= */
+function toast(message){
+  const t = document.getElementById("toast");
 
-function scrollToSection(id) {
+  t.textContent = message;
+  t.classList.add("show");
 
-  const section =
-    document.getElementById(id);
+  clearTimeout(window.toastTimer);
 
-  if(!section) return;
+  window.toastTimer = setTimeout(()=>{
+    t.classList.remove("show");
+  },2200);
+}
 
-  section.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({
+    behavior:"smooth"
   });
-
 }
 
 
-/* =========================
-   OPEN GAME
-========================= */
+/* =========================================================
+   GAME SETUP
+========================================================= */
 
-function openGame(page) {
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-  points += 10;
+let currentGame = null;
 
-  localStorage.setItem(
-    "rainPoints",
-    points
+function resizeCanvas(){
+  const rect = canvas.getBoundingClientRect();
+
+  canvas.width = Math.max(320, Math.floor(rect.width));
+  canvas.height = Math.max(320, Math.floor(rect.height));
+
+  if(currentGame === "island"){
+    drawIsland();
+  }
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+
+/* =========================================================
+   RAINY ROAD
+========================================================= */
+
+let road = {
+  running:false,
+  score:0,
+  player:null,
+  lanes:[],
+  coins:[],
+  frame:0,
+  camera:0
+};
+
+const skins = {
+  blue:{
+    name:"Rainy",
+    price:0,
+    body:"#4fc8ff",
+    hat:"#dff8ff"
+  },
+
+  yellow:{
+    name:"Sunny",
+    price:50,
+    body:"#ffd34e",
+    hat:"#ffef9d"
+  },
+
+  pink:{
+    name:"Berry",
+    price:100,
+    body:"#ff72ba",
+    hat:"#ffc6e4"
+  },
+
+  green:{
+    name:"Froggo",
+    price:175,
+    body:"#69e36b",
+    hat:"#b8ffb5"
+  },
+
+  purple:{
+    name:"Storm",
+    price:300,
+    body:"#a875ff",
+    hat:"#dfcaff"
+  },
+
+  orange:{
+    name:"Mango",
+    price:450,
+    body:"#ff934f",
+    hat:"#ffd0a8"
+  }
+};
+
+function openRoad(){
+
+  currentGame = "road";
+
+  document.getElementById("gameOverlay").style.display = "flex";
+  document.getElementById("gameTitle").textContent = "🚗 Rainy Road";
+
+  document.getElementById("roadMenu").style.display = "flex";
+  document.getElementById("roadMenuTitle").textContent = "🚗 Rainy Road";
+  document.getElementById("roadMenuText").textContent =
+    "Cross the roads, dodge cars, collect coins and beat your high score.";
+
+  document.getElementById("shopPanel").style.display = "none";
+  document.getElementById("roadControls").style.display = "grid";
+  document.getElementById("islandTools").style.display = "none";
+
+  resizeCanvas();
+  resetRoad();
+  drawRoad();
+
+  updateDisplays();
+}
+
+function resetRoad(){
+
+  road.running = false;
+  road.score = 0;
+  road.frame = 0;
+  road.camera = 0;
+
+  road.player = {
+    x:Math.floor(7/2),
+    lane:0,
+    width:.72,
+    skin:save.skin
+  };
+
+  road.lanes = [];
+  road.coins = [];
+
+  /*
+    Generate lots of lanes.
+    This fixes the old problem where there was
+    basically one empty road.
+  */
+
+  for(let i=0;i<80;i++){
+
+    let type;
+
+    if(i < 2){
+      type = "grass";
+    }else{
+      const r = Math.random();
+
+      if(r < .57) type = "road";
+      else if(r < .76) type = "grass";
+      else type = "water";
+    }
+
+    const lane = {
+      index:i,
+      type:type,
+      speed:0,
+      direction:Math.random()<.5 ? 1 : -1,
+      vehicles:[],
+      logs:[]
+    };
+
+    if(type === "road"){
+
+      lane.speed =
+        0.8 +
+        Math.random()*1.3 +
+        i/90;
+
+      const amount = 2 + Math.floor(Math.random()*3);
+
+      for(let j=0;j<amount;j++){
+
+        lane.vehicles.push({
+          x:j*(canvas.width/amount)+Math.random()*100,
+          width:50+Math.random()*45,
+          height:28,
+          speed:lane.speed*(.7+Math.random()*.6),
+          type:Math.random()<.18 ? "truck" : "car"
+        });
+      }
+    }
+
+    if(type === "water"){
+
+      lane.speed =
+        .45 +
+        Math.random()*.5;
+
+      const amount = 2 + Math.floor(Math.random()*2);
+
+      for(let j=0;j<amount;j++){
+
+        lane.logs.push({
+          x:j*(canvas.width/amount)+Math.random()*80,
+          width:80+Math.random()*45,
+          speed:lane.speed
+        });
+      }
+    }
+
+    road.lanes.push(lane);
+
+    if(i>2 && Math.random()<.4){
+      road.coins.push({
+        lane:i,
+        x:Math.floor(Math.random()*7),
+        collected:false
+      });
+    }
+  }
+}
+
+function startRoad(){
+
+  resetRoad();
+
+  road.running = true;
+
+  document.getElementById("roadMenu").style.display = "none";
+
+  resizeCanvas();
+
+  requestAnimationFrame(roadLoop);
+}
+
+function roadLoop(){
+
+  if(!road.running) return;
+
+  road.frame++;
+
+  updateRoad();
+
+  drawRoad();
+
+  requestAnimationFrame(roadLoop);
+}
+
+function updateRoad(){
+
+  const lane = road.lanes[road.player.lane];
+
+  if(!lane) return;
+
+  if(lane.type === "road"){
+
+    for(const car of lane.vehicles){
+
+      car.x += lane.direction * car.speed;
+
+      if(lane.direction > 0 && car.x > canvas.width+100){
+        car.x = -car.width-100;
+      }
+
+      if(lane.direction < 0 && car.x < -car.width-100){
+        car.x = canvas.width+100;
+      }
+
+      const playerX =
+        road.player.x * (canvas.width/7) +
+        canvas.width/14;
+
+      const playerWidth =
+        canvas.width/7 * .58;
+
+      const playerY =
+        canvas.height*.76;
+
+      const carY =
+        canvas.height*.76;
+
+      if(
+        Math.abs(playerX-car.x-car.width/2)
+          < (playerWidth+car.width)/2 &&
+        Math.abs(playerY-carY)
+          < 27
+      ){
+        roadGameOver();
+        return;
+      }
+    }
+  }
+
+  if(lane.type === "water"){
+
+    let standingOnLog = false;
+
+    for(const log of lane.logs){
+
+      log.x += lane.direction * log.speed;
+
+      if(lane.direction > 0 && log.x > canvas.width+120){
+        log.x = -log.width-120;
+      }
+
+      if(lane.direction < 0 && log.x < -log.width-120){
+        log.x = canvas.width+120;
+      }
+
+      const playerX =
+        road.player.x * (canvas.width/7) +
+        canvas.width/14;
+
+      if(
+        playerX > log.x &&
+        playerX < log.x+log.width
+      ){
+        standingOnLog = true;
+      }
+    }
+
+    if(!standingOnLog){
+      roadGameOver();
+      return;
+    }
+  }
+}
+
+function movePlayer(dx,dy){
+
+  if(currentGame !== "road") return;
+  if(!road.running) return;
+
+  const oldLane = road.player.lane;
+
+  road.player.x += dx;
+  road.player.lane += dy;
+
+  road.player.x =
+    Math.max(0,Math.min(6,road.player.x));
+
+  road.player.lane =
+    Math.max(0,Math.min(road.lanes.length-1,road.player.lane));
+
+  /*
+    Only award score when moving forwards.
+  */
+
+  if(dy < 0 && road.player.lane > oldLane){
+
+    road.score++;
+
+    if(road.score > save.roadHigh){
+      save.roadHigh = road.score;
+    }
+
+    /*
+      Give coins every few lanes.
+    */
+
+    if(road.score % 4 === 0){
+
+      save.coins++;
+      toast("🪙 +1 RainCoin!");
+    }
+  }
+
+  /*
+    Collect lane coins.
+  */
+
+  for(const coin of road.coins){
+
+    if(
+      !coin.collected &&
+      coin.lane === road.player.lane &&
+      coin.x === road.player.x
+    ){
+      coin.collected = true;
+      save.coins += 5;
+      toast("🪙 +5 RainCoins!");
+    }
+  }
+
+  saveGame();
+  updateDisplays();
+}
+
+function roadGameOver(){
+
+  if(!road.running) return;
+
+  road.running = false;
+
+  document.getElementById("roadMenu").style.display = "flex";
+
+  document.getElementById("roadMenuTitle").textContent =
+    "💥 GAME OVER";
+
+  document.getElementById("roadMenuText").innerHTML =
+    `You reached <b>${road.score}</b> lanes!<br><br>
+     High score: <b>${save.roadHigh}</b><br>
+     RainCoins: <b>${save.coins}</b>`;
+
+  saveGame();
+}
+
+
+/* =========================================================
+   ROAD DRAWING
+========================================================= */
+
+function drawRoad(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const laneHeight = Math.max(55,canvas.height/7);
+
+  /*
+    Draw the world around the player.
+  */
+
+  for(let row=0;row<8;row++){
+
+    const laneIndex =
+      road.player.lane - 4 + row;
+
+    const lane =
+      road.lanes[Math.max(0,laneIndex)];
+
+    if(!lane) continue;
+
+    const y = row*laneHeight;
+
+    if(lane.type === "grass"){
+      drawGrass(y,laneHeight);
+    }
+
+    if(lane.type === "road"){
+      drawRoadLane(y,laneHeight,lane);
+    }
+
+    if(lane.type === "water"){
+      drawWater(y,laneHeight,lane);
+    }
+  }
+
+  /*
+    Roadside details.
+  */
+
+  drawRoadDetails(laneHeight);
+
+  /*
+    Player stays near bottom.
+  */
+
+  drawPlayer(
+    canvas.width/7*road.player.x + canvas.width/14,
+    canvas.height*.76
   );
 
-  updateStats();
+  /*
+    Score at top.
+  */
 
-  window.location.href = page;
-
-}
-
-
-/* =========================
-   DAILY CHALLENGE
-========================= */
-
-function dailyChallenge() {
-
-  scrollToSection("games");
-
-  showToast(
-    "🎮 Your mission: play a RainyVerse game!"
+  ctx.fillStyle="rgba(0,0,0,.35)";
+  roundRect(
+    ctx,
+    10,
+    10,
+    120,
+    38,
+    12
   );
 
+  ctx.fillStyle="white";
+  ctx.font="bold 17px Arial";
+  ctx.fillText(
+    "⭐ "+road.score,
+    23,
+    35
+  );
 }
 
+function drawGrass(y,h){
 
-/* =========================
-   TOAST
-========================= */
+  ctx.fillStyle="#238447";
+  ctx.fillRect(0,y,canvas.width,h);
 
-function showToast(message) {
+  /*
+    Grass texture.
+  */
 
-  const toast =
-    document.getElementById(
-      "toast"
+  for(let x=0;x<canvas.width;x+=32){
+
+    const yy =
+      y+15+((x*17)%Math.max(15,h-20));
+
+    ctx.strokeStyle="#3da85b";
+    ctx.lineWidth=2;
+
+    ctx.beginPath();
+    ctx.moveTo(x,yy+8);
+    ctx.lineTo(x+3,yy);
+    ctx.stroke();
+  }
+}
+
+function drawRoadLane(y,h,lane){
+
+  ctx.fillStyle="#313941";
+  ctx.fillRect(0,y,canvas.width,h);
+
+  /*
+    Side lines.
+  */
+
+  ctx.fillStyle="#eee";
+  ctx.fillRect(0,y+3,canvas.width,3);
+  ctx.fillRect(0,y+h-6,canvas.width,3);
+
+  /*
+    Dashed lane markings.
+  */
+
+  ctx.strokeStyle="#f6d86b";
+  ctx.lineWidth=3;
+  ctx.setLineDash([25,25]);
+
+  ctx.beginPath();
+  ctx.moveTo(0,y+h/2);
+  ctx.lineTo(canvas.width,y+h/2);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+  /*
+    Vehicles.
+  */
+
+  for(const car of lane.vehicles){
+
+    const cy = y+h/2;
+
+    drawCar(
+      car.x,
+      cy,
+      car.width,
+      car.height,
+      lane.direction,
+      car.type
+    );
+  }
+}
+
+function drawWater(y,h,lane){
+
+  ctx.fillStyle="#217ea1";
+  ctx.fillRect(0,y,canvas.width,h);
+
+  /*
+    Waves.
+  */
+
+  ctx.strokeStyle="rgba(190,240,255,.35)";
+  ctx.lineWidth=2;
+
+  for(let x=0;x<canvas.width;x+=45){
+
+    ctx.beginPath();
+    ctx.moveTo(x,y+h*.3);
+    ctx.quadraticCurveTo(
+      x+10,
+      y+h*.15,
+      x+20,
+      y+h*.3
+    );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(x+20,y+h*.7);
+    ctx.quadraticCurveTo(
+      x+30,
+      y+h*.55,
+      x+40,
+      y+h*.7
+    );
+    ctx.stroke();
+  }
+
+  for(const log of lane.logs){
+
+    drawLog(
+      log.x,
+      y+h/2,
+      log.width
+    );
+  }
+}
+
+function drawCar(x,y,w,h,direction,type){
+
+  ctx.save();
+
+  ctx.translate(x,y);
+
+  if(direction < 0){
+    ctx.scale(-1,1);
+  }
+
+  /*
+    Shadow.
+  */
+
+  ctx.fillStyle="rgba(0,0,0,.25)";
+  roundRect(
+    ctx,
+    -w/2+3,
+    -h/2+5,
+    w,
+    h,
+    7
+  );
+
+  const colours =
+    type==="truck"
+      ? ["#e45454","#4e8de5","#e9b93e","#b56ce5"][Math.floor((x/50)%4)]
+      : ["#ff5252","#4c9cff","#ffd34e","#65d77c","#e86ec4"][Math.floor((Math.abs(x)/40)%5)];
+
+  ctx.fillStyle=colours;
+
+  roundRect(
+    ctx,
+    -w/2,
+    -h/2,
+    w,
+    h,
+    7
+  );
+
+  /*
+    Windows.
+  */
+
+  ctx.fillStyle="#bde9f4";
+
+  if(type==="truck"){
+
+    roundRect(
+      ctx,
+      w*.03,
+      -h*.35,
+      w*.27,
+      h*.45,
+      4
     );
 
-  toast.textContent =
-    message;
+    roundRect(
+      ctx,
+      -w*.30,
+      -h*.35,
+      w*.24,
+      h*.45,
+      4
+    );
 
-  toast.classList.add(
-    "show"
+  }else{
+
+    roundRect(
+      ctx,
+      -w*.12,
+      -h*.35,
+      w*.45,
+      h*.45,
+      4
+    );
+  }
+
+  /*
+    Wheels.
+  */
+
+  ctx.fillStyle="#10151a";
+
+  ctx.beginPath();
+  ctx.arc(-w*.28,h*.48,6,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(w*.28,h*.48,6,0,Math.PI*2);
+  ctx.fill();
+
+  /*
+    Lights.
+  */
+
+  ctx.fillStyle="#fff1a8";
+  ctx.fillRect(w*.42,-h*.3,4,6);
+
+  ctx.restore();
+}
+
+function drawLog(x,y,w){
+
+  ctx.fillStyle="#7c4b2a";
+
+  roundRect(
+    ctx,
+    x,
+    y-13,
+    w,
+    26,
+    11
   );
 
-  setTimeout(
-    () => {
-      toast.classList.remove(
-        "show"
-      );
-    },
-    2500
+  ctx.fillStyle="#a96b3c";
+
+  for(let i=15;i<w;i+=25){
+
+    ctx.beginPath();
+    ctx.arc(x+i,y,6,0,Math.PI*2);
+    ctx.strokeStyle="#6b3d21";
+    ctx.stroke();
+  }
+}
+
+function drawRoadDetails(h){
+
+  /*
+    Coins.
+  */
+
+  for(const coin of road.coins){
+
+    if(coin.collected) continue;
+
+    const relative =
+      coin.lane-road.player.lane+4;
+
+    if(relative<0 || relative>7) continue;
+
+    const x =
+      coin.x*(canvas.width/7)+canvas.width/14;
+
+    const y =
+      relative*h+h/2;
+
+    ctx.fillStyle="#ffd84d";
+
+    ctx.beginPath();
+    ctx.arc(x,y,10,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#fff2a3";
+    ctx.font="bold 12px Arial";
+    ctx.textAlign="center";
+    ctx.fillText("£",x,y+4);
+    ctx.textAlign="left";
+  }
+}
+
+function drawPlayer(x,y){
+
+  const skin = skins[save.skin] || skins.blue;
+
+  ctx.save();
+
+  /*
+    Shadow.
+  */
+
+  ctx.fillStyle="rgba(0,0,0,.25)";
+  ctx.beginPath();
+  ctx.ellipse(x,y+20,22,8,0,0,Math.PI*2);
+  ctx.fill();
+
+  /*
+    Body.
+  */
+
+  ctx.fillStyle=skin.body;
+
+  roundRect(
+    ctx,
+    x-20,
+    y-25,
+    40,
+    42,
+    13
   );
 
+  /*
+    Head.
+  */
+
+  ctx.fillStyle=skin.hat;
+
+  ctx.beginPath();
+  ctx.arc(x,y-28,17,0,Math.PI*2);
+  ctx.fill();
+
+  /*
+    Eyes.
+  */
+
+  ctx.fillStyle="#101820";
+
+  ctx.beginPath();
+  ctx.arc(x-6,y-31,3,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(x+6,y-31,3,0,Math.PI*2);
+  ctx.fill();
+
+  /*
+    Beak.
+  */
+
+  ctx.fillStyle="#ffb83f";
+
+  ctx.beginPath();
+  ctx.moveTo(x-5,y-25);
+  ctx.lineTo(x+5,y-25);
+  ctx.lineTo(x,y-18);
+  ctx.closePath();
+  ctx.fill();
+
+  /*
+    Little feet.
+  */
+
+  ctx.fillStyle="#ffca42";
+
+  ctx.fillRect(x-13,y+15,9,5);
+  ctx.fillRect(x+4,y+15,9,5);
+
+  ctx.restore();
 }
 
 
-/* =========================
-   LOAD
-========================= */
+/* =========================================================
+   ROAD SHOP
+========================================================= */
 
-updateStats();
+function openRoadShop(){
+
+  document.getElementById("roadMenu").style.display="none";
+  document.getElementById("shopPanel").style.display="block";
+
+  renderShop();
+}
+
+function closeRoadShop(){
+
+  document.getElementById("shopPanel").style.display="none";
+  document.getElementById("roadMenu").style.display="flex";
+}
+
+function renderShop(){
+
+  document.getElementById("shopCoins").textContent =
+    save.coins;
+
+  const box =
+    document.getElementById("shopItems");
+
+  box.innerHTML="";
+
+  for(const id in skins){
+
+    const skin=skins[id];
+
+    const owned =
+      save.ownedSkins.includes(id);
+
+    const selected =
+      save.skin===id;
+
+    const div=document.createElement("div");
+
+    div.className="shopItem";
+
+    div.innerHTML=`
+      <div class="skinPreview">
+        <span style="
+          display:inline-flex;
+          width:48px;
+          height:48px;
+          border-radius:50%;
+          background:${skin.body};
+          align-items:center;
+          justify-content:center;
+          border:5px solid ${skin.hat};
+        ">●</span>
+      </div>
+
+      <h3>${skin.name}</h3>
+
+      <p>
+        ${owned ? "Owned" : "🪙 "+skin.price}
+      </p>
+
+      <button
+        class="${selected ? "owned" : ""}"
+        onclick="buySkin('${id}')"
+      >
+        ${
+          selected
+          ? "✓ SELECTED"
+          : owned
+          ? "SELECT"
+          : "BUY"
+        }
+      </button>
+    `;
+
+    box.appendChild(div);
+  }
+}
+
+function buySkin(id){
+
+  const skin=skins[id];
+
+  if(save.ownedSkins.includes(id)){
+
+    save.skin=id;
+
+    saveGame();
+    renderShop();
+
+    toast("🎭 Character selected!");
+    return;
+  }
+
+  if(save.coins < skin.price){
+
+    toast("❌ You need more RainCoins!");
+    return;
+  }
+
+  save.coins -= skin.price;
+  save.ownedSkins.push(id);
+  save.skin=id;
+
+  saveGame();
+  renderShop();
+
+  toast("🎉 Character unlocked!");
+}
+
+
+/* =========================================================
+   RAINY ISLAND
+========================================================= */
+
+let islandSelected = null;
+
+const islandItems = {
+  tree:{
+    name:"🌳 Tree",
+    price:10
+  },
+
+  flower:{
+    name:"🌸 Flower",
+    price:5
+  },
+
+  house:{
+    name:"🏠 House",
+    price:50
+  },
+
+  fountain:{
+    name:"⛲ Fountain",
+    price:75
+  },
+
+  pond:{
+    name:"💧 Pond",
+    price:40
+  },
+
+  rock:{
+    name:"🪨 Rock",
+    price:8
+  }
+};
+
+function openIsland(){
+
+  currentGame="island";
+
+  document.getElementById("gameOverlay").style.display="flex";
+
+  document.getElementById("gameTitle").textContent=
+    "🏝️ Rainy Island";
+
+  document.getElementById("roadControls").style.display="none";
+  document.getElementById("roadMenu").style.display="none";
+  document.getElementById("shopPanel").style.display="none";
+
+  document.getElementById("islandTools").style.display="flex";
+
+  resizeCanvas();
+  renderIslandTools();
+  drawIsland();
+
+  /*
+    Give island player some starter coins.
+  */
+
+  if(save.coins===0){
+
+    save.coins=100;
+    saveGame();
+
+    toast("🎁 100 starter RainCoins!");
+  }
+
+  updateDisplays();
+}
+
+function renderIslandTools(){
+
+  const tools=document.getElementById("islandTools");
+
+  tools.innerHTML="";
+
+  for(const id in islandItems){
+
+    const item=islandItems[id];
+
+    const button=document.createElement("button");
+
+    button.textContent =
+      item.name+" • 🪙"+item.price;
+
+    button.onclick=()=>{
+
+      islandSelected=id;
+
+      toast("📍 Tap the island to place it!");
+    };
+
+    tools.appendChild(button);
+  }
+
+  const clear=document.createElement("button");
+
+  clear.textContent="↩️ Cancel";
+
+  clear.onclick=()=>{
+    islandSelected=null;
+  };
+
+  tools.appendChild(clear);
+}
+
+function drawIsland(){
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  /*
+    Ocean.
+  */
+
+  ctx.fillStyle="#39a9c9";
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  /*
+    Water lines.
+  */
+
+  ctx.strokeStyle="rgba(255,255,255,.18)";
+  ctx.lineWidth=2;
+
+  for(let y=20;y<canvas.height;y+=28){
+
+    for(let x=10;x<canvas.width;x+=55){
+
+      ctx.beginPath();
+
+      ctx.moveTo(x,y);
+      ctx.lineTo(x+18,y);
+
+      ctx.stroke();
+    }
+  }
+
+  /*
+    Island.
+  */
+
+  ctx.fillStyle="#7dcc64";
+
+  ctx.beginPath();
+
+  const cx=canvas.width/2;
+  const cy=canvas.height/2;
+
+  ctx.moveTo(cx-230,cy-130);
+  ctx.quadraticCurveTo(
+    cx-280,cy-50,
+    cx-220,cy+90
+  );
+
+  ctx.quadraticCurveTo(
+    cx-130,cy+160,
+    cx-20,cy+135
+  );
+
+  ctx.quadraticCurveTo(
+    cx+120,cy+170,
+    cx+230,cy+80
+  );
+
+  ctx.quadraticCurveTo(
+    cx+275,cy-50,
+    cx+190,cy-130
+  );
+
+  ctx.quadraticCurveTo(
+    cx+70,cy-190,
+    cx-60,cy-150
+  );
+
+  ctx.quadraticCurveTo(
+    cx-160,cy-180,
+    cx-230,cy-130
+  );
+
+  ctx.fill();
+
+  /*
+    Sand.
+  */
+
+  ctx.strokeStyle="#e9d28b";
+  ctx.lineWidth=18;
+
+  ctx.beginPath();
+
+  ctx.moveTo(cx-210,cy-105);
+  ctx.quadraticCurveTo(
+    cx-260,cy,
+    cx-195,cy+90
+  );
+
+  ctx.stroke();
+
+  /*
+    Place all saved objects.
+  */
+
+  for(const item of save.island){
+
+    drawIslandItem(
+      item.type,
+      item.x,
+      item.y
+    );
+  }
+
+  /*
+    Instructions.
+  */
+
+  ctx.fillStyle="rgba(0,0,0,.4)";
+
+  roundRect(
+    ctx,
+    12,
+    12,
+    220,
+    55,
+    12
+  );
+
+  ctx.fillStyle="white";
+  ctx.font="bold 14px Arial";
+
+  ctx.fillText(
+    islandSelected
+      ? "📍 Tap to place your item"
+      : "🛠️ Choose an item below",
+    25,
+    35
+  );
+
+  ctx.font="13px Arial";
+
+  ctx.fillText(
+    "🪙 "+save.coins+" RainCoins",
+    25,
+    55
+  );
+}
+
+function drawIslandItem(type,x,y){
+
+  ctx.textAlign="center";
+  ctx.textBaseline="middle";
+
+  const emojis={
+    tree:"🌳",
+    flower:"🌸",
+    house:"🏠",
+    fountain:"⛲",
+    pond:"💧",
+    rock:"🪨"
+  };
+
+  ctx.font="42px Arial";
+
+  ctx.fillText(
+    emojis[type] || "❓",
+    x,
+    y
+  );
+
+  ctx.textAlign="left";
+  ctx.textBaseline="alphabetic";
+}
+
+canvas.addEventListener("pointerdown",function(e){
+
+  if(currentGame!=="island") return;
+  if(!islandSelected) return;
+
+  const rect=canvas.getBoundingClientRect();
+
+  const x=
+    (e.clientX-rect.left)*
+    canvas.width/rect.width;
+
+  const y=
+    (e.clientY-rect.top)*
+    canvas.height/rect.height;
+
+  const item=islandItems[islandSelected];
+
+  if(save.coins < item.price){
+
+    toast("❌ Not enough RainCoins!");
+    return;
+  }
+
+  /*
+    Don't allow placing outside the island area.
+  */
+
+  const cx=canvas.width/2;
+  const cy=canvas.height/2;
+
+  const distance=
+    Math.sqrt(
+      Math.pow(x-cx,2)+
+      Math.pow(y-cy,2)
+    );
+
+  if(distance>260){
+
+    toast("🌊 That's in the water!");
+    return;
+  }
+
+  save.coins -= item.price;
+
+  save.island.push({
+    type:islandSelected,
+    x:x,
+    y:y
+  });
+
+  saveGame();
+
+  toast("🏝️ Item placed!");
+
+  islandSelected=null;
+
+  drawIsland();
+});
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+const questions=[
+  {
+    q:"What planet do we live on?",
+    a:["Mars","Earth","Venus"],
+    correct:1
+  },
+
+  {
+    q:"How many days are in a week?",
+    a:["5","7","10"],
+    correct:1
+  },
+
+  {
+    q:"Which animal says 'meow'?",
+    a:["Dog","Cat","Horse"],
+    correct:1
+  },
+
+  {
+    q:"What colour do you get by mixing blue and yellow?",
+    a:["Green","Pink","Orange"],
+    correct:0
+  },
+
+  {
+    q:"How many legs does a spider have?",
+    a:["6","8","10"],
+    correct:1
+  }
+];
+
+function startQuiz(){
+
+  const question =
+    questions[
+      Math.floor(Math.random()*questions.length)
+    ];
+
+  const answer =
+    prompt(
+      question.q+
+      "\n\n1. "+question.a[0]+
+      "\n2. "+question.a[1]+
+      "\n3. "+question.a[2]+
+      "\n\nType 1, 2 or 3:"
+    );
+
+  if(answer===null) return;
+
+  if(Number(answer)-1===question.correct){
+
+    save.coins+=10;
+    saveGame();
+
+    toast("🎉 Correct! +10 RainCoins");
+  }else{
+
+    toast(
+      "❌ Not quite! Answer: "+
+      question.a[question.correct]
+    );
+  }
+}
+
+
+/* =========================================================
+   RANDOM IDEAS
+========================================================= */
+
+function randomIdea(){
+
+  const ideas=[
+    "Make a tiny cardboard arcade 🎮",
+    "Bake cookies 🍪",
+    "Create a new website 💻",
+    "Make a slime colour combination 🟣",
+    "Build something in Minecraft ⛏️",
+    "Create a new RainyVerse game 🎮",
+    "Draw your dream bedroom 🛏️",
+    "Make a paper decoration ✂️",
+    "Learn a new dance move 💃",
+    "Create a random character 🎭"
+  ];
+
+  toast(
+    ideas[
+      Math.floor(Math.random()*ideas.length)
+    ]
+  );
+}
+
+function bakingIdea(){
+
+  const ideas=[
+    "🍪 Kinder cookies",
+    "🧁 Vanilla cupcakes",
+    "🍫 Chocolate brownies",
+    "🥞 American pancakes",
+    "🍓 Strawberry cheesecake",
+    "🍌 Banana bread"
+  ];
+
+  toast(
+    ideas[
+      Math.floor(Math.random()*ideas.length)
+    ]
+  );
+}
+
+function diyIdea(){
+
+  const ideas=[
+    "🎨 Paint a mini canvas",
+    "🪴 Make a recycled plant pot",
+    "📦 Build a cardboard organiser",
+    "🌈 Make a colourful wall decoration",
+    "🧵 Create a bracelet",
+    "✨ Make a room decoration"
+  ];
+
+  toast(
+    ideas[
+      Math.floor(Math.random()*ideas.length)
+    ]
+  );
+}
+
+function petIdea(){
+
+  const ideas=[
+    "🐶 Invent a funny dog name",
+    "🐱 Design a dream cat room",
+    "🐰 Make a pet toy from cardboard",
+    "🐹 Draw a tiny pet house",
+    "🐾 Make a pet-themed logo"
+  ];
+
+  toast(
+    ideas[
+      Math.floor(Math.random()*ideas.length)
+    ]
+  );
+}
+
+
+/* =========================================================
+   PROJECT BUTTONS
+========================================================= */
+
+function projectInfo(name){
+
+  toast(
+    name+
+    " is part of your RainyVerse projects!"
+  );
+}
+
+
+/* =========================================================
+   CLOSE GAME
+========================================================= */
+
+function closeGame(){
+
+  road.running=false;
+
+  currentGame=null;
+
+  document.getElementById("gameOverlay").style.display="none";
+
+  document.getElementById("roadMenu").style.display="none";
+  document.getElementById("shopPanel").style.display="none";
+  document.getElementById("islandTools").style.display="none";
+
+  document.getElementById("roadControls").style.display="grid";
+}
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
+
+window.addEventListener("keydown",function(e){
+
+  if(currentGame!=="road") return;
+
+  const keys=[
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "w","a","s","d"
+  ];
+
+  if(keys.includes(e.key)){
+    e.preventDefault();
+  }
+
+  if(e.key==="ArrowUp" || e.key==="w"){
+    movePlayer(0,-1);
+  }
+
+  if(e.key==="ArrowDown" || e.key==="s"){
+    movePlayer(0,1);
+  }
+
+  if(e.key==="ArrowLeft" || e.key==="a"){
+    movePlayer(-1,0);
+  }
+
+  if(e.key==="ArrowRight" || e.key==="d"){
+    movePlayer(1,0);
+  }
+});
+
+
+/* =========================================================
+   SWIPE CONTROLS
+========================================================= */
+
+let touchStartX=0;
+let touchStartY=0;
+
+canvas.addEventListener("touchstart",function(e){
+
+  if(currentGame!=="road") return;
+
+  const touch=e.changedTouches[0];
+
+  touchStartX=touch.clientX;
+  touchStartY=touch.clientY;
+
+},{passive:true});
+
+canvas.addEventListener("touchend",function(e){
+
+  if(currentGame!=="road") return;
+
+  const touch=e.changedTouches[0];
+
+  const dx=touch.clientX-touchStartX;
+  const dy=touch.clientY-touchStartY;
+
+  if(Math.max(Math.abs(dx),Math.abs(dy))<25){
+    return;
+  }
+
+  if(Math.abs(dx)>Math.abs(dy)){
+
+    movePlayer(
+      dx>0 ? 1 : -1,
+      0
+    );
+
+  }else{
+
+    movePlayer(
+      0,
+      dy>0 ? 1 : -1
+    );
+  }
+
+},{passive:true});
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function roundRect(ctx,x,y,w,h,r){
+
+  ctx.beginPath();
+
+  ctx.moveTo(x+r,y);
+
+  ctx.arcTo(
+    x+w,
+    y,
+    x+w,
+    y+h,
+    r
+  );
+
+  ctx.arcTo(
+    x+w,
+    y+h,
+    x,
+    y+h,
+    r
+  );
+
+  ctx.arcTo(
+    x,
+    y+h,
+    x,
+    y,
+    r
+  );
+
+  ctx.arcTo(
+    x,
+    y,
+    x+w,
+    y,
+    r
+  );
+
+  ctx.closePath();
+  ctx.fill();
+}
+
+
+/* =========================================================
+   INITIALISE
+========================================================= */
+
+updateDisplays();
 
 </script>
 
